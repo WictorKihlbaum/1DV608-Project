@@ -2,8 +2,17 @@
 
 class NewsfeedView {
     
+    private $newsfeed = "";
+    
+    
     public function getNewsFeed() {
         
-        return "";
+        return $this -> newsfeed;
     }
+    
+    public function setNewsfeed($newsfeed) {
+        
+        $this -> newsfeed = $newsfeed;
+    }
+    
 }
