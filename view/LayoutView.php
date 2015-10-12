@@ -10,6 +10,8 @@ class LayoutView {
 				<head>
 					<meta charset="utf-8">
 					<title>ProjectSite</title>
+					<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+					<link rel="stylesheet" type="text/css" href="css/style.css">
 				</head>
 				<body>
 					<header>
@@ -17,14 +19,18 @@ class LayoutView {
 					</header>
 					<main>
 						<h2>Here you will see newsfeed</h2>
-						'. $newsfeedView -> getNewsfeed() .'
+						<div class="rssFeed">
+							'. $newsfeedView -> getNewsfeed() .'
+						</div>
 					</main>
 					<footer>
-						<p>This is a footer</p>
+						<p><h3>This is a footer</h3></p>
 					</footer>
 				</body>
 			</html>
 		';	
 	}
+	
+	
 	
 }

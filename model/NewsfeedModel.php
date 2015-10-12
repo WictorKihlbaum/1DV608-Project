@@ -2,6 +2,7 @@
 
 class NewsfeedModel {
     
+	// RSSFeeds.
     private static $aftonbladetRSS = "http://www.aftonbladet.se/rss.xml";
     private static $expressenRSS = "http://expressen.se/rss/nyheter";
     private static $svdRSS = "http://www.svd.se/?service=rss";

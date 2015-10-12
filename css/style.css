@@ -1,0 +1,42 @@
+/* CSS Document */
+
+body {
+	padding: 0;
+}
+
+header {
+	margin: 0 auto;
+	width: 960px;
+	text-align: center;
+}
+
+main {
+	margin: 0 auto;
+	width: 960px;
+	background-color: #CCC;
+}
+
+main h2 {
+	text-align: center;
+}
+
+footer {
+	margin: 0 auto;
+	width: 960px;
+	text-align: center;
+}
+
+.rssFeed {
+	width: 450px;
+	margin: 0 auto;
+}
+
+.rssFeed img {
+	width: 450px;
+	height: 300px;
+}
+
+h1, h2, h3,
+.rssFeed p {
+	font-family: 'Raleway', sans-serif;
+}
