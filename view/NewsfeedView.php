@@ -3,10 +3,15 @@
 class NewsfeedView {
     
     private $newsfeed = "";
-    
+	
+	
+	public function response() {
+	
+		return "<h1>NewsfeedView</h1>";	
+	}
     
     public function getNewsFeed() {
-        
+			
         return $this -> newsfeed;
     }
     
