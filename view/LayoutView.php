@@ -7,6 +7,11 @@ class LayoutView {
 	private $newsfeedView;
 	private $aboutView;
 	
+	private static $homeLink = "LayoutView::HomeLink";
+	private static $registrationLink = "LayoutView::RegistrationLink";
+	private static $newsfeedLink = "LayoutView::NewsfeedLink";
+	private static $aboutLink = "LayoutView::AboutLink";
+	
 	private static $homeURL = "?";
 	private static $registrationURL = "registration";
 	private static $newsfeedURL = "newsfeed";
@@ -38,10 +43,10 @@ class LayoutView {
 					<header>
 						<nav>
 							<ul>
-								<li><a href="'.self::$homeURL.'">Home</a></li>
-								<li><a href="'.self::$registrationURL.'">Registration</a></li>
-								<li><a href="'.self::$newsfeedURL.'">Newsfeed</a></li>
-								<li><a href="'.self::$aboutURL.'">About</a></li>
+								<li><a href="'. self::$homeURL .' name='. self::$homeLink .'">Home</a></li>
+								<li><a href="?'. self::$registrationURL .' name='. self::$registrationLink .'">Registration</a></li>
+								<li><a href="?'. self::$newsfeedURL .' name='. self::$newsfeedLink .'">Newsfeed</a></li>
+								<li><a href="?'. self::$aboutURL .' name='. self::$aboutLink .'">About</a></li>
 							</ul>
             			</nav>
 					</header>
@@ -57,6 +62,15 @@ class LayoutView {
 	}
 	
 	private function renderContent() {
+		
+		/*if (isset($_POST[self::$newsfeedLink])) {
+		
+			return $this -> newsfeed -> response();
+			
+		} else {
+		
+			return "<h1>HomeView</h1>";	
+		}*/
 	
 		switch ($_SERVER['QUERY_STRING']) {
 		

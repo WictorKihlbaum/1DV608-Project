@@ -1,5 +1,7 @@
 <?php
 
+date_default_timezone_set('Europe/Stockholm');
+
 // INCLUDE ALL FILES NEEDED.
 
 // Models.
@@ -9,9 +11,7 @@ require_once('view/HomeView.php');
 require_once('view/RegistrationView.php');
 require_once('view/NewsfeedView.php');
 require_once('view/AboutView.php');
-
 require_once('view/LayoutView.php');
-require_once('view/LoginView.php');
 
 // Controllers.
 require_once('controller/NewsfeedController.php');
@@ -33,7 +33,6 @@ $homeView = new HomeView();
 $registrationView = new RegistrationView();
 $newsfeedView = new NewsfeedView();
 $aboutView = new AboutView();
-$navigationView = new NavigationView();
 $layoutView = new LayoutView($homeView, $registrationView, $newsfeedView, $aboutView);
 
 
