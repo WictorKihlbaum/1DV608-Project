@@ -12,7 +12,7 @@ class LayoutView {
 	private static $newsfeedLink = "LayoutView::NewsfeedLink";
 	private static $aboutLink = "LayoutView::AboutLink";
 	
-	private static $homeURL = "?";
+	private static $homeURL = "home";
 	private static $registrationURL = "registration";
 	private static $newsfeedURL = "newsfeed";
 	private static $aboutURL = "about";
@@ -43,10 +43,10 @@ class LayoutView {
 					<header>
 						<nav>
 							<ul>
-								<li><a href="'. self::$homeURL .' name='. self::$homeLink .'">Home</a></li>
-								<li><a href="?'. self::$registrationURL .' name='. self::$registrationLink .'">Registration</a></li>
-								<li><a href="?'. self::$newsfeedURL .' name='. self::$newsfeedLink .'">Newsfeed</a></li>
-								<li><a href="?'. self::$aboutURL .' name='. self::$aboutLink .'">About</a></li>
+								<li><a href="?' . self::$homeURL . '" name="' . self::$homeLink . '">Home</a></li>
+								<li><a href="?' . self::$registrationURL .'" name="' . self::$registrationLink . '">Registration</a></li>
+								<li><a href="?' . self::$newsfeedURL .'" name="' . self::$newsfeedLink . '">Newsfeed</a></li>
+								<li><a href="?' . self::$aboutURL .'" name="' . self::$aboutLink . '">About</a></li>
 							</ul>
             			</nav>
 					</header>
