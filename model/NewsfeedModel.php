@@ -6,6 +6,7 @@ class NewsfeedModel {
     private static $expressenRSS = "http://expressen.se/rss/nyheter";
     private static $svdRSS = "http://www.svd.se/?service=rss";
     private static $svtRSS = "http://www.svt.se/nyheter/rss.xml";
+	private static $gamereactorRSS = "https://www.gamereactor.se/rss/rss.php?texttype=4";
     
     private $rssFeedArray = array();
     
@@ -13,7 +14,7 @@ class NewsfeedModel {
     public function loadRSSFeed() {
         
         $rss = new DOMDocument();
-        $rss -> load(self::$aftonbladetRSS);
+        $rss -> load(self::$gamereactorRSS);
         
         $feed = array();
         

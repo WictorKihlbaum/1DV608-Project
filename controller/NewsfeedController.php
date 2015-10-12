@@ -24,13 +24,16 @@ class NewsfeedController {
     }
     
     private function createRSSFeedString($feed) {
+		
+		 date_default_timezone_set('Europe/Stockholm');
         
         $newsfeed = "";
         $limit = 5;
         
         for ($x = 0; $x < $limit; $x++) {
             
-        	$title = str_replace(' & ', ' &amp; ', $feed[$x]['title']);
+        	//$title = str_replace(' & ', ' &amp; ', $feed[$x]['title']); Need?
+			$title = $feed[$x]['title'];
         	$link = $feed[$x]['link'];
         	$description = $feed[$x]['desc'];
         	$date = date('l F d, Y', strtotime($feed[$x]['date']));
