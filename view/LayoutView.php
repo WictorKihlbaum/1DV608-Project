@@ -3,26 +3,26 @@
 class LayoutView {
 	
 	private $homeView;
-	private $registrationView;
+	private $loginView;
 	private $newsfeedView;
 	private $aboutView;
 	
 	private static $homeLink = "LayoutView::HomeLink";
-	private static $registrationLink = "LayoutView::RegistrationLink";
+	private static $loginLink = "LayoutView::LoginLink";
 	private static $newsfeedLink = "LayoutView::NewsfeedLink";
 	private static $aboutLink = "LayoutView::AboutLink";
 	
 	private static $homeURL = "home";
-	private static $registrationURL = "registration";
+	private static $loginURL = "login";
 	private static $newsfeedURL = "newsfeed";
 	private static $aboutURL = "about";
 	
 	
 	
-	public function __construct($homeView, $registrationView, $newsfeedView, $aboutView) {
+	public function __construct($homeView, $loginView, $newsfeedView, $aboutView) {
 	
 		$this -> homeView = $homeView;
-		$this -> registrationView = $registrationView;
+		$this -> loginView = $loginView;
 		$this -> newsfeedView = $newsfeedView;
 		$this -> aboutView = $aboutView;
 	}
@@ -44,7 +44,7 @@ class LayoutView {
 						<nav>
 							<ul>
 								<li><a href="?' . self::$homeURL . '" name="' . self::$homeLink . '">Home</a></li>
-								<li><a href="?' . self::$registrationURL .'" name="' . self::$registrationLink . '">Registration</a></li>
+								<li><a href="?' . self::$loginURL .'" name="' . self::$loginLink . '">Login</a></li>
 								<li><a href="?' . self::$newsfeedURL .'" name="' . self::$newsfeedLink . '">Newsfeed</a></li>
 								<li><a href="?' . self::$aboutURL .'" name="' . self::$aboutLink . '">About</a></li>
 							</ul>
@@ -63,23 +63,14 @@ class LayoutView {
 	
 	private function renderContent() {
 		
-		/*if (isset($_POST[self::$newsfeedLink])) {
-		
-			return $this -> newsfeed -> response();
-			
-		} else {
-		
-			return "<h1>HomeView</h1>";	
-		}*/
-	
 		switch ($_SERVER['QUERY_STRING']) {
 		
 			case self::$homeURL: 
 				return $this -> homeView -> response();
 				break;
 				
-			case self::$registrationURL: 
-				return $this -> registrationView -> response();
+			case self::$loginURL: 
+				return $this -> loginView -> response();
 				break;
 				
 			case self::$newsfeedURL: 
