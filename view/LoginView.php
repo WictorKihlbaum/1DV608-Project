@@ -40,17 +40,17 @@ class LoginView {
 			$response = $this -> generateLoginFormHTML();			
 		}
 
-		return $this -> showTopic() . $response;	
+		return $this -> renderTopic() . $response;	
 	}
 	
-	private function showTopic() {
+	private function renderTopic() {
 	
 		if ($this -> loginModel -> loggedInUser()) {
-		
+			
 			return '<h1>You are now logged in</h1>';
 			
 		} else {
-		
+			
 			return '<h1>You are not logged in</h1>';
 		}
 	}
@@ -63,13 +63,13 @@ class LoginView {
 					<legend>Login - enter Username and password</legend>
 					<p id="' . self::$messageId . '">' . $this -> feedbackMessage . '</p>
 					
-					<label for="' . self::$name . '">Username :</label>
-					<input type="text" id="' . self::$name . '" name="' . self::$name . '" />
+					<label for="' . self::$name . '">Username:</label>
+					<input type="text" id="' . self::$name . '" name="' . self::$name . '" /><br />
 
-					<label for="' . self::$password . '">Password :</label>
-					<input type="password" id="' . self::$password . '" name="' . self::$password . '" />
+					<label for="' . self::$password . '">Password:</label>
+					<input type="password" id="' . self::$password . '" name="' . self::$password . '" /><br />
 					
-					<input type="submit" name="' . self::$login . '" value="login" />
+					<input type="submit" id="' . self::$login . '" name="' . self::$login . '" value="Login" />
 				</fieldset>
 			</form>
 		';
