@@ -15,11 +15,13 @@ date_default_timezone_set('Europe/Stockholm');
 require_once('model/SessionModel.php');
 require_once('model/NewsfeedModel.php');
 require_once('model/LoginModel.php');
+require_once('model/RegisterModel.php');
 require_once('model/UserModel.php');
 
 // VIEWS.
 require_once('view/HomeView.php');
 require_once('view/LoginView.php');
+require_once('view/RegisterView.php');
 require_once('view/NewsfeedView.php');
 require_once('view/AboutView.php');
 require_once('view/LayoutView.php');
@@ -27,6 +29,7 @@ require_once('view/LayoutView.php');
 // CONTROLLERS.
 require_once('controller/MasterController.php');
 require_once('controller/LoginController.php');
+require_once('controller/RegisterController.php');
 require_once('controller/NewsfeedController.php');
 
 // EXTENDED CUSTOM EXCEPTIONS.
@@ -45,19 +48,22 @@ $registeredUsersFile = './model/UserDAL/RegisteredUsers.txt';
 // CREATE OBJECTS OF THE MODELS.
 $sessionModel = new SessionModel();
 $loginModel = new LoginModel($sessionModel, $registeredUsersFile);
+$registerModel = new RegisterModel($sessionModel, $registeredUsersFile);
 $newsfeedModel = new NewsfeedModel();
 
 // CREATE OBJECTS OF THE VIEWS.
 $homeView = new HomeView();
 $loginView = new LoginView($loginModel, $sessionModel);
+$registerView = new RegisterView($registerModel);
 $newsfeedView = new NewsfeedView();
 $aboutView = new AboutView();
-$layoutView = new LayoutView($homeView, $loginView, $newsfeedView, $aboutView);
+$layoutView = new LayoutView($homeView, $loginView, $registerView, $newsfeedView, $aboutView);
 
 // CREATE OBJECTS OF CONTROLLERS.
 $loginController = new LoginController($loginView, $loginModel, $sessionModel);
+$registerController = new RegisterController($registerView, $registerModel);
 $newsfeedController = new NewsfeedController($newsfeedView, $newsfeedModel);
-$masterController = new MasterController($loginController);
+$masterController = new MasterController($loginController, $registerController);
 
 
 // CALL FUNCTIONS.

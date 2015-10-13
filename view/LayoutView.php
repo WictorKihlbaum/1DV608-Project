@@ -4,6 +4,7 @@ class LayoutView {
 	
 	private $homeView;
 	private $loginView;
+	private $registerView;
 	private $newsfeedView;
 	private $aboutView;
 	
@@ -14,15 +15,17 @@ class LayoutView {
 	
 	private static $homeURL = "home";
 	private static $loginURL = "login";
+	private static $registerURL = "register";
 	private static $newsfeedURL = "newsfeed";
 	private static $aboutURL = "about";
 	
 	
 	
-	public function __construct($homeView, $loginView, $newsfeedView, $aboutView) {
+	public function __construct($homeView, $loginView, $registerView, $newsfeedView, $aboutView) {
 	
 		$this -> homeView = $homeView;
 		$this -> loginView = $loginView;
+		$this -> registerView = $registerView;
 		$this -> newsfeedView = $newsfeedView;
 		$this -> aboutView = $aboutView;
 	}
@@ -72,6 +75,10 @@ class LayoutView {
 				
 			case self::$loginURL: 
 				return $this -> loginView -> response();
+				break;
+				
+			case self::$registerURL: 
+				return $this -> registerView -> response();
 				break;
 				
 			case self::$newsfeedURL: 

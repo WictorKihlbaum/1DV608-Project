@@ -5,6 +5,9 @@ class LoginView {
 	private $loginModel;
 	private $sessionModel;
 	
+	private static $registerLink = 'LoginView::RegisterLink';
+	private static $registerURL = 'register';
+	
 	private static $login = 'LoginView::Login';
 	private static $logout = 'LoginView::Logout';
 	private static $name = 'LoginView::UserName';
@@ -40,7 +43,7 @@ class LoginView {
 			$response = $this -> generateLoginFormHTML();			
 		}
 
-		return $this -> renderTopic() . $response;	
+		return $this -> renderTopic() . $response . $this -> renderRegisterLink();	
 	}
 	
 	private function renderTopic() {
@@ -73,6 +76,13 @@ class LoginView {
 				</fieldset>
 			</form>
 		';
+	}
+	
+	private function renderRegisterLink() {
+	
+		return '
+			<a href="?' . self::$registerURL . '" name="' . self::$registerLink . '">Not a registered user? Click here to create a new account!</a>
+		';	
 	}
 	
 	private function generateLogoutButtonHTML() {
