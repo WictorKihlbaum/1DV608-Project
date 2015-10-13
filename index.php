@@ -25,6 +25,7 @@ require_once('view/AboutView.php');
 require_once('view/LayoutView.php');
 
 // CONTROLLERS.
+require_once('controller/MasterController.php');
 require_once('controller/LoginController.php');
 require_once('controller/NewsfeedController.php');
 
@@ -56,11 +57,9 @@ $layoutView = new LayoutView($homeView, $loginView, $newsfeedView, $aboutView);
 // CREATE OBJECTS OF CONTROLLERS.
 $loginController = new LoginController($loginView, $loginModel, $sessionModel);
 $newsfeedController = new NewsfeedController($newsfeedView, $newsfeedModel);
+$masterController = new MasterController($loginController);
 
 
 // CALL FUNCTIONS.
-
-// Verify whether user is logged in or not.
-$isLoggedIn = $loginController -> verifyUserState();
-
+$masterController -> handleUserRequest();
 $layoutView -> renderLayout();

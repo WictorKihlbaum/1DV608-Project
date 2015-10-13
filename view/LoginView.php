@@ -40,26 +40,24 @@ class LoginView {
 			$response = $this -> generateLoginFormHTML();			
 		}
 
-		return $response . $this -> isLoggedIn();	
+		return $this -> showTopic() . $response;	
 	}
 	
-	private function isLoggedIn() {
+	private function showTopic() {
 	
 		if ($this -> loginModel -> loggedInUser()) {
 		
-			return 'User is logged in';
+			return '<h1>You are now logged in</h1>';
 			
 		} else {
 		
-			return 'User is not logged in';
+			return '<h1>You are not logged in</h1>';
 		}
 	}
 	
 	private function generateLoginFormHTML() {
 	
 		return '
-			<h1>LoginView</h1>
-			
 			<form method="post" > 
 				<fieldset>
 					<legend>Login - enter Username and password</legend>
