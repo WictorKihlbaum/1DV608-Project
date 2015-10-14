@@ -51,7 +51,7 @@ $registeredUsersFile = './model/DAL/RegisteredUsers.txt';
 $userDAL = new UserDAL();
 $sessionModel = new SessionModel();
 $loginModel = new LoginModel($sessionModel, $userDAL);
-$registerModel = new RegisterModel($sessionModel, $registeredUsersFile);
+$registerModel = new RegisterModel($sessionModel, $registeredUsersFile, $userDAL);
 $newsfeedModel = new NewsfeedModel();
 
 // CREATE OBJECTS OF THE VIEWS.

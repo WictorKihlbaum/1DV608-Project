@@ -4,16 +4,40 @@ class RegisterModel {
     
     private $sessionModel;
     private $registeredUsersFile;
+	private $userDAL;
+	private $registeredUsersCache;
     
     
-    public function __construct($sessionModel, $registeredUsersFile) {
+    public function __construct($sessionModel, $registeredUsersFile, $userDAL) {
         
         $this -> sessionModel = $sessionModel;
         $this -> registeredUsersFile = $registeredUsersFile;
+		$this -> userDAL = $userDAL;
     }
     
     public function validateUserInput($newUser) {
-        
+		
+		$this -> registeredUsersCache = $this -> userDAL -> getRegisteredUsers();
+		
+		$userFound = false;
+		
+		foreach ($this -> registeredUsersCache as $user) {
+		
+			if ($user -> getUserName() === $newUser -> getUserName() &&
+				$user -> getPassword() === $newUser -> getPassword()) {
+				
+				$userFound = true;
+			} 
+		}
+		
+		if (!$userFound) {
+			$this -> userDAL -> connectToServerAndAddUser($newUser);
+		} else {
+			throw new \UserAlreadyExistsException("User exists, pick another username");
+		}
+		
+		
+        /*
         $inputToSearchFor = "Username: " . $newUser -> getUserName() . " Password: " . $newUser -> getPassword();
         $textFileToSearchIn = file_get_contents($this -> registeredUsersFile);
         $textFileToSearchIn = explode("\n", $textFileToSearchIn);
@@ -30,6 +54,7 @@ class RegisterModel {
             // Session for the new users username in particular.
             $this -> sessionModel -> setNewUserNameSession($newUser -> getUserName()); 
         }
+		*/
     }
     
     private function saveNewUserToTextFile($newUser) {
