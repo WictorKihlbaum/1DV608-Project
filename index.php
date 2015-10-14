@@ -45,13 +45,11 @@ require_once('Exceptions/UserAlreadyExistsException.php');
 require_once('Exceptions/WrongInputException.php');
 
 
-$registeredUsersFile = './model/DAL/RegisteredUsers.txt';
-
 // CREATE OBJECTS OF THE MODELS.
 $userDAL = new UserDAL();
 $sessionModel = new SessionModel();
 $loginModel = new LoginModel($sessionModel, $userDAL);
-$registerModel = new RegisterModel($sessionModel, $registeredUsersFile, $userDAL);
+$registerModel = new RegisterModel($sessionModel, $userDAL);
 $newsfeedModel = new NewsfeedModel();
 
 // CREATE OBJECTS OF THE VIEWS.
