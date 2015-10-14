@@ -3,15 +3,13 @@
 class LoginModel {
 
     private $sessionModel;
-    private $registeredUsersFile;
 	private $userDAL;
 	private $registeredUsersCache;
     
     
-    public function __construct($sessionModel, $registeredUsersFile, $userDAL) {
+    public function __construct($sessionModel, $userDAL) {
         
         $this -> sessionModel = $sessionModel;
-        $this -> registeredUsersFile = $registeredUsersFile;
 		$this -> userDAL = $userDAL;
     }
 
@@ -20,17 +18,21 @@ class LoginModel {
 		$this -> userDAL -> connectToServerAndFetchUsers();
 		$this -> registeredUsersCache = $this -> userDAL -> getRegisteredUsers();
 		
+		$userFound = false;
+		
 		foreach ($this -> registeredUsersCache as $user) {
 		
-			if ($user -> getUserName() == $input -> getUserName() &&
-				$user -> getPassword() == $input -> getPassword()) {
+			if ($user -> getUserName() === $input -> getUserName() &&
+				$user -> getPassword() === $input -> getPassword()) {
 				
-				$this -> sessionModel -> setUserSession();
-				
-			} else {
-			
-				throw new \WrongInputException();	
-			}
+				$userFound = true;
+			} 
+		}
+		
+		if ($userFound) {
+			$this -> sessionModel -> setUserSession();
+		} else {
+			throw new \WrongInputException("Wrong name or password");
 		}
     }
     

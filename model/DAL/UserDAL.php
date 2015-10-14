@@ -31,10 +31,12 @@ class UserDAL {
 				$this -> registeredUsersCache[] = $registeredUser;
     		}
 				
-			$stmt->close();
+			$stmt -> close();
 		}
 		
 		$con -> close();
+		
+		var_dump($this -> registeredUsersCache);
 	}
 	
 	public function getRegisteredUsers() {

@@ -23,7 +23,7 @@ class LoginController {
             $this -> sessionModel -> unsetNewRegisteredUserSession();
         }
         
-        // If user's not already logged in - login user.
+        // If user not already logged in - login user.
         if (!$this -> loginModel -> loggedInUser() && 
              $this -> loginView -> didUserPressLogin()) {
               

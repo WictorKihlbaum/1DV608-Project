@@ -50,7 +50,7 @@ $registeredUsersFile = './model/DAL/RegisteredUsers.txt';
 // CREATE OBJECTS OF THE MODELS.
 $userDAL = new UserDAL();
 $sessionModel = new SessionModel();
-$loginModel = new LoginModel($sessionModel, $registeredUsersFile, $userDAL);
+$loginModel = new LoginModel($sessionModel, $userDAL);
 $registerModel = new RegisterModel($sessionModel, $registeredUsersFile);
 $newsfeedModel = new NewsfeedModel();
 
