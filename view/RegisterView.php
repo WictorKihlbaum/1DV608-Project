@@ -3,6 +3,8 @@
 class RegisterView {
 	
 	private $registerModel;
+	
+	private static $loginURL = "login";
     
     private static $register = 'RegisterView::Register';
     private static $userName = 'RegisterView::UserName';
@@ -29,7 +31,8 @@ class RegisterView {
 	public function response() {
 		
 		$response = $this -> generateRegisterFormHTML();
-		return $response;	
+		
+		return $response . $this -> renderBackLink();	
 	}
 	
 	private function generateRegisterFormHTML() {
@@ -55,6 +58,11 @@ class RegisterView {
 				</fieldset>
 			</form>
 		';
+	}
+	
+	private function renderBackLink() {
+	
+		return '<a href="?'. self::$loginURL .'">Back to login</a>';	
 	}
 	
 	public function didUserPressRegister() {

@@ -20,7 +20,6 @@ class LayoutView {
 	private static $aboutURL = "about";
 	
 	
-	
 	public function __construct($homeView, $loginView, $registerView, $newsfeedView, $aboutView) {
 	
 		$this -> homeView = $homeView;
