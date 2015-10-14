@@ -17,6 +17,8 @@ require_once('model/NewsfeedModel.php');
 require_once('model/LoginModel.php');
 require_once('model/RegisterModel.php');
 require_once('model/UserModel.php');
+//DAL.
+require_once('model/DAL/UserDAL.php');
 
 // VIEWS.
 require_once('view/HomeView.php');
@@ -43,11 +45,12 @@ require_once('Exceptions/UserAlreadyExistsException.php');
 require_once('Exceptions/WrongInputException.php');
 
 
-$registeredUsersFile = './model/UserDAL/RegisteredUsers.txt';
+$registeredUsersFile = './model/DAL/RegisteredUsers.txt';
 
 // CREATE OBJECTS OF THE MODELS.
+$userDAL = new UserDAL();
 $sessionModel = new SessionModel();
-$loginModel = new LoginModel($sessionModel, $registeredUsersFile);
+$loginModel = new LoginModel($sessionModel, $registeredUsersFile, $userDAL);
 $registerModel = new RegisterModel($sessionModel, $registeredUsersFile);
 $newsfeedModel = new NewsfeedModel();
 

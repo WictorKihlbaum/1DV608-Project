@@ -4,118 +4,34 @@ class LoginModel {
 
     private $sessionModel;
     private $registeredUsersFile;
+	private $userDAL;
+	private $registeredUsersCache;
     
     
-    public function __construct($sessionModel, $registeredUsersFile) {
+    public function __construct($sessionModel, $registeredUsersFile, $userDAL) {
         
         $this -> sessionModel = $sessionModel;
         $this -> registeredUsersFile = $registeredUsersFile;
+		$this -> userDAL = $userDAL;
     }
 
-    public function validateUserInput($userToValidate) {
+    public function validateUserInput($input) {
 		
-		$host = "127.0.0.1";
-		$port = 8889;
-		$socket = "8889";
-		$user = "root";
-		$password = "root";
-		$dbname = "mylocaldb";
+		$this -> userDAL -> connectToServerAndFetchUsers();
+		$this -> registeredUsersCache = $this -> userDAL -> getRegisteredUsers();
 		
-		$registeredUsersCache = array();
+		foreach ($this -> registeredUsersCache as $user) {
 		
-		
-		$con = new mysqli($host, $user, $password, $dbname, $port, $socket)
-			or die ('Could not connect to the database server' . mysqli_connect_error());
-			
-		if ($con) {
-			echo "Successful Connection!";
-		} else {
-			echo "Connection Failed!";
-		}
-		
-		$query = "SELECT userName, password FROM users";
-		
-		if ($stmt = $con -> prepare($query)) {
-			
-			$stmt -> execute();
-			$stmt -> bind_result($userName, $password);
-			
-			while ($stmt -> fetch()) {
-				//printf("%s %s\n", $userName, $password);
-				
-				$registeredUser = new UserModel($userName, $password);
-				$registeredUsersCache[] = $registeredUser;
-    		}
-				
-			$stmt->close();
-		}
-		
-		$con -> close();
-		
-		
-		foreach ($registeredUsersCache as $reggedUser) {
-		
-			if ($reggedUser -> getUserName() == $userToValidate -> getUserName() &&
-				$reggedUser -> getPassword() == $userToValidate -> getPassword()) {
+			if ($user -> getUserName() == $input -> getUserName() &&
+				$user -> getPassword() == $input -> getPassword()) {
 				
 				$this -> sessionModel -> setUserSession();
-				echo "Gratz!";
 				
 			} else {
 			
-				echo "User does not exist!";	
+				throw new \WrongInputException();	
 			}
 		}
-		
-		
-		
-
-
-
-		
-		
-		
-		
-		
-		
-		/*while ($stmt->fetch()) {
-				
-		}*/
-		
-		
-		/*
-		$query = "SELECT userName, password FROM users";
-		$result = mysqli_query($con, $query) or die("No query");
-		
-		$users = array();
-		
-		while ($row = mysqli_fetch_assoc($result)) {
-			
-			$users[] = $row;
-		}
-		
-		echo $users;
-		
-		$con -> close();
-		*/
-		
-		
-
-
-		
-		
-        /*
-        $inputToSearchFor = "Username: " . $user -> getUserName() . " Password: " . $user -> getPassword();
-        $textFileToSearchIn = file_get_contents($this -> registeredUsersFile);
-        $textFileToSearchIn = explode("\n", $textFileToSearchIn);
-        
-        if (!in_array($inputToSearchFor, $textFileToSearchIn)) {
-        
-            throw new \WrongInputException("Wrong name or password");
-        }
-        
-        $this -> sessionModel -> setUserSession();
-		*/
     }
     
     public function logoutUser() {
