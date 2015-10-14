@@ -12,7 +12,7 @@ class LoginModel {
         $this -> registeredUsersFile = $registeredUsersFile;
     }
 
-    public function validateUserInput($user) {
+    public function validateUserInput($userToValidate) {
 		
 		$host = "127.0.0.1";
 		$port = 8889;
@@ -21,28 +21,51 @@ class LoginModel {
 		$password = "root";
 		$dbname = "mylocaldb";
 		
+		$registeredUsersCache = array();
+		
+		
 		$con = new mysqli($host, $user, $password, $dbname, $port, $socket)
 			or die ('Could not connect to the database server' . mysqli_connect_error());
 			
 		if ($con) {
 			echo "Successful Connection!";
+		} else {
+			echo "Connection Failed!";
 		}
 		
 		$query = "SELECT userName, password FROM users";
-
+		
 		if ($stmt = $con -> prepare($query)) {
 			
 			$stmt -> execute();
 			$stmt -> bind_result($userName, $password);
 			
 			while ($stmt -> fetch()) {
-				printf("%s %s\n", $userName, $password);
+				//printf("%s %s\n", $userName, $password);
+				
+				$registeredUser = new UserModel($userName, $password);
+				$registeredUsersCache[] = $registeredUser;
     		}
 				
 			$stmt->close();
 		}
 		
 		$con -> close();
+		
+		
+		foreach ($registeredUsersCache as $reggedUser) {
+		
+			if ($reggedUser -> getUserName() == $userToValidate -> getUserName() &&
+				$reggedUser -> getPassword() == $userToValidate -> getPassword()) {
+				
+				$this -> sessionModel -> setUserSession();
+				echo "Gratz!";
+				
+			} else {
+			
+				echo "User does not exist!";	
+			}
+		}
 		
 		
 		
