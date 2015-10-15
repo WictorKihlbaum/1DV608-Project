@@ -1,48 +1,60 @@
 body {
 	padding: 0;
 	margin: 0;
-	font-family: 'Raleway', sans-serif;
+	background-color: #ECECEC;
 }
 
 header {
 	position: relative;
+	margin-bottom: 25px;
 	width: 100%;
-	height: 150px;
-	background-color: #E4F1FE;
+	height: 90px;
+	background-color: #4183D7;
 }
 
 main {
 	position: relative;
 	margin: 0 auto;
 	width: 960px;
-	height: 700px;
-	background-color: #FFF;
+	height: auto;
+	background-color: #FFFFFF;
+	padding: 25px;
+	font-family: 'Raleway', sans-serif;
 }
 
 footer {
-	position: absolute;
 	bottom: 0;
+	padding: 50px 0;
+	margin-top: 85px;
 	width: 100%;
-	height: 120px;
-	background-color: #E4F1FE;
+	height: auto;
+	background-color: #4183D7;
 	text-align: center;
 	color: #59ABE3;
 }
 
-main h2 {
+main h1 {
 	color: #59ABE3;
+	text-align: center;
 }
 
-.rssFeed {
-	width: 450px;
-	margin: 0 auto;
+.feedContent {
+	width: 450px;	
+	margin: 50px 0;
+	color: #6C7A89;
 }
 
-.rssFeed img {
+.feedContent a:link {
+	color: #F4B350;
+	text-decoration: none;
+}
+
+.feedContent a:visited {
+	color: #D35400;
+	text-decoration: none;
+}
+
+.feedContent img {
 	width: 450px;
 	height: 300px;
-}
-
-h1 {
-	color: #6BB9F0;	
 }

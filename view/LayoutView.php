@@ -19,6 +19,9 @@ class LayoutView {
 	private static $newsfeedURL = "newsfeed";
 	private static $aboutURL = "about";
 	
+	private static $mainFont = "<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>";
+	private static $navigationFont = "<link href='https://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css'>";
+	
 	
 	public function __construct($homeView, $loginView, $registerView, $newsfeedView, $aboutView) {
 	
@@ -37,7 +40,8 @@ class LayoutView {
 				<head>
 					<meta charset="utf-8">
 					<title>ProjectSite</title>
-					<link href="https://fonts.googleapis.com/css?family=Raleway" rel="stylesheet" type="text/css">
+					'. self::$mainFont .'
+					'. self::$navigationFont .'
 					<link rel="stylesheet" type="text/css" href="css/style.css">
 					<link rel="stylesheet" type="text/css" href="css/navigation.css">
 					<link rel="stylesheet" type="text/css" href="css/login.css">
@@ -46,10 +50,10 @@ class LayoutView {
 					<header>
 						<nav>
 							<ul>
-								<li><a href="?' . self::$homeURL . '" name="' . self::$homeLink . '">Home</a></li>
-								<li><a href="?' . self::$loginURL .'" name="' . self::$loginLink . '">Login</a></li>
-								<li><a href="?' . self::$newsfeedURL .'" name="' . self::$newsfeedLink . '">Newsfeed</a></li>
-								<li><a href="?' . self::$aboutURL .'" name="' . self::$aboutLink . '">About</a></li>
+								<li><a href="?'. self::$homeURL .'" name="'. self::$homeLink .'">Home</a></li>
+								<li><a href="?'. self::$loginURL .'" name="'. self::$loginLink .'">Login</a></li>
+								<li><a href="?'. self::$newsfeedURL .'" name="'. self::$newsfeedLink .'">Newsfeed</a></li>
+								<li><a href="?'. self::$aboutURL .'" name="'. self::$aboutLink .'">About</a></li>
 							</ul>
             			</nav>
 					</header>

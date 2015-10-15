@@ -64,7 +64,7 @@ $layoutView = new LayoutView($homeView, $loginView, $registerView, $newsfeedView
 $loginController = new LoginController($loginView, $loginModel, $sessionModel);
 $registerController = new RegisterController($registerView, $registerModel);
 $newsfeedController = new NewsfeedController($newsfeedView, $newsfeedModel);
-$masterController = new MasterController($loginController, $registerController);
+$masterController = new MasterController($loginController, $registerController, $newsfeedController);
 
 
 // CALL FUNCTIONS.

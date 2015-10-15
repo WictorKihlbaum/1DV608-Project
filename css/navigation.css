@@ -8,6 +8,7 @@ nav {
 	width: 100%;
 	height: 73px;
 	text-transform: uppercase;
+	font-family: 'Coming Soon', cursive;
 }
 
 nav ul {
@@ -26,10 +27,10 @@ nav ul li {
 nav ul li a {
 	display: block;
 	padding: 20px 40px;
-	color: #59ABE3;
+	color: #FFFFFF;
 	text-decoration: none;
 }
 
 nav ul li a:hover {
-	color: #F5D76E;
+	color: #FDE3A7; /*F4B350*/
 }

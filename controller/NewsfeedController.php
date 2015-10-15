@@ -11,7 +11,6 @@ class NewsfeedController {
     
     public function __construct($newsfeedView, $newsfeedModel) {
 		
-        //date_default_timezone_set('Europe/Stockholm');
         $this -> newsfeedView = $newsfeedView;
         $this -> newsfeedModel = $newsfeedModel;
     }
