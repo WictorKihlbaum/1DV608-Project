@@ -6,8 +6,8 @@ class UserDAL {
 	private $port = 8889;
 	private $socket = '';
 	private $user = 'root';
-	private $password = 'root';
-	private $dbname = 'mylocaldb';
+	private $password = 'one4one';
+	private $dbname = 'RegisteredUsers';
 	
 	private $registeredUsersCache = array();
 	
@@ -16,15 +16,14 @@ class UserDAL {
 	
 		$this -> connectToServerAndFetchUsers(); 	
 	}
-	
-	
+
 	public function connectToServerAndFetchUsers() {
 	
 		$con = new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
 			or die ('Could not connect to the database server' . mysqli_connect_error());
 			
 		
-		$query = 'SELECT userName, password FROM users';
+		$query = 'SELECT UserName, Password FROM users';
 		
 		if ($stmt = $con -> prepare($query)) {
 			
@@ -54,7 +53,7 @@ class UserDAL {
 			or die ('Could not connect to the database server' . mysqli_connect_error());
 			
 			
-		$query = 'INSERT INTO users (userName, password) VALUES ("'. $newUser -> getUserName() .'", "'. $newUser -> getPassword() .'")';	
+		$query = 'INSERT INTO users (UserName, Password) VALUES ("'. $newUser -> getUserName() .'", "'. $newUser -> getPassword() .'")';	
 		
 		if ($stmt = $con -> prepare($query)) {
 			
