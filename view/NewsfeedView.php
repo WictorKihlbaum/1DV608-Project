@@ -1,20 +1,72 @@
 <?php
 
 class NewsfeedView {
-    
-	private static $numberOfNews = "NewsfeedView::NumberOfNews";
-    private $newsfeed = "";
-	private $number = 5;
 	
+	private $sessionModel;
+    
+	private static $newsList = "NewsfeedView::NewsList";
+	private static $siteList = "NewsfeedView::SiteList";
+	private static $updateSettingsList = "NewsfeedView::UpdateSettingsList";
+    private $newsfeed = "";
+	private $defaultNewsValue = 5;
+	private $defaultSiteValue = 2;
+	
+	
+	public function __construct($sessionModel) {
+		
+		$this -> sessionModel = $sessionModel;
+	}
 	
 	public function response() {
 	
 		return '
 			<h1>Newsfeed</h1>
 			
-			'. $this -> renderDropDownList() .'
-			'. $this -> getNewsFeed() .'
+			'. $this -> renderSettings() .'
+			'. $this -> renderFeedContainers() .'
 		';	
+	}
+	
+	private function renderFeedContainers() {
+		
+		$feedContainers = "";
+		
+		for ($i = 0; $i < $this -> sessionModel -> getNumberOfSitesSession(); $i++) {
+			
+			$feedContainers .= '<div class="feedContainer">'. $this -> getNewsFeed() . '</div>';
+		}
+		
+		return $feedContainers;
+	}
+	
+	private function renderSettings() {
+	
+		return '
+			<div id="newsfeedForm">
+				<form method="post">
+					
+					<div class="settingsColumn">
+						<label for="'. self::$newsList .'">News:</label>
+						<select name="'. self::$newsList .'">
+							<option value="5" '. $this -> checkNewsValue(5) .'>5</option>
+							<option value="10" '. $this -> checkNewsValue(10) .'>10</option>
+							<option value="15" '. $this -> checkNewsValue(15) .'>15</option>
+						</select>
+					</div>
+					
+					<div class="settingsColumn">
+						<label for="'. self::$siteList .'">Sites:</label>
+						<select name="'. self::$siteList .'">
+							<option value="2" '. $this -> checkSiteValue(2) .'>2</option>
+							<option value="4" '. $this -> checkSiteValue(4) .'>4</option>
+							<option value="6" '. $this -> checkSiteValue(6) .'>6</option>
+						</select>
+					</div><br />
+					
+					<input type="submit" value="Update" name="'. self::$updateSettingsList .'">
+				</form>
+			</div>
+		';
 	}
     
     public function getNewsFeed() {
@@ -52,30 +104,63 @@ class NewsfeedView {
         $this -> setNewsfeed($newsfeed);
 	}
 	
-	private function renderDropDownList() {
-		
-		return '
-			Number of news per view: '." ".'
-			
-			
-				<select id="'.self::$numberOfNews.'" name="'.self::$numberOfNews.'">
-					<option value="'.$this->number.'">5</option>
-					<option value="10">10</option>
-					<option value="15">15</option>
-				</select>
-				
-			</form>
-		';
+	public function didUserPressUpdate() {
+	
+		return isset($_POST[self::$updateSettingsList]);
 	}
 	
-	private function getLimitOfNews() {
+	private function checkNewsValue($value) {
 		
-		if (isset($_POST[self::$numberOfNews]))    
-		{    
-			return $_POST[self::$numberOfNews];     
-		}    
+		if ($this -> sessionModel -> isNumberOfNewsSessionSet()) {
+			
+			if ($this -> sessionModel -> getNumberOfNewsSession() == $value) {
+				
+				return 'selected';
+			
+			} else {
+			
+				return '';	
+			}
+		}
 		
-		return 1;
+		return $this -> defaultNewsValue;
+	}
+	
+	private function checkSiteValue($value) {
+		
+		if ($this -> sessionModel -> isNumberOfSitesSessionSet()) {
+			
+			if ($this -> sessionModel -> getNumberOfSitesSession() == $value) {
+				
+				return 'selected';
+			
+			} else {
+			
+				return '';	
+			}
+		}
+		
+		return $this -> defaultSiteValue;
+	}
+	
+	public function getLimitOfNews() {
+		
+		if (isset($_POST[self::$newsList])) {
+			
+			return $_POST[self::$newsList];     
+		}
+		
+		return $this -> defaultNewsValue;
+	}
+	
+	public function getLimitOfSites() {
+		
+		if (isset($_POST[self::$siteList])) {
+			
+			return $_POST[self::$siteList];     
+		}
+		
+		return $this -> defaultSiteValue;
 	}
     
 }

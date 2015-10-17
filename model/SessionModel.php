@@ -5,6 +5,8 @@ class SessionModel {
     private static $userSession = "SessionModel::UserSession";
     private static $newRegisteredUserSession = "SessionModel::NewRegisteredUserSession";
     private static $newUserNameSession = "SessionModel::NewUserNameSession";
+	private static $numberOfNewsSession = "SessionModel::NumbersOfNewsSession";
+	private static $numberOfSitesSession = "SessionModel::NumberOfSitesSession";
     
     
     public function __construct() {
@@ -73,6 +75,41 @@ class SessionModel {
     public function getNewUserNameSession() {
         
         return $_SESSION[self::$newUserNameSession];
+    }
+	
+	
+	// NEWSFEED
+	
+	// NUMBER OF NEWS
+	public function setNumberOfNewsSession($number) {
+	
+		$_SESSION[self::$numberOfNewsSession] = $number;	
+	}
+	
+	public function isNumberOfNewsSessionSet() {
+        
+        return isset($_SESSION[self::$numberOfNewsSession]);
+    }
+    
+    public function getNumberOfNewsSession() {
+        
+        return $_SESSION[self::$numberOfNewsSession];
+    }
+	
+	// NUMBER OF SITES
+	public function setNumberOfSitesSession($number) {
+	
+		$_SESSION[self::$numberOfSitesSession] = $number;	
+	}
+	
+	public function isNumberOfSitesSessionSet() {
+        
+        return isset($_SESSION[self::$numberOfSitesSession]);
+    }
+    
+    public function getNumberOfSitesSession() {
+        
+        return $_SESSION[self::$numberOfSitesSession];
     }
     
 }

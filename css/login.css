@@ -1,27 +1,26 @@
 /* Login/Registration Form */
 
-form {
-	width: 650px;
-	/*background-color: #5033E3;*/	
+#loginForm form {
+	width: 650px;	
 }
 
-form fieldset {
+#loginForm form fieldset {
 	border: none;
 }
 
-input[type=text] {
+#loginForm input[type=text] {
 	width: 250px;
 	height: 25px;
 }
 
-input[type=password] {
+#loginForm input[type=password] {
 	width: 250px;
 	height: 25px;
 	margin-left: 4px;
 	margin-top: 5px;
 }
 
-form input[type=submit] {
+#loginForm form input[type=submit] {
 	width: 100px;
 	height: 45px;
 	background-color: #22A7F0;
@@ -32,11 +31,17 @@ form input[type=submit] {
 	font-size: 14px;
 }
 
-form input[type=submit]:hover {
+#loginForm form input[type=submit]:hover {
 	cursor: pointer;
 	background-color: #4183D7;
 }
 
-form p {
+#loginForm form p {
 	color: red;	
+}
+
+main a:link,
+main a:visited {
+	color: #6BB9F0;
+	text-decoration: none;
 }

@@ -8,6 +8,7 @@ class LoginView {
 	private static $registerLink = 'LoginView::RegisterLink';
 	private static $registerURL = 'register';
 	
+	private static $loginForm = 'LoginView::LoginForm';
 	private static $login = 'LoginView::Login';
 	private static $logout = 'LoginView::Logout';
 	private static $name = 'LoginView::UserName';
@@ -61,27 +62,29 @@ class LoginView {
 	private function generateLoginFormHTML() {
 	
 		return '
-			<form method="post" > 
-				<fieldset>
-					<legend>Login - enter Username and password</legend>
-					<p id="' . self::$messageId . '">' . $this -> feedbackMessage . '</p>
-					
-					<label for="' . self::$name . '">Username:</label>
-					<input type="text" id="' . self::$name . '" name="' . self::$name . '" /><br />
-
-					<label for="' . self::$password . '">Password:</label>
-					<input type="password" id="' . self::$password . '" name="' . self::$password . '" /><br />
-					
-					<input type="submit" id="' . self::$login . '" name="' . self::$login . '" value="Login" />
-				</fieldset>
-			</form>
+			<div id="loginForm">
+				<form method="post" id="'. self::$loginForm .'" name="'. self::$loginForm .'"> 
+					<fieldset>
+						<legend>Login - enter Username and password</legend>
+						<p id="'. self::$messageId .'">' . $this -> feedbackMessage . '</p>
+						
+						<label for="' . self::$name . '">Username:</label>
+						<input type="text" id="'. self::$name .'" name="'. self::$name .'" /><br />
+	
+						<label for="' . self::$password . '">Password:</label>
+						<input type="password" id="'. self::$password .'" name="'. self::$password .'" /><br />
+						
+						<input type="submit" id="'. self::$login .'" name="'. self::$login .'" value="Login" />
+					</fieldset>
+				</form>
+			</div>
 		';
 	}
 	
 	private function renderRegisterLink() {
 	
 		return '
-			<a href="?' . self::$registerURL . '" name="' . self::$registerLink . '">Not a registered user? Click here to create a new account!</a>
+			<p><a href="?' . self::$registerURL . '" name="' . self::$registerLink . ' id="'. self::$registerLink .'"">Not a registered user? Click here to create a new account!</a></p>
 		';	
 	}
 	

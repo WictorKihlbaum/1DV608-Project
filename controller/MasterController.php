@@ -18,6 +18,8 @@ class MasterController {
 		
 		$this -> loginController -> verifyUserState();
 		$this -> registerController -> verifyUserState();
+		
 		$this -> newsfeedController -> handleRSSFeed();
+		$this -> newsfeedController -> verifyNewsfeedSettings();
 	}
 }

@@ -13,6 +13,7 @@ header {
 }
 
 main {
+	overflow: auto;
 	position: relative;
 	margin: 0 auto;
 	width: 960px;
@@ -39,7 +40,7 @@ main h1 {
 }
 
 .feedContent {
-	width: 450px;	
+	width: 400px;	
 	margin: 50px 0;
 	color: #6C7A89;
 }
@@ -55,6 +56,10 @@ main h1 {
 }
 
 .feedContent img {
-	width: 450px;
-	height: 300px;
+	width: 400px;
+	height: 250px;
+}
+
+#NewsfeedView::NewsList {
+	width: 150px;	
 }

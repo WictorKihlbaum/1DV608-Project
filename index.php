@@ -56,14 +56,14 @@ $newsfeedModel = new NewsfeedModel();
 $homeView = new HomeView();
 $loginView = new LoginView($loginModel, $sessionModel);
 $registerView = new RegisterView($registerModel);
-$newsfeedView = new NewsfeedView();
+$newsfeedView = new NewsfeedView($sessionModel);
 $aboutView = new AboutView();
 $layoutView = new LayoutView($homeView, $loginView, $registerView, $newsfeedView, $aboutView);
 
 // CREATE OBJECTS OF CONTROLLERS.
 $loginController = new LoginController($loginView, $loginModel, $sessionModel);
 $registerController = new RegisterController($registerView, $registerModel);
-$newsfeedController = new NewsfeedController($newsfeedView, $newsfeedModel);
+$newsfeedController = new NewsfeedController($newsfeedView, $newsfeedModel, $sessionModel);
 $masterController = new MasterController($loginController, $registerController, $newsfeedController);
 
 

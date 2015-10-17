@@ -45,6 +45,7 @@ class LayoutView {
 					<link rel="stylesheet" type="text/css" href="css/style.css">
 					<link rel="stylesheet" type="text/css" href="css/navigation.css">
 					<link rel="stylesheet" type="text/css" href="css/login.css">
+					<link rel="stylesheet" type="text/css" href="css/newsfeed.css">
 				</head>
 				<body>
 					<header>
