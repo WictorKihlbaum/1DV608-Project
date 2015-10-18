@@ -1,19 +1,24 @@
 /* Newsfeed*/
 
 #newsfeedForm {
-	height: 75px;
 	background-color: #E4F1FE;	
 	border-radius: 10px;
+	padding: 15px 0;
+	margin-top: 15px;
+}
+
+#newsfeedForm p {
+	margin-left: 15px;	
 }
 
 .settingsColumn {
+	margin-left: 15px;
 	float: left;
-	padding: 10px;	
 }
 
 #newsfeedForm form input[type=submit] {
-	width: 65px;
-	height: 30px;
+	margin-left: 25px;
+	padding: 8px 10px;
 	background-color: #22A7F0;
 	color: #FFFFFF;
 	border: none;
@@ -27,7 +32,6 @@
 }
 
 #newsfeedForm select {
-	margin-top: 10px;
 	border-color: #6BB9F0;
 	color: #4183D7;
 	height: 30px;	
@@ -37,5 +41,56 @@
 
 .feedContainer {
 	float: left;	
-	padding: 5px;
+	padding: 10px;
+	border-radius: 10px;
+	border: solid;
+	border-width: 2px;
+	border-color: #E4F1FE;
+	margin: 5px 7px 0 0;
+}
+
+.feedContainer select {
+	border-color: #6BB9F0;
+	color: #4183D7;
+	height: 30px;	
+	font-size: 14px;
+	background-color: #FFFFFF;
+}
+
+.feedContainer form input[type=submit] {
+	margin-left: 10px;
+	padding: 8px 10px;
+	background-color: #22A7F0;
+	color: #FFFFFF;
+	border: none;
+	border-radius: 5px;
+	font-size: 12px;
+}
+
+.feedContainer form input[type=submit]:hover {
+	cursor: pointer;
+	background-color: #4183D7;
+}
+
+.feedContent {
+	width: 400px;
+	margin: 25px 0;
+	padding-bottom: 10px;
+	color: #6C7A89;
+	border-bottom: 1px dashed #22A7F0;
+}
+
+.feedContent a:link {
+	color: #F4B350;
+	text-decoration: none;
+}
+
+.feedContent a:visited {
+	color: #D35400;
+	text-decoration: none;
+}
+
+.feedContent img {
+	width: 400px;
+	height: 250px;
 }

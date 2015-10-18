@@ -7,9 +7,11 @@ class NewsfeedView {
 	private static $newsList = "NewsfeedView::NewsList";
 	private static $siteList = "NewsfeedView::SiteList";
 	private static $updateSettingsList = "NewsfeedView::UpdateSettingsList";
+	private static $rssList = "NewsfeedView::RssList";
+	private static $updateGamesite = "NewsfeedView::UpdateGamesite";
     private $newsfeed = "";
-	private $defaultNewsValue = 5;
-	private $defaultSiteValue = 2;
+	private $defaultNewsLimit = 5;
+	private $defaultSiteLimit = 2;
 	
 	
 	public function __construct($sessionModel) {
@@ -20,8 +22,7 @@ class NewsfeedView {
 	public function response() {
 	
 		return '
-			<h1>Newsfeed</h1>
-			
+			<h1>Welcome to Newsfeed</h1>
 			'. $this -> renderSettings() .'
 			'. $this -> renderFeedContainers() .'
 		';	
@@ -33,7 +34,19 @@ class NewsfeedView {
 		
 		for ($i = 0; $i < $this -> sessionModel -> getNumberOfSitesSession(); $i++) {
 			
-			$feedContainers .= '<div class="feedContainer">'. $this -> getNewsFeed() . '</div>';
+			$feedContainers .= '
+				<div class="feedContainer">
+					<form method="post">
+						<label for="'. self::$rssList .'">Gamesite:</label>
+						<select name="'. self::$rssList .'">
+							<option value="1">Gamereactor</option>
+							<option value="2">FZ</option>
+							<option value="3">Something</option>
+						</select>
+						<input type="submit" value="Update" name="'. self::$updateGamesite .'">
+						'. $this -> getNewsFeed() .'
+					</form>
+				</div>';
 		}
 		
 		return $feedContainers;
@@ -43,10 +56,21 @@ class NewsfeedView {
 	
 		return '
 			<div id="newsfeedForm">
+			<p>Change these settings to show the news however you like them.</p>
+			
 				<form method="post">
+				
+				<div class="settingsColumn">
+						<label for="'. self::$siteList .'">Show:</label>
+						<select name="'. self::$siteList .'">
+							<option value="2" '. $this -> checkSiteValue(2) .'>2 sites</option>
+							<option value="4" '. $this -> checkSiteValue(4) .'>4 sites</option>
+							<option value="6" '. $this -> checkSiteValue(6) .'>6 sites</option>
+						</select>
+					</div>
 					
 					<div class="settingsColumn">
-						<label for="'. self::$newsList .'">News:</label>
+						<label for="'. self::$newsList .'">News per site:</label>
 						<select name="'. self::$newsList .'">
 							<option value="5" '. $this -> checkNewsValue(5) .'>5</option>
 							<option value="10" '. $this -> checkNewsValue(10) .'>10</option>
@@ -54,16 +78,8 @@ class NewsfeedView {
 						</select>
 					</div>
 					
-					<div class="settingsColumn">
-						<label for="'. self::$siteList .'">Sites:</label>
-						<select name="'. self::$siteList .'">
-							<option value="2" '. $this -> checkSiteValue(2) .'>2</option>
-							<option value="4" '. $this -> checkSiteValue(4) .'>4</option>
-							<option value="6" '. $this -> checkSiteValue(6) .'>6</option>
-						</select>
-					</div><br />
+					<input type="submit" value="Update settings" name="'. self::$updateSettingsList .'">
 					
-					<input type="submit" value="Update" name="'. self::$updateSettingsList .'">
 				</form>
 			</div>
 		';
@@ -93,9 +109,15 @@ class NewsfeedView {
         	$date = date('l F d, Y', strtotime($feed[$x]['date']));
         	//$image = $feed[$x]['image'];
         	
-        	$newsfeed .= '<div class="feedContent"><p><strong><a href="'. $link .' title="'. $title .'">'. $title .'</a></strong><br />' .
-        	'<small>Posted on '. $date .'</small></p>'.
-        	'<p>'. $description .'</p></div>';
+        	$newsfeed .= 
+			
+			'<div class="feedContent">
+				<p>
+					<strong><a href="'. $link .' title="'. $title .'">'. $title .'</a></strong><br />' .
+        			'<small>Posted on '. $date .'</small>
+				</p>'.
+        		'<p>'. $description .'</p>
+			</div>';
         	
         	//'<img src="'.$image.'">' . 
         	// ^Put this before the 'p'-tag above.
@@ -116,14 +138,10 @@ class NewsfeedView {
 			if ($this -> sessionModel -> getNumberOfNewsSession() == $value) {
 				
 				return 'selected';
-			
-			} else {
-			
-				return '';	
 			}
 		}
 		
-		return $this -> defaultNewsValue;
+		return '';	
 	}
 	
 	private function checkSiteValue($value) {
@@ -133,14 +151,10 @@ class NewsfeedView {
 			if ($this -> sessionModel -> getNumberOfSitesSession() == $value) {
 				
 				return 'selected';
-			
-			} else {
-			
-				return '';	
-			}
+			} 
 		}
 		
-		return $this -> defaultSiteValue;
+		return '';
 	}
 	
 	public function getLimitOfNews() {
@@ -150,7 +164,7 @@ class NewsfeedView {
 			return $_POST[self::$newsList];     
 		}
 		
-		return $this -> defaultNewsValue;
+		return $this -> defaultNewsLimit;
 	}
 	
 	public function getLimitOfSites() {
@@ -160,7 +174,7 @@ class NewsfeedView {
 			return $_POST[self::$siteList];     
 		}
 		
-		return $this -> defaultSiteValue;
+		return $this -> defaultSiteLimit;
 	}
     
 }

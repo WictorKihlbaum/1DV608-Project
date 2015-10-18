@@ -84,7 +84,7 @@ class LoginView {
 	private function renderRegisterLink() {
 	
 		return '
-			<p><a href="?' . self::$registerURL . '" name="' . self::$registerLink . ' id="'. self::$registerLink .'"">Not a registered user? Click here to create a new account!</a></p>
+			<p><a href="?'. self::$registerURL .'" name="'. self::$registerLink .' id="'. self::$registerLink .'">Not a registered user? Click here to create a new account!</a></p>
 		';	
 	}
 	
@@ -140,7 +140,7 @@ class LoginView {
 			return $_POST[self::$name];
 		}
 			
-		return "";
+		return '';
 	}
 
 	private function getRequestPassword() {
@@ -150,7 +150,7 @@ class LoginView {
 			return $_POST[self::$password];
 		}
 			
-		return "";
+		return '';
 	}
 	
 	private function setFeedbackMessage($feedbackMessage) {

@@ -6,6 +6,7 @@ class RegisterView {
 	
 	private static $loginURL = "login";
     
+	private static $registerForm = 'RegisterView::RegisterForm';
     private static $register = 'RegisterView::Register';
     private static $userName = 'RegisterView::UserName';
 	private static $password = 'RegisterView::Password';
@@ -32,32 +33,37 @@ class RegisterView {
 		
 		$response = $this -> generateRegisterFormHTML();
 		
-		return $response . $this -> renderBackLink();	
+		return $this -> renderTopic() . $response . $this -> renderBackLink();	
 	}
 	
 	private function generateRegisterFormHTML() {
 	
 		return '
-			<h2>Register new user</h2>
-		
-			<form method="post" > 
-				<fieldset>
-					<legend>Register a new user - Write username and password</legend>
-					<p id="'. self::$messageId .'">'. $this -> feedbackMessage .'</p>
-					
-					<label for="'. self::$userName .'">Username :</label>
-					<input type="text" id="'. self::$userName .'" name="'. self::$userName .'" /><br>
-					
-					<label for="'. self::$password .'">Password :</label>
-					<input type="password" id="'. self::$password .'" name="'. self::$password .'" /><br>
-					
-					<label for="'. self::$passwordRepeat .'">Repeat password :</label>
-					<input type="password" id="'. self::$passwordRepeat .'" name="'. self::$passwordRepeat .'" /><br>
-					
-					<input type="submit" name="'. self::$register .'" value="Register" />
-				</fieldset>
-			</form>
+			<div id="registerForm">
+				<form method="post" id="'. self::$registerForm .' name="'. self::$registerForm .'"> 
+					<fieldset>
+						<legend>Register a new user - Write username and password</legend>
+						<p id="'. self::$messageId .'">'. $this -> feedbackMessage .'</p>
+						
+						<label for="'. self::$userName .'">Username :</label>
+						<input type="text" id="'. self::$userName .'" name="'. self::$userName .'" /><br>
+						
+						<label for="'. self::$password .'">Password :</label>
+						<input type="password" id="'. self::$password .'" name="'. self::$password .'" /><br>
+						
+						<label for="'. self::$passwordRepeat .'">Repeat password :</label>
+						<input type="password" id="'. self::$passwordRepeat .'" name="'. self::$passwordRepeat .'" /><br>
+						
+						<input type="submit" name="'. self::$register .'" value="Register" />
+					</fieldset>
+				</form>
+			</div>
 		';
+	}
+	
+	private function renderTopic() {
+	
+		return '<h2>Register new user</h2>';
 	}
 	
 	private function renderBackLink() {

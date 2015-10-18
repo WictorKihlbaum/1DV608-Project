@@ -1,6 +1,6 @@
-/* Login/Register Form */
+/* Register Form */
 
-#loginForm form {
+#registerForm form {
 	width: 650px;
 	background-color: #E4F1FE;
 	border-radius: 10px;
@@ -8,11 +8,11 @@
 	margin-top: 25px;
 }
 
-#loginForm form fieldset {
+#registerForm form fieldset {
 	border: none;
 }
 
-#loginForm input[type=text] {
+#registerForm input[type=text] {
 	width: 250px;
 	height: 25px;
 	border-radius: 5px;
@@ -22,7 +22,7 @@
 	padding-left: 5px;
 }
 
-#loginForm input[type=password] {
+#registerForm input[type=password] {
 	width: 250px;
 	height: 25px;
 	margin-left: 6px;
@@ -34,7 +34,7 @@
 	padding-left: 5px;
 }
 
-#loginForm form input[type=submit] {
+#registerForm form input[type=submit] {
 	width: 100px;
 	height: 45px;
 	background-color: #22A7F0;
@@ -45,12 +45,12 @@
 	font-size: 14px;
 }
 
-#loginForm form input[type=submit]:hover {
+#registerForm form input[type=submit]:hover {
 	cursor: pointer;
 	background-color: #4183D7;
 }
 
-#loginForm form p {
+#registerForm form p {
 	color: red;	
 }
 

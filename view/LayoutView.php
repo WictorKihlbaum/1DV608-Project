@@ -19,8 +19,8 @@ class LayoutView {
 	private static $newsfeedURL = "newsfeed";
 	private static $aboutURL = "about";
 	
-	private static $mainFont = "<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>";
-	private static $navigationFont = "<link href='https://fonts.googleapis.com/css?family=Coming+Soon' rel='stylesheet' type='text/css'>";
+	private static $mainFont = "<link href='https://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>";
+	private static $navigationFont = "<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>";
 	
 	
 	public function __construct($homeView, $loginView, $registerView, $newsfeedView, $aboutView) {
@@ -45,6 +45,7 @@ class LayoutView {
 					<link rel="stylesheet" type="text/css" href="css/style.css">
 					<link rel="stylesheet" type="text/css" href="css/navigation.css">
 					<link rel="stylesheet" type="text/css" href="css/login.css">
+					<link rel="stylesheet" type="text/css" href="css/register.css">
 					<link rel="stylesheet" type="text/css" href="css/newsfeed.css">
 				</head>
 				<body>
