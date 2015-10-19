@@ -1,0 +1,51 @@
+/* Contact */
+
+#contactForm form {
+	background-color: #E4F1FE;
+	border-radius: 15px;	
+	padding: 25px;
+}
+
+#contactForm form label {
+    display: block;
+    margin-top: 20px;
+	margin-bottom: 5px;
+}
+
+#contactForm form input[type=text],
+#contactForm form input[type=email] {
+	width: 250px;
+	height: 25px;
+	border-radius: 5px;
+	border: 1px solid #6BB9F0;
+	color: #6BB9F0;
+	font-size: 14px;
+	padding-left: 5px;
+}
+
+#contactForm form textarea {
+	width: 500px;
+	height: 250px;
+	border-radius: 10px;	
+	border: 1px solid #6BB9F0;
+	color: #6BB9F0;
+	font-size: 14px;
+	padding: 10px;
+	resize: none;
+	display: block;
+}
+
+#contactForm form input[type=submit] {
+	padding: 10px 15px;
+	background-color: #22A7F0;
+	color: #FFFFFF;
+	border: none;
+	border-radius: 5px;
+	margin-top: 25px;
+	font-size: 14px;
+}
+
+#contactForm form input[type=submit]:hover {
+	cursor: pointer;
+	background-color: #4183D7;
+}

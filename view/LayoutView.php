@@ -6,30 +6,30 @@ class LayoutView {
 	private $loginView;
 	private $registerView;
 	private $newsfeedView;
-	private $aboutView;
+	private $contactView;
 	
 	private static $homeLink = "LayoutView::HomeLink";
 	private static $loginLink = "LayoutView::LoginLink";
 	private static $newsfeedLink = "LayoutView::NewsfeedLink";
-	private static $aboutLink = "LayoutView::AboutLink";
+	private static $contactLink = "LayoutView::ContactLink";
 	
 	private static $homeURL = "home";
 	private static $loginURL = "login";
 	private static $registerURL = "register";
 	private static $newsfeedURL = "newsfeed";
-	private static $aboutURL = "about";
+	private static $contactURL = "contact";
 	
 	private static $mainFont = "<link href='https://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>";
 	private static $navigationFont = "<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>";
 	
 	
-	public function __construct($homeView, $loginView, $registerView, $newsfeedView, $aboutView) {
+	public function __construct($homeView, $loginView, $registerView, $newsfeedView, $contactView) {
 	
 		$this -> homeView = $homeView;
 		$this -> loginView = $loginView;
 		$this -> registerView = $registerView;
 		$this -> newsfeedView = $newsfeedView;
-		$this -> aboutView = $aboutView;
+		$this -> contactView = $contactView;
 	}
 	
 	public function renderLayout() {
@@ -47,6 +47,7 @@ class LayoutView {
 					<link rel="stylesheet" type="text/css" href="css/login.css">
 					<link rel="stylesheet" type="text/css" href="css/register.css">
 					<link rel="stylesheet" type="text/css" href="css/newsfeed.css">
+					<link rel="stylesheet" type="text/css" href="css/contact.css">
 				</head>
 				<body>
 					<header>
@@ -55,7 +56,7 @@ class LayoutView {
 								<li><a href="?'. self::$homeURL .'" name="'. self::$homeLink .'">Home</a></li>
 								<li><a href="?'. self::$loginURL .'" name="'. self::$loginLink .'">Login</a></li>
 								<li><a href="?'. self::$newsfeedURL .'" name="'. self::$newsfeedLink .'">Newsfeed</a></li>
-								<li><a href="?'. self::$aboutURL .'" name="'. self::$aboutLink .'">About</a></li>
+								<li><a href="?'. self::$contactURL .'" name="'. self::$contactLink .'">Contact</a></li>
 							</ul>
             			</nav>
 					</header>
@@ -90,8 +91,8 @@ class LayoutView {
 				return $this -> newsfeedView -> response();
 				break;
 				
-			case self::$aboutURL: 
-				return $this -> aboutView -> response();
+			case self::$contactURL: 
+				return $this -> contactView -> response();
 				break;
 			
 			default: 

@@ -9,8 +9,6 @@ date_default_timezone_set('Europe/Stockholm');
 
 // INCLUDE ALL FILES NEEDED.
 
-// TODO: Find out a more effective way to require the files.
-
 // MODELS.
 require_once('model/SessionModel.php');
 require_once('model/NewsfeedModel.php');
@@ -25,7 +23,7 @@ require_once('view/HomeView.php');
 require_once('view/LoginView.php');
 require_once('view/RegisterView.php');
 require_once('view/NewsfeedView.php');
-require_once('view/AboutView.php');
+require_once('view/ContactView.php');
 require_once('view/LayoutView.php');
 
 // CONTROLLERS.
@@ -33,6 +31,7 @@ require_once('controller/MasterController.php');
 require_once('controller/LoginController.php');
 require_once('controller/RegisterController.php');
 require_once('controller/NewsfeedController.php');
+require_once('controller/ContactController.php');
 
 // EXTENDED CUSTOM EXCEPTIONS.
 require_once('Exceptions/InvalidCharactersException.php');
@@ -57,14 +56,15 @@ $homeView = new HomeView();
 $loginView = new LoginView($loginModel, $sessionModel);
 $registerView = new RegisterView($registerModel);
 $newsfeedView = new NewsfeedView($sessionModel);
-$aboutView = new AboutView();
-$layoutView = new LayoutView($homeView, $loginView, $registerView, $newsfeedView, $aboutView);
+$contactView = new ContactView();
+$layoutView = new LayoutView($homeView, $loginView, $registerView, $newsfeedView, $contactView);
 
 // CREATE OBJECTS OF CONTROLLERS.
 $loginController = new LoginController($loginView, $loginModel, $sessionModel);
 $registerController = new RegisterController($registerView, $registerModel);
 $newsfeedController = new NewsfeedController($newsfeedView, $newsfeedModel, $sessionModel);
-$masterController = new MasterController($loginController, $registerController, $newsfeedController);
+$contactController = new ContactController($contactView);
+$masterController = new MasterController($loginController, $registerController, $newsfeedController, $contactController);
 
 
 // CALL FUNCTIONS.

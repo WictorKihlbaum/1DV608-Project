@@ -37,3 +37,9 @@ main h1 {
 	text-align: center;
 	margin: 0;
 }
+
+main a:link,
+main a:visited {
+	color: #6BB9F0;
+	text-decoration: none;
+}

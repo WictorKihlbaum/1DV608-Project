@@ -35,8 +35,7 @@
 }
 
 #loginForm form input[type=submit] {
-	width: 100px;
-	height: 45px;
+	padding: 15px 25px;
 	background-color: #22A7F0;
 	color: #FFFFFF;
 	border: none;
@@ -52,10 +51,4 @@
 
 #loginForm form p {
 	color: red;	
-}
-
-main a:link,
-main a:visited {
-	color: #6BB9F0;
-	text-decoration: none;
 }
