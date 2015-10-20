@@ -74,10 +74,10 @@ class ContactView {
 				<form method="post" name="'. self::$contactForm .'">
 			
 					<label>Name</label>
-					<input name="'. self::$name .'" type="text">
+					<input name="'. self::$name .'" value="'. $this -> getRequestName() .'" type="text">
 							
 					<label>Email</label>
-					<input name="'. self::$email .'" type="email">
+					<input name="'. self::$email .'" value="'. $this -> getRequestEmail() .'" type="email">
 					
 					<label for="'. self::$subjectList .'">Subject:</label>
 					<select name="'. self::$subjectList .'">
@@ -87,7 +87,7 @@ class ContactView {
 					</select>
 							
 					<label>Message</label>
-					<textarea name="'. self::$message .'"></textarea>
+					<textarea name="'. self::$message .'" value="'. $this -> getRequestMessage() .'"></textarea>
 							
 					<input id="submit" name="'. self::$send .'" type="submit" value="Send message">
 						

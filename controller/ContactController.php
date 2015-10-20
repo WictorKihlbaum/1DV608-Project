@@ -17,6 +17,8 @@ class ContactController {
 	
 	public function handleContactForm() {
 		
+		$hejsan = $this -> contactView -> getEmailContent();
+		
 		if ($this -> contactView -> didUserPressSend()) {
 			
 			
