@@ -18,12 +18,29 @@ class MasterController {
 	
 	public function handleUserRequest() {
 		
-		$this -> loginController -> verifyUserState();
-		$this -> registerController -> verifyUserState();
+		// USER PRESS LOGIN.
+		if ($this -> loginController -> reforwardDidUserPressLogin()) {
+			
+			$this -> loginController -> verifyUserState();
+		}
 		
-		$this -> newsfeedController -> handleRSSFeed();
-		$this -> newsfeedController -> verifyNewsfeedSettings();
+		// USER PRESS REGISTER.
+		if ($this -> registerController -> reforwardDidUserPressRegister()) {
+			
+			$this -> registerController -> verifyUserState();
+		}
 		
-		$this -> contactController -> handleContactForm();
+		// USER PRESS SEND (CONTACTFORM-MESSAGE).
+		if ($this -> contactController -> reforwardDidUserPressSend()) {
+			
+			$this -> contactController -> handleContactForm();
+		}
+		
+		// USER WANTS TO SEE NEWSFEED. 
+		if ($_SERVER['QUERY_STRING'] == 'newsfeed') {
+			
+			$this -> newsfeedController -> handleRSSFeed();
+			$this -> newsfeedController -> verifyNewsfeedSettings();
+		}
 	}
 }

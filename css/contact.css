@@ -49,3 +49,29 @@
 	cursor: pointer;
 	background-color: #4183D7;
 }
+
+#errorMessageContainer {
+	margin-top: 15px;
+	width: 450px;
+	padding: 15px 25px;	
+	background-color: #F1A9A0;
+	border-radius: 10px;
+}
+
+#errorMessageContainer p {
+	color: #D64541;
+	font-size: 14px;
+}
+
+#successMessageContainer {
+	margin-top: 15px;
+	width: 450px;
+	padding: 15px 25px;	
+	background-color: #A2DED0;
+	border-radius: 10px;
+}
+
+#successMessageContainer p {
+	color: #1E824C;
+	font-size: 14px;
+}

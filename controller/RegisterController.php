@@ -11,6 +11,11 @@ class RegisterController {
         $this -> registerView = $registerView;
         $this -> registerModel = $registerModel;
     }
+	
+	public function reforwardDidUserPressRegister() {
+		
+		return $this -> registerView -> didUserPressRegister();	
+	}
     
     public function verifyUserState() {
         

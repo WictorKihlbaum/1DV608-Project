@@ -19,6 +19,7 @@ class LayoutView {
 	private static $newsfeedURL = "newsfeed";
 	private static $contactURL = "contact";
 	
+	// FONTS FROM GOOGLE-FONTS.
 	private static $mainFont = "<link href='https://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>";
 	private static $navigationFont = "<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>";
 	

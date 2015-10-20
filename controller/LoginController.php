@@ -13,6 +13,11 @@ class LoginController {
         $this -> loginModel = $loginModel;
         $this -> sessionModel = $sessionModel;
     }
+	
+	public function reforwardDidUserPressLogin() {
+		
+		return $this -> loginView -> didUserPressLogin();	
+	}
     
     public function verifyUserState() {
         

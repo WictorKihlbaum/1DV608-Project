@@ -42,6 +42,9 @@ require_once('Exceptions/PasswordsDoNotMatchException.php');
 require_once('Exceptions/RegisterWhileLoggedInException.php');
 require_once('Exceptions/UserAlreadyExistsException.php');
 require_once('Exceptions/WrongInputException.php');
+require_once('Exceptions/NameFieldIsEmptyException.php');
+require_once('Exceptions/EmailFieldIsEmptyException.php');
+require_once('Exceptions/MessageFieldIsEmptyException.php');
 
 
 // CREATE OBJECTS OF THE MODELS.
