@@ -18,20 +18,30 @@ class ContactController {
 	public function handleContactForm() {
 		
 		if ($this -> contactView -> didUserPressSend()) {
-				
-			$from = "From: TestUser";
-			$to = "wictor.kihlbaum@gmail.com";
-			$subject = "Hello";
-				
-			if (mail ($to, $subject, $this -> contactView -> getEmailContent(), $from)) { 
 			
-				echo '<p>Your message has been sent!</p>';
+			
+			echo 'test';
+				
+			/*
+			$to = 'wictor.kihlbaum@gmail.com';
+			$subject = $this -> contactView -> getRequestSubject();
+			$message = $this -> contactView -> getEmailContent();
+			$headers = 'From: '. $this -> contactView -> getRequestEmail() . '\r\n' .
+					   'Reply-To: '. $this -> contactView -> getRequestEmail() . '\r\n' .
+					   'X-Mailer: PHP/' . phpversion();
+			
+			
+			if (mail($to, $subject, $message, $headers)) { 
+			
+				//echo '<p>Your message has been sent!</p>';
+				//mail($to, $subject, $message, $headers);
 				$this -> contactView -> setMessageSentSuccessfullyFeedbackMessage();
 				
 			} else { 
 				
 				echo '<p>Something went wrong, go back and try again!</p>'; 
 			}
+			*/
 		}
 	}
 	

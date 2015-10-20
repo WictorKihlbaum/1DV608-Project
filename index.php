@@ -25,6 +25,7 @@ require_once('view/RegisterView.php');
 require_once('view/NewsfeedView.php');
 require_once('view/ContactView.php');
 require_once('view/LayoutView.php');
+require_once('view/NavigationView.php');
 
 // CONTROLLERS.
 require_once('controller/MasterController.php');
@@ -55,6 +56,7 @@ $registerModel = new RegisterModel($sessionModel, $userDAL);
 $newsfeedModel = new NewsfeedModel();
 
 // CREATE OBJECTS OF THE VIEWS.
+$navigationView = new NavigationView();
 $homeView = new HomeView();
 $loginView = new LoginView($loginModel, $sessionModel);
 $registerView = new RegisterView($registerModel);
@@ -64,7 +66,7 @@ $layoutView = new LayoutView($homeView, $loginView, $registerView, $newsfeedView
 
 // CREATE OBJECTS OF CONTROLLERS.
 $loginController = new LoginController($loginView, $loginModel, $sessionModel);
-$registerController = new RegisterController($registerView, $registerModel);
+$registerController = new RegisterController($registerView, $registerModel, $navigationView);
 $newsfeedController = new NewsfeedController($newsfeedView, $newsfeedModel, $sessionModel);
 $contactController = new ContactController($contactView);
 $masterController = new MasterController($loginController, $registerController, $newsfeedController, $contactController);

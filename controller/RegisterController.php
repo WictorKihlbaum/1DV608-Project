@@ -4,12 +4,14 @@ class RegisterController {
     
     private $registerView;
     private $registerModel;
+	private $navigationView;
     
     
-    public function __construct($registerView, $registerModel) {
+    public function __construct($registerView, $registerModel, $navigationView) {
         
         $this -> registerView = $registerView;
         $this -> registerModel = $registerModel;
+		$this -> navigationView = $navigationView;
     }
 	
 	public function reforwardDidUserPressRegister() {
@@ -47,6 +49,7 @@ class RegisterController {
             if ($newUser != null) {
                 
                 $this -> registerModel -> validateUserInput($newUser);
+				$this -> navigationView -> navigateToRegisterURL();
             }
   
         } catch (UserAlreadyExistsException $e) {

@@ -4,6 +4,14 @@ class HomeView {
 
 	public function response() {
 		
-		return "<h1>HomeView</h1>";	
+		return '
+			'. $this -> renderTopic() .'
+		';
+		
+	}
+	
+	private function renderTopic() {
+	
+		return '<h1>Welcome to Gamefeed</h1>';
 	}
 }

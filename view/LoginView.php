@@ -19,12 +19,12 @@ class LoginView {
 
 	private $feedbackMessage = "";
 	
-	private static $loginMessage = "Welcome";
-	private static $logoutMessage = "Bye bye!";
-	private static $missingUserNameMessage = "Username is missing";
-	private static $missingPasswordMessage = "Password is missing";
-	private static $wrongInputMessage = "Wrong name or password";
-	private static $registeredNewUserMessage = "Registered new user.";
+	private static $loginMessage = 'Welcome';
+	private static $logoutMessage = 'Bye bye!';
+	private static $missingUserNameMessage = 'Username is missing';
+	private static $missingPasswordMessage = 'Password is missing';
+	private static $wrongInputMessage = 'Wrong name or password';
+	private static $registeredNewUserMessage = 'Registered new user';
 	
 	
 	public function __construct($loginModel, $sessionModel) {
@@ -84,7 +84,9 @@ class LoginView {
 	private function renderRegisterLink() {
 	
 		return '
-			<p><a href="?'. self::$registerURL .'" name="'. self::$registerLink .' id="'. self::$registerLink .'">Not a registered user? Click here to create a new account!</a></p>
+			<p><a href="?'. self::$registerURL .'" name="'. self::$registerLink .' id="'. self::$registerLink .'">
+				Not a registered user? Click here to create a new account!
+			</a></p>
 		';	
 	}
 	
@@ -112,11 +114,11 @@ class LoginView {
 		
 		try { // If one or the other of the two input fields are empty throw an exception describing what's wrong.
 			
-			if ($this -> getRequestUserName() == "") {
+			if ($this -> getRequestUserName() == '') {
 
 				throw new \NoValidUserNameException();
 			
-			} else if ($this -> getRequestPassword() == "") {
+			} else if ($this -> getRequestPassword() == '') {
 
 				throw new \NoValidPasswordException();
 			}

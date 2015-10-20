@@ -16,10 +16,7 @@ class ContactView {
 	private static $email = "ContactView::Email";
 	private static $message = "ContactView::Message";
 	private static $send = "ContactView::Send";
-	
-	private $from = 'From: TestUser'; 
-    private $to = 'wictor.kihlbaum@gmail.com'; 
-    private $subject = 'Hello';
+	private static $subjectList = "ContactView::SubjectList";
 	
 
 	public function response() {
@@ -32,6 +29,7 @@ class ContactView {
 	
 	private function showFeedbackMessage() {
 		
+		/*
 		switch ($this -> feedbackMessage) {
 			
 			case '': return null;
@@ -52,6 +50,14 @@ class ContactView {
 					</div>
 				';
 		}
+		*/
+		
+		return '
+			
+				<p>'. $this -> feedbackMessage .'</p>
+			
+		';
+		
 	}
 	
 	private function renderTopic() {
@@ -72,6 +78,13 @@ class ContactView {
 							
 					<label>Email</label>
 					<input name="'. self::$email .'" type="email">
+					
+					<label for="'. self::$subjectList .'">Subject:</label>
+					<select name="'. self::$subjectList .'">
+						<option value="Bugs/Errors">Bugs/Errors</option>
+						<option value="Improvement suggestions">Improvement suggestions</option>
+						<option value="Other">Other</option>
+					</select>
 							
 					<label>Message</label>
 					<textarea name="'. self::$message .'"></textarea>
@@ -101,11 +114,13 @@ class ContactView {
 			}
 			
 			// Return message if everything is typed in correctly.
-			return '
+			return $this -> getRequestMessage()
+			
+			/*'
 					From: '. $this -> getRequestName() .'\n 
 					Email: '. $this -> getRequestEmail() .'\n 
 					Message:\n '. $this -> getRequestMessage() .'
-			';
+			'*/;
 			
 		} catch (NameFieldIsEmptyException $e) {
 			
@@ -131,7 +146,7 @@ class ContactView {
 		$this -> setFeedbackMessage(self::$messageSentSuccessfullyMessage);
 	}
 	
-	private function getRequestName() {
+	public function getRequestName() {
 		
 		if (isset($_POST[self::$name])) {
 			
@@ -141,7 +156,7 @@ class ContactView {
 		return '';
 	}
 	
-	private function getRequestEmail() {
+	public function getRequestEmail() {
 		
 		if (isset($_POST[self::$email])) {
 			
@@ -151,7 +166,12 @@ class ContactView {
 		return '';
 	}
 	
-	private function getRequestMessage() {
+	public function getRequestSubject() {
+	
+		return $_POST[self::$subjectList];	
+	}
+	
+	public function getRequestMessage() {
 		
 		if (isset($_POST[self::$message])) {
 			

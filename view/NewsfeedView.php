@@ -22,7 +22,7 @@ class NewsfeedView {
 	public function response() {
 	
 		return '
-			<h1>Welcome to Newsfeed</h1>
+			<h1>Newsfeed</h1>
 			'. $this -> renderSettings() .'
 			'. $this -> renderFeedContainers() .'
 		';	
@@ -97,13 +97,12 @@ class NewsfeedView {
 	
 	public function renderRSSFeed($feed) {
         
-        $newsfeed = "";
+        $newsfeed = '';
 		$limit = $this -> getLimitOfNews();
         
         for ($x = 0; $x < $limit; $x++) {
             
-        	//$title = str_replace(' & ', ' &amp; ', $feed[$x]['title']); Need?
-			$title = $feed[$x]['title'];
+        	$title = str_replace(' & ', ' &amp; ', $feed[$x]['title']);
         	$link = $feed[$x]['link'];
         	$description = $feed[$x]['desc'];
         	$date = date('l F d, Y', strtotime($feed[$x]['date']));

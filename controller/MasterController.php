@@ -24,6 +24,12 @@ class MasterController {
 			$this -> loginController -> verifyUserState();
 		}
 		
+		// USER PRESS LOGOUT.
+		if ($this -> loginController -> reforwardDidUserPressLogout()) {
+			
+			$this -> loginController -> verifyUserState();
+		}
+		
 		// USER PRESS REGISTER.
 		if ($this -> registerController -> reforwardDidUserPressRegister()) {
 			

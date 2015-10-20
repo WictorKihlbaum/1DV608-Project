@@ -18,6 +18,11 @@ class LoginController {
 		
 		return $this -> loginView -> didUserPressLogin();	
 	}
+	
+	public function reforwardDidUserPressLogout() {
+	
+		return $this -> loginView -> didUserPressLogout();	
+	}
     
     public function verifyUserState() {
         
