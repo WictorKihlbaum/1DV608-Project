@@ -15,6 +15,7 @@ require_once('model/NewsfeedModel.php');
 require_once('model/LoginModel.php');
 require_once('model/RegisterModel.php');
 require_once('model/UserModel.php');
+require_once('model/EmailModel.php');
 //DAL.
 require_once('model/DAL/UserDAL.php');
 

@@ -17,19 +17,17 @@ class ContactController {
 	
 	public function handleContactForm() {
 		
-		$hejsan = $this -> contactView -> getEmailContent();
+		
 		
 		if ($this -> contactView -> didUserPressSend()) {
 			
+			$email = $this -> contactView -> getEmailContent();
 			
-			echo 'test';
-				
-			/*
+			$message = $email -> getMessage();
 			$to = 'wictor.kihlbaum@gmail.com';
-			$subject = $this -> contactView -> getRequestSubject();
-			$message = $this -> contactView -> getEmailContent();
-			$headers = 'From: '. $this -> contactView -> getRequestEmail() . '\r\n' .
-					   'Reply-To: '. $this -> contactView -> getRequestEmail() . '\r\n' .
+			$subject = $email -> getSubject();
+			$headers = 'From: '. $email -> getName() . '\r\n' .
+					   'Reply-To: '. $email -> getEmail() . '\r\n' .
 					   'X-Mailer: PHP/' . phpversion();
 			
 			
@@ -43,7 +41,6 @@ class ContactController {
 				
 				echo '<p>Something went wrong, go back and try again!</p>'; 
 			}
-			*/
 		}
 	}
 	

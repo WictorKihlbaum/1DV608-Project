@@ -14,9 +14,9 @@ class ContactView {
 	
 	private static $name = "ContactView::Name";
 	private static $email = "ContactView::Email";
+	private static $subjectList = "ContactView::SubjectList";
 	private static $message = "ContactView::Message";
 	private static $send = "ContactView::Send";
-	private static $subjectList = "ContactView::SubjectList";
 	
 
 	public function response() {
@@ -114,7 +114,12 @@ class ContactView {
 			}
 			
 			// Return message if everything is typed in correctly.
-			return $this -> getRequestMessage()
+			return new EmailModel(
+				$this -> getRequestName(), 
+				$this -> getRequestEmail(), 
+    			$this -> getRequestSubject(), 
+				$this -> getRequestMessage())
+			;
 			
 			/*'
 					From: '. $this -> getRequestName() .'\n 
@@ -146,7 +151,7 @@ class ContactView {
 		$this -> setFeedbackMessage(self::$messageSentSuccessfullyMessage);
 	}
 	
-	public function getRequestName() {
+	private function getRequestName() {
 		
 		if (isset($_POST[self::$name])) {
 			
@@ -156,7 +161,7 @@ class ContactView {
 		return '';
 	}
 	
-	public function getRequestEmail() {
+	private function getRequestEmail() {
 		
 		if (isset($_POST[self::$email])) {
 			
@@ -166,12 +171,12 @@ class ContactView {
 		return '';
 	}
 	
-	public function getRequestSubject() {
+	private function getRequestSubject() {
 	
 		return $_POST[self::$subjectList];	
 	}
 	
-	public function getRequestMessage() {
+	private function getRequestMessage() {
 		
 		if (isset($_POST[self::$message])) {
 			
