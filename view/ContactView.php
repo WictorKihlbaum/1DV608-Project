@@ -81,7 +81,7 @@ class ContactView {
 					
 					<label for="'. self::$subjectList .'">Subject:</label>
 					<select name="'. self::$subjectList .'">
-						<option value="Bugs/Errors">Bugs/Errors</option>
+						<option value="Report bugs/errors">Bugs/Errors</option>
 						<option value="Improvement suggestions">Improvement suggestions</option>
 						<option value="Other">Other</option>
 					</select>
@@ -121,12 +121,6 @@ class ContactView {
 				$this -> getRequestMessage())
 			;
 			
-			/*'
-					From: '. $this -> getRequestName() .'\n 
-					Email: '. $this -> getRequestEmail() .'\n 
-					Message:\n '. $this -> getRequestMessage() .'
-			'*/;
-			
 		} catch (NameFieldIsEmptyException $e) {
 			
 			$this -> setFeedbackMessage(self::$nameFieldIsEmptyMessage);
@@ -157,7 +151,7 @@ class ContactView {
 			
 			return $_POST[self::$name];
 		}
-			
+		
 		return '';
 	}
 	
