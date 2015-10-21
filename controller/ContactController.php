@@ -23,7 +23,7 @@ class ContactController {
 			
 			//if ($email != null) {
 				
-				$url = 'https://api.sendgrid.com/';
+				$url = 'smtp.sendgrid.net/'; //'https://api.sendgrid.com/';
 				$user = 'azure_470730f159f6d62fbb429813ff905ef9@azure.com';
 				$pass = 'cv5J892HoHx15Nz'; 
 				
