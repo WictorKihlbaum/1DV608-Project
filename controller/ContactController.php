@@ -19,11 +19,11 @@ class ContactController {
 		
 		if ($this -> contactView -> didUserPressSend()) {
 			
-			//$email = $this -> contactView -> getEmailContent();
+			$email = $this -> contactView -> getEmailContent();
 			
-			//if ($email != null) {
+			if ($email != null) {
 				
-				$url = 'https://api.sendgrid.com/';
+				/*$url = 'https://api.sendgrid.com/';
 				$user = 'azure_470730f159f6d62fbb429813ff905ef9@azure.com';
 				$pass = 'cv5J892HoHx15Nz';
 				
@@ -57,30 +57,31 @@ class ContactController {
 				curl_close($session);
 				
 				// print everything out
-				print_r($response);
+				print_r($response);*/
 				
+				ini_set("SMTP","smtp.gmail.com" ); 
+				ini_set("smtp_port","465");
 				
-				/*
 				$message = $email -> getMessage();
 				$to = 'wictor.kihlbaum@gmail.com';
 				$subject = $email -> getSubject();
 				$headers = 'From: '. $email -> getName() . '\r\n' .
 						   'Reply-To: '. $email -> getEmail() . '\r\n' .
 						   'X-Mailer: PHP/' . phpversion();
-				*/
+				
 						   
 				
-				/*if (mail($to, $subject, $message, $headers)) { 
+				if (mail($to, $subject, $message, $headers)) { 
 				
-					//echo '<p>Your message has been sent!</p>';
+					echo '<p>Your message has been sent!</p>';
 					//mail($to, $subject, $message, $headers);
 					$this -> contactView -> setMessageSentSuccessfullyFeedbackMessage();
 					
 				} else { 
 					
 					echo '<p>Something went wrong, go back and try again!</p>'; 
-				}*/		   
-			//}
+				}		   
+			}
 		}
 	}
 	
