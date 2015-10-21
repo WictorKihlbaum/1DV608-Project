@@ -23,6 +23,9 @@ class ContactController {
 			
 			if ($email != null) {
 				
+				ini_set('SMTP','myserver');
+				ini_set('smtp_port',25);
+				
 				$message = $email -> getMessage();
 				$to = 'wictor.kihlbaum@gmail.com';
 				$subject = $email -> getSubject();

@@ -2,6 +2,7 @@
 
 class UserDAL {
 	
+	// Local DB.
 	/*private $host = '127.0.0.1';
 	private $port = 8889;
 	private $socket = '';
@@ -9,6 +10,7 @@ class UserDAL {
 	private $password = 'root'; // one4one
 	private $dbname = 'RegisteredUsers';*/
 	
+	// Public DB.
 	private $host = 'eu-cdbr-azure-north-d.cloudapp.net';
 	private $port = 3306;
 	private $socket = '';
