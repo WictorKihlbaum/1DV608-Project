@@ -14,7 +14,7 @@ class UserDAL {
 	private $socket = '';
 	private $user = 'bd59d7069aef53';
 	private $password = '6d5d241f';
-	private $dbname = 'ProjectMySQL';
+	private $dbname = 'acsm_9268280c21a7845';
 	
 	private $registeredUsersCache = array();
 	
