@@ -59,9 +59,6 @@ class ContactController {
 				// print everything out
 				print_r($response);*/
 				
-				ini_set("SMTP","smtp.gmail.com" ); 
-				ini_set("smtp_port","465");
-				
 				$message = $email -> getMessage();
 				$to = 'wictor.kihlbaum@gmail.com';
 				$subject = $email -> getSubject();
