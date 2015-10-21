@@ -36,6 +36,7 @@ require_once('controller/NewsfeedController.php');
 require_once('controller/ContactController.php');
 
 // EXTENDED CUSTOM EXCEPTIONS.
+// LOGIN/REGISTER EXCEPTIONS.
 require_once('Exceptions/InvalidCharactersException.php');
 require_once('Exceptions/NoCredentialsException.php');
 require_once('Exceptions/NoValidPasswordException.php');
@@ -44,6 +45,7 @@ require_once('Exceptions/PasswordsDoNotMatchException.php');
 require_once('Exceptions/RegisterWhileLoggedInException.php');
 require_once('Exceptions/UserAlreadyExistsException.php');
 require_once('Exceptions/WrongInputException.php');
+// CONTACT EXCEPTIONS.
 require_once('Exceptions/NameFieldIsEmptyException.php');
 require_once('Exceptions/EmailFieldIsEmptyException.php');
 require_once('Exceptions/MessageFieldIsEmptyException.php');
@@ -71,7 +73,6 @@ $registerController = new RegisterController($registerView, $registerModel, $nav
 $newsfeedController = new NewsfeedController($newsfeedView, $newsfeedModel, $sessionModel);
 $contactController = new ContactController($contactView);
 $masterController = new MasterController($loginController, $registerController, $newsfeedController, $contactController);
-
 
 // CALL FUNCTIONS.
 $masterController -> handleUserRequest();

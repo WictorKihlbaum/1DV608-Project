@@ -24,14 +24,14 @@ class NewsfeedController {
 	
 	public function verifyNewsfeedSettings() {
 	
-		if ($this -> newsfeedView -> didUserPressUpdate()) {
+		//if ($this -> newsfeedView -> didUserPressUpdate()) {
 			// Get and set limit of news.
 			$limitOfNews = $this -> newsfeedView -> getLimitOfNews();
 			$this -> sessionModel -> setNumberOfNewsSession($limitOfNews);
 			// Get and set limit of sites.
 			$limitOfSites = $this -> newsfeedView -> getLimitOfSites();
 			$this -> sessionModel -> setNumberOfSitesSession($limitOfSites);
-		}
+		//}
 	}
     
 }

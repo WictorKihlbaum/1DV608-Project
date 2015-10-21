@@ -30,8 +30,11 @@ class LoginModel {
 		}
 		
 		if ($userFound) {
+			
 			$this -> sessionModel -> setUserSession();
+			
 		} else {
+			
 			throw new \WrongInputException("Wrong name or password");
 		}
     }

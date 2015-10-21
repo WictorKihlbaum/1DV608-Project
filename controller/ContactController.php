@@ -17,29 +17,30 @@ class ContactController {
 	
 	public function handleContactForm() {
 		
-		
-		
 		if ($this -> contactView -> didUserPressSend()) {
 			
 			$email = $this -> contactView -> getEmailContent();
 			
-			$message = $email -> getMessage();
-			$to = 'wictor.kihlbaum@gmail.com';
-			$subject = $email -> getSubject();
-			$headers = 'From: '. $email -> getName() . '\r\n' .
-					   'Reply-To: '. $email -> getEmail() . '\r\n' .
-					   'X-Mailer: PHP/' . phpversion();
-			
-			
-			if (mail($to, $subject, $message, $headers)) { 
-			
-				//echo '<p>Your message has been sent!</p>';
-				//mail($to, $subject, $message, $headers);
-				$this -> contactView -> setMessageSentSuccessfullyFeedbackMessage();
+			if ($email != null) {
 				
-			} else { 
+				$message = $email -> getMessage();
+				$to = 'wictor.kihlbaum@gmail.com';
+				$subject = $email -> getSubject();
+				$headers = 'From: '. $email -> getName() . '\r\n' .
+						   'Reply-To: '. $email -> getEmail() . '\r\n' .
+						   'X-Mailer: PHP/' . phpversion();
+						   
 				
-				echo '<p>Something went wrong, go back and try again!</p>'; 
+				if (mail($to, $subject, $message, $headers)) { 
+				
+					//echo '<p>Your message has been sent!</p>';
+					//mail($to, $subject, $message, $headers);
+					$this -> contactView -> setMessageSentSuccessfullyFeedbackMessage();
+					
+				} else { 
+					
+					echo '<p>Something went wrong, go back and try again!</p>'; 
+				}		   
 			}
 		}
 	}
