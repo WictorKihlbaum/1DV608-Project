@@ -23,8 +23,8 @@ class ContactController {
 			
 			if ($email != null) { 
 			
-				ini_set("SMTP", "");
-				ini_set("smpt_port", "");
+				ini_set("SMTP", "ssl:smtp.gmail.com" );
+				ini_set("smtp_port", "465");
 				
 				$message = $email -> getMessage();
 				$to = 'wictor.kihlbaum@gmail.com';
