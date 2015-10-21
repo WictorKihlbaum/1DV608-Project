@@ -81,7 +81,7 @@ class ContactView {
 					
 					<label for="'. self::$subjectList .'">Subject:</label>
 					<select name="'. self::$subjectList .'">
-						<option value="Report bugs/errors">Bugs/Errors</option>
+						<option value="Report bugs/errors">Report bugs/errors</option>
 						<option value="Improvement suggestions">Improvement suggestions</option>
 						<option value="Other">Other</option>
 					</select>
