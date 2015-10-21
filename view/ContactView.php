@@ -96,7 +96,7 @@ class ContactView {
 		';	
 	}
 	
-	public function getEmailContent() {
+	public function getEmailContent() { // TODO: Add Spam protection.
 		
 		try {
 		

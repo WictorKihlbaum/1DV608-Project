@@ -23,8 +23,8 @@ class ContactController {
 			
 			if ($email != null) {
 				
-				//ini_set('SMTP','acsm_9268280c21a7845');
-				//ini_set('smtp_port', 25);
+				ini_set('SMTP','in-v3.mailjet.com');
+				ini_set('smtp_port', 587);
 				
 				$message = $email -> getMessage();
 				$to = 'wictor.kihlbaum@gmail.com';
