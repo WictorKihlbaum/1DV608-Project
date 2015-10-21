@@ -19,9 +19,9 @@ class ContactController {
 		
 		if ($this -> contactView -> didUserPressSend()) {
 			
-			$email = $this -> contactView -> getEmailContent();
+			//$email = $this -> contactView -> getEmailContent();
 			
-			if ($email != null) {
+			//if ($email != null) {
 				
 				$url = 'https://api.sendgrid.com/';
 				$user = 'azure_470730f159f6d62fbb429813ff905ef9@azure.com';
@@ -34,7 +34,7 @@ class ContactController {
 					'subject' => 'testing from curl',
 					'html' => 'testing body',
 					'text' => 'testing body',
-					'from' => $email -> getName(),
+					'from' => 'testing body',
 				 );
 				
 				 $request = $url.'api/mail.send.json';
@@ -81,7 +81,7 @@ class ContactController {
 					
 					echo '<p>Something went wrong, go back and try again!</p>'; 
 				}*/		   
-			}
+			//}
 		}
 	}
 	
