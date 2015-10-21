@@ -22,6 +22,9 @@ class ContactController {
 			$email = $this -> contactView -> getEmailContent();
 			
 			if ($email != null) { 
+			
+				ini_set('smtp', '');
+				ini_set('smpt_port', '');
 				
 				$message = $email -> getMessage();
 				$to = 'wictor.kihlbaum@gmail.com';
