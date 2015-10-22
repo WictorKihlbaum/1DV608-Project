@@ -22,15 +22,14 @@ class NewsfeedView {
 	public function response() {
 	
 		return '
-			<h1>Newsfeed</h1>
-			'. $this -> renderSettings() .'
-			'. $this -> renderFeedContainers() .'
-		';	
+			<h1>Newsfeed</h1> ' .
+			$this -> renderSettings() .
+			$this -> renderFeedContainers();
 	}
 	
 	private function renderFeedContainers() {
 		
-		$feedContainers = "";
+		$feedContainers = '';
 		
 		for ($i = 0; $i < $this -> sessionModel -> getNumberOfSitesSession(); $i++) {
 			
@@ -100,29 +99,50 @@ class NewsfeedView {
         $newsfeed = '';
 		$limit = $this -> getLimitOfNews();
         
-        for ($x = 0; $x < $limit; $x++) {
+        for ($i = 0; $i < $limit; $i++) {
             
-        	$title = str_replace(' & ', ' &amp; ', $feed[$x]['title']);
-        	$link = $feed[$x]['link'];
-        	$description = $feed[$x]['desc'];
-        	$date = date('l F d, Y', strtotime($feed[$x]['date']));
-        	//$image = $feed[$x]['image'];
+        	$title = str_replace(' & ', ' &amp; ', $feed[$i]['title']);
+        	$link = $feed[$i]['link'];
+        	$description = $feed[$i]['desc'];
+        	$date = date('l F d, Y', strtotime($feed[$i]['date']));
+			$image = $feed[$i]['image'];
         	
         	$newsfeed .= 
 			
-			'<div class="feedContent">
-				<p>
-					<strong><a href="'. $link .' title="'. $title .'">'. $title .'</a></strong><br />' .
-        			'<small>Posted on '. $date .'</small>
-				</p>'.
-        		'<p>'. $description .'</p>
-			</div>';
-        	
-        	//'<img src="'.$image.'">' . 
-        	// ^Put this before the 'p'-tag above.
+				'<div class="feedContent">' .
+					$this -> renderLinkWithTitle($title, $link) .
+					$this -> renderDate($date) .	
+					$this -> renderImage($image) .	
+					$this -> renderDescription($description) .
+				'</div>';
         }
 		
         $this -> setNewsfeed($newsfeed);
+	}
+	
+	private function renderLinkWithTitle($title, $link) {
+	
+		return '<p><strong><a href="'. $link .' title="'. $title .'">'. $title .'</a></strong></p>';
+	}
+	
+	private function renderDate($date) {
+		
+		return '<small>Posted on '. $date .'</small>';
+	}
+	
+	private function renderImage($image) {
+		
+		if ($image != '') {
+			
+			return '<p><img src="'. $image .'"></p>';
+		}
+	
+		return null;
+	}
+	
+	private function renderDescription($description) {
+	
+		return '<p>'. $description .'</p>';	
 	}
 	
 	public function didUserPressUpdate() {

@@ -61,7 +61,7 @@ class ContactView {
 	
 	private function renderTopic() {
 	
-		return '<h2>Contact me</h2>';	
+		return '<h1>Contact me</h1>';	
 	}
 	
 	private function generateContactFormHTML() {
@@ -84,7 +84,7 @@ class ContactView {
 					</select>
 							
 					<label>Message</label>
-					<textarea name="'. self::$message .'" value="'. $this -> getRequestMessage() .'"></textarea>
+					<textarea name="'. self::$message .'">'. $this -> getRequestMessage() .'</textarea>
 					
 					<label>'. $this -> antiSpamQuestion .'</label>
 					<input name="'. self::$antiSpam .'" type="text">

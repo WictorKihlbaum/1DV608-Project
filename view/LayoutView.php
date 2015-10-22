@@ -52,6 +52,7 @@ class LayoutView {
 				</head>
 				<body>
 					<header>
+						<a name="top"></a>
 						<nav>
 							<ul>
 								<li><a href="?'. self::$homeURL .'" name="'. self::$homeLink .'">Home</a></li>
@@ -65,7 +66,8 @@ class LayoutView {
 						'. $this -> renderContent() .'
 					</main>
 					<footer>
-						<p>© 2015 FeedRedirect</p>
+						<p id="toTopAnchor"><a href="#top">Return to the top</a></p>
+						<p>© 2015 Gamefeed</p>
 					</footer>
 				</body>
 			</html>

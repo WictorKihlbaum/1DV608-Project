@@ -22,14 +22,31 @@ main {
 }
 
 footer {
-	bottom: 0;
-	padding: 50px 0;
 	margin-top: 85px;
-	width: 100%;
-	height: auto;
-	background-color: #4183D7;
 	text-align: center;
 	color: #59ABE3;
+	font-family: 'Maven Pro', sans-serif;
+	padding: 50px 0;
+	
+	/*bottom: 0;
+	width: 100%;
+	height: auto;
+	background-color: #4183D7;*/
+}
+
+#toTopAnchor a:link {
+	text-align: center;
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #F4B350;
+}
+
+#toTopAnchor a:visited {
+	color: #F4B350;
+}
+
+#toTopAnchor a:hover {
+	color: #F4B350;
 }
 
 main h1 {
