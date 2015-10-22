@@ -93,10 +93,12 @@ class LoginView {
 	private function generateLogoutButtonHTML() {
 		
 		return '
-			<form  method="post" >
-				<p id="' . self::$messageId . '">' . $this -> feedbackMessage .'</p>
-				<input type="submit" name="' . self::$logout . '" value="logout"/>
-			</form>
+			<div id="loginForm">
+				<form  method="post" >
+					<p id="' . self::$messageId . '">' . $this -> feedbackMessage .'</p>
+					<input type="submit" name="' . self::$logout . '" value="logout"/>
+				</form>
+			</div>
 		';
 	}
 	

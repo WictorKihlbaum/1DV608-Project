@@ -33,7 +33,10 @@ class RegisterView {
 		
 		$response = $this -> generateRegisterFormHTML();
 		
-		return $this -> renderTopic() . $response . $this -> renderBackLink();	
+		return 
+			$this -> renderTopic() . 
+			$response . 
+			$this -> renderBackLink();	
 	}
 	
 	private function generateRegisterFormHTML() {
@@ -63,7 +66,7 @@ class RegisterView {
 	
 	private function renderTopic() {
 	
-		return '<h2>Register new user</h2>';
+		return '<h1>Register new user</h1>';
 	}
 	
 	private function renderBackLink() {
