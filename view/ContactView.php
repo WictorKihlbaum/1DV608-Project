@@ -2,21 +2,28 @@
 
 class ContactView {
 	
-	private static $contactForm = "ContactView::ContactForm";
-	
 	private $errorMessageTopic = "An error occurred. One or more fields haven't been typed in.";
 	private $successMessageTopic = 'Success!';
 	private $feedbackMessage = '';
 	private static $nameFieldIsEmptyMessage = 'No name has been typed in.';
 	private static $emailFieldIsEmptyMessage = 'No email has been typed in.';
 	private static $messageFieldIsEmptyMessage = 'No message has been typed in.';
+	private static $wrongAntiSpamAnswerMessage = 'The anti-spam answer was wrong.';
 	private static $messageSentSuccessfullyMessage = 'Message has been sent successfully!';
 	
+	private static $contactForm = "ContactView::ContactForm";
 	private static $name = "ContactView::Name";
 	private static $email = "ContactView::Email";
 	private static $subjectList = "ContactView::SubjectList";
 	private static $message = "ContactView::Message";
+	private static $antiSpam = "ContactView::AntiSpam";
 	private static $send = "ContactView::Send";
+	
+	private $antiSpamQuestion = "*What is 5+2? (Anti-spam)";
+	private $antiSpamAnswer = "7";
+	
+	private static $successID = "successMessageContainer";
+	private static $errorID = "errorMessageContainer";
 	
 
 	public function response() {
@@ -29,42 +36,32 @@ class ContactView {
 	
 	private function showFeedbackMessage() {
 		
-		/*
-		switch ($this -> feedbackMessage) {
+		if ($this -> feedbackMessage != '') {
 			
-			case '': return null;
-			
-			case self::$messageSentSuccessfullyMessage:
+			if ($this -> feedbackMessage == self::$messageSentSuccessfullyMessage) {
+				
 				return '
-					<div id="successMessageContainer">
-						<p>'. $this -> successMessageTopic .'</p>
+					<div id="'. self::$successID .'">
 						<p>'. $this -> feedbackMessage .'</p>
 					</div>
 				';
 				
-			default:
+			} else {
+			
 				return '
-					<div id="errorMessageContainer">
-						<p>'. $this -> errorMessageTopic .'</p>
+					<div id="'. self::$errorID .'">
 						<p>'. $this -> feedbackMessage .'</p>
 					</div>
-				';
+				';	
+			}
 		}
-		*/
 		
-		return '
-			
-				<p>'. $this -> feedbackMessage .'</p>
-			
-		';
-		
+		return '';
 	}
 	
 	private function renderTopic() {
 	
-		return '
-			<h2>Contact me</h2>
-		';	
+		return '<h2>Contact me</h2>';	
 	}
 	
 	private function generateContactFormHTML() {
@@ -88,6 +85,9 @@ class ContactView {
 							
 					<label>Message</label>
 					<textarea name="'. self::$message .'" value="'. $this -> getRequestMessage() .'"></textarea>
+					
+					<label>'. $this -> antiSpamQuestion .'</label>
+					<input name="'. self::$antiSpam .'" type="text">
 							
 					<input id="submit" name="'. self::$send .'" type="submit" value="Send message">
 						
@@ -96,7 +96,7 @@ class ContactView {
 		';	
 	}
 	
-	public function getEmailContent() { // TODO: Add Spam protection.
+	public function getEmailContent() {
 		
 		try {
 		
@@ -111,15 +111,19 @@ class ContactView {
 			} else if ($this -> getRequestMessage() == '') {
 				
 				throw new \MessageFieldIsEmptyException();
+				
+			} else if ($this -> getRequestAntiSpamAnswer() != $this -> antiSpamAnswer) {
+				
+				throw new \WrongAntiSpamAnswerException();
 			}
 			
-			// Return message if everything is typed in correctly.
+			// Return email if everything is typed in correctly.
 			return new EmailModel(
 				$this -> getRequestName(), 
 				$this -> getRequestEmail(), 
     			$this -> getRequestSubject(), 
-				$this -> getRequestMessage())
-			;
+				$this -> getRequestMessage()
+			);
 			
 		} catch (NameFieldIsEmptyException $e) {
 			
@@ -132,6 +136,10 @@ class ContactView {
 		} catch (MessageFieldIsEmptyException $e) {
 			
 			$this -> setFeedbackMessage(self::$messageFieldIsEmptyMessage);
+			
+		} catch (WrongAntiSpamAnswerException $e) {
+			
+			$this -> setFeedbackMessage(self::$wrongAntiSpamAnswerMessage);
 		}
 	}
 	
@@ -175,6 +183,16 @@ class ContactView {
 		if (isset($_POST[self::$message])) {
 			
 			return $_POST[self::$message];
+		}
+			
+		return '';
+	}
+	
+	private function getRequestAntiSpamAnswer() {
+		
+		if (isset($_POST[self::$antiSpam])) {
+			
+			return $_POST[self::$antiSpam];
 		}
 			
 		return '';

@@ -33,7 +33,6 @@ class ContactController {
 						   'Reply-To: '. $email -> getEmail() . '\r\n' .
 						   'X-Mailer: PHP/' . phpversion();
 				
-						   
 				
 				if (mail($to, $subject, $message, $headers)) { 
 				

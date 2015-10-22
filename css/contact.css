@@ -16,6 +16,7 @@
 #contactForm form input[type=email] {
 	width: 250px;
 	height: 25px;
+	display: block;
 	border-radius: 5px;
 	border: 1px solid #6BB9F0;
 	color: #6BB9F0;

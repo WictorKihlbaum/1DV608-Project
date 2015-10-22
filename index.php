@@ -49,6 +49,7 @@ require_once('Exceptions/WrongInputException.php');
 require_once('Exceptions/NameFieldIsEmptyException.php');
 require_once('Exceptions/EmailFieldIsEmptyException.php');
 require_once('Exceptions/MessageFieldIsEmptyException.php');
+require_once('Exceptions/WrongAntiSpamAnswerException.php');
 
 
 // CREATE OBJECTS OF THE MODELS.
