@@ -40,27 +40,37 @@ class NewsfeedView {
 	
 		foreach ($this -> siteArray as $site) {
 			
+			$siteName = $site -> getSiteName();
 			$news = $site -> getNews();
 			
 			$containers .= '
-				<div class="feedContainer" id="'. $site -> getSiteName() .'">
+				<div class="feedContainer" id="'. $siteName .'">
 					<form method="post">
 						<label for="'. self::$rssList .'">Gamesite:</label>
 						<select name="'. self::$rssList .'">
-							<option value="1">Gamereactor</option>
-							<option value="2">FZ</option>
-							<option value="3">Something</option>
+							<option value="Gamereactor" '. $this -> selectSite($siteName, 'Gamereactor') .'>Gamereactor</option>
+							<option value="FZ" '. $this -> selectSite($siteName, 'FZ') .'>FZ</option>
 						</select>
 						<input type="submit" value="Update" name="'. self::$updateGamesite .'">
 					</form>
-					'. $this -> getContent($news) .'
+					'. $this -> renderContent($news) .'
 				</div>';
 		}
 		
 		return $containers;
 	}
 	
-	private function getContent($news) {
+	private function selectSite($siteName, $optionName) {
+		
+		if ($siteName == $optionName) {
+			
+			return 'selected';
+		}
+		
+		return '';
+	}
+	
+	private function renderContent($news) {
 		
 		$content = '';
 		
@@ -68,6 +78,7 @@ class NewsfeedView {
 				
 			$title = str_replace(' & ', ' &amp; ', $article -> getTitle());
 			$link = $article -> getLink();
+			$image = $article -> getImgUrl();
 			$description = $article -> getDescription();
 			$date = date('l F d, Y', strtotime($article -> getPubDate()));
 					
@@ -75,6 +86,7 @@ class NewsfeedView {
 				'<div class="feedContent">' .
 					$this -> renderLinkWithTitle($title, $link) .
 					$this -> renderDate($date) .
+					$this -> renderImage($image) .
 					$this -> renderDescription($description) .
 				'</div>';
 		}
@@ -82,7 +94,7 @@ class NewsfeedView {
 		return $content;
 	}
 	
-	private function renderFeedContainers() {
+	/*private function renderFeedContainers() {
 		
 		$feedContainers = '';
 		
@@ -105,36 +117,36 @@ class NewsfeedView {
 		}
 		
 		return $feedContainers;
-	}
+	}*/
 	
-	public function renderRSSFeed($feedArrays) {
-	
-		foreach ($feedArrays as $feedArray) {
-			
-			$feedContainerClass = '';
-			
-			foreach ($feedArray as $article) {
-				
-				$feedContentClass = '';
-				
-				$title = str_replace(' & ', ' &amp; ', $feedArray[$i] -> getTitle());
-				$link = $feedArray[$i] -> getLink();
-				$description = $feedArray[$i] -> getDescription();
-				$date = date('l F d, Y', strtotime($feedArray[$i] -> getPubDate()));
-				//$image = $feedArray[$i][$item -> getImgUrl()];
-					
-				$feedContentClass .= 		
-					'<div class="feedContent">' .
-						$this -> renderLinkWithTitle($title, $link) .
-						$this -> renderDate($date) .	
-						/*$this -> renderImage($image) .*/	
-						$this -> renderDescription($description) .
-					'</div>';
-			}
-		}
-		
-		
-			//$feed = '';	
+//	public function renderRSSFeed($feedArrays) {
+//	
+//		foreach ($feedArrays as $feedArray) {
+//			
+//			$feedContainerClass = '';
+//			
+//			foreach ($feedArray as $article) {
+//				
+//				$feedContentClass = '';
+//				
+//				$title = str_replace(' & ', ' &amp; ', $feedArray[$i] -> getTitle());
+//				$link = $feedArray[$i] -> getLink();
+//				$description = $feedArray[$i] -> getDescription();
+//				$date = date('l F d, Y', strtotime($feedArray[$i] -> getPubDate()));
+//				//$image = $feedArray[$i][$item -> getImgUrl()];
+//					
+//				$feedContentClass .= 		
+//					'<div class="feedContent">' .
+//						$this -> renderLinkWithTitle($title, $link) .
+//						$this -> renderDate($date) .	
+//						/*$this -> renderImage($image) .*/	
+//						$this -> renderDescription($description) .
+//					'</div>';
+//			}
+//		}
+//		
+//		
+//			$feed = '';	
 //				
 //			$limit = $this -> getLimitOfNews();	
 //		
@@ -156,7 +168,7 @@ class NewsfeedView {
 //					
 //				$this -> newsfeed = $feed;
 //			}
-	}
+//	}
 	
 	private function renderSettings() {
 	

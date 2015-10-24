@@ -83,6 +83,7 @@
 .feedContent a:link {
 	color: #F4B350;
 	text-decoration: none;
+	word-wrap: break-word;
 }
 
 .feedContent a:visited {
@@ -93,4 +94,14 @@
 .feedContent img {
 	width: 400px;
 	height: 250px;
+}
+
+.youtube {
+	width: 400px;
+	height: 250px;
+}
+
+iframe {
+	width: 400px;
+	height: 250px;	
 }

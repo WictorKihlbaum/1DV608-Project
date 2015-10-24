@@ -6,16 +6,16 @@ class ItemModel {
 	private $description;
 	private $link;
 	private $pubDate;
-	//private $imgUrl;
+	private $imgUrl;
 	
 	
-	public function __construct($title, $description, $link, $pubDate/*, $imgUrl*/) {
+	public function __construct($title, $description, $link, $pubDate, $imgUrl) {
 	
 		$this -> title = $title;
 		$this -> description = $description;
 		$this -> link = $link;
 		$this -> pubDate = $pubDate;
-		//$this -> imgUrl = $imgUrl;
+		$this -> imgUrl = $imgUrl;
 	}
 	
 	public function getTitle() {
@@ -38,8 +38,8 @@ class ItemModel {
 		return $this -> pubDate;	
 	}
 	
-	/*public function getImgUrl() {
+	public function getImgUrl() {
 	
 		return $this -> imgUrl;	
-	}*/
+	}
 }

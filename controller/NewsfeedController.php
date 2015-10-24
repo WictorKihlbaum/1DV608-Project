@@ -19,10 +19,7 @@ class NewsfeedController {
 		$this -> newsfeedModel -> retrieveRssFromDAL();
         $this -> newsfeedModel -> loadRSSFeed();
         $siteArray = $this -> newsfeedModel -> getSiteArray();
-		
 		$this -> newsfeedView -> setSiteArray($siteArray);
-		//$this -> newsfeedView -> renderRSSFeed($feedArrays);
-		//$this -> newsfeedView -> renderContainers();
     }
 	
 	public function verifyNewsfeedSettings() {
