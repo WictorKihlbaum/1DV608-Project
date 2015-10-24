@@ -11,9 +11,7 @@ class NewsfeedView {
 	private static $updateGamesite = "NewsfeedView::UpdateGamesite";
 	private $defaultNewsLimit = 5;
 	private $defaultSiteLimit = 2;
-	
 	private $siteArray;
-	private $newsfeed = '';	
 	
 	
 	public function __construct($sessionModel) {
@@ -48,8 +46,9 @@ class NewsfeedView {
 					<form method="post">
 						<label for="'. self::$rssList .'">Gamesite:</label>
 						<select name="'. self::$rssList .'">
-							<option value="Gamereactor" '. $this -> selectSite($siteName, 'Gamereactor') .'>Gamereactor</option>
-							<option value="FZ" '. $this -> selectSite($siteName, 'FZ') .'>FZ</option>
+							'. $this -> getSiteNameOptions($siteName) .'
+							
+							
 						</select>
 						<input type="submit" value="Update" name="'. self::$updateGamesite .'">
 					</form>
@@ -60,10 +59,25 @@ class NewsfeedView {
 		return $containers;
 	}
 	
-	private function selectSite($siteName, $optionName) {
+	private function getSiteNameOptions($siteName) {
 		
-		if ($siteName == $optionName) {
+		$options = '';
+		
+		foreach ($this -> siteArray as $site) {
 			
+			$name = $site -> getSiteName();
+			$options .= '
+				<option value="'. $name .'" '. $this -> selectSite($siteName, $name) .'>'. $name .'</option>
+			';
+		}
+		
+		return $options;
+	}
+	
+	private function selectSite($siteName, $name) {
+		
+		if ($siteName == $name) {
+		
 			return 'selected';
 		}
 		
@@ -94,82 +108,6 @@ class NewsfeedView {
 		return $content;
 	}
 	
-	/*private function renderFeedContainers() {
-		
-		$feedContainers = '';
-		
-		for ($i = 0; $i < $this -> sessionModel -> getNumberOfSitesSession(); $i++) {
-			
-			$feedContainers .= '
-				<div class="feedContainer">
-					<form method="post">
-						<label for="'. self::$rssList .'">Gamesite:</label>
-						<select name="'. self::$rssList .'">
-							<option value="1">Gamereactor</option>
-							<option value="2">FZ</option>
-							<option value="3">Something</option>
-						</select>
-						<input type="submit" value="Update" name="'. self::$updateGamesite .'">
-					</form>
-					
-					'. $this -> newsfeed .'
-				</div>';
-		}
-		
-		return $feedContainers;
-	}*/
-	
-//	public function renderRSSFeed($feedArrays) {
-//	
-//		foreach ($feedArrays as $feedArray) {
-//			
-//			$feedContainerClass = '';
-//			
-//			foreach ($feedArray as $article) {
-//				
-//				$feedContentClass = '';
-//				
-//				$title = str_replace(' & ', ' &amp; ', $feedArray[$i] -> getTitle());
-//				$link = $feedArray[$i] -> getLink();
-//				$description = $feedArray[$i] -> getDescription();
-//				$date = date('l F d, Y', strtotime($feedArray[$i] -> getPubDate()));
-//				//$image = $feedArray[$i][$item -> getImgUrl()];
-//					
-//				$feedContentClass .= 		
-//					'<div class="feedContent">' .
-//						$this -> renderLinkWithTitle($title, $link) .
-//						$this -> renderDate($date) .	
-//						/*$this -> renderImage($image) .*/	
-//						$this -> renderDescription($description) .
-//					'</div>';
-//			}
-//		}
-//		
-//		
-//			$feed = '';	
-//				
-//			$limit = $this -> getLimitOfNews();	
-//		
-//			for ($i = 0; $i < $limit; $i++) {
-//				
-//				$title = str_replace(' & ', ' &amp; ', $feedArray[$i] -> getTitle());
-//				$link = $feedArray[$i] -> getLink();
-//				$description = $feedArray[$i] -> getDescription();
-//				$date = date('l F d, Y', strtotime($feedArray[$i] -> getPubDate()));
-//				//$image = $feedArray[$i][$item -> getImgUrl()];
-//					
-//				$feed .= 		
-//					'<div class="feedContent">' .
-//						$this -> renderLinkWithTitle($title, $link) .
-//						$this -> renderDate($date) .	
-//						/*$this -> renderImage($image) .*/	
-//						$this -> renderDescription($description) .
-//					'</div>';
-//					
-//				$this -> newsfeed = $feed;
-//			}
-//	}
-	
 	private function renderSettings() {
 	
 		return '
@@ -178,21 +116,17 @@ class NewsfeedView {
 			
 				<form method="post">
 				
-				<div class="settingsColumn">
+					<div class="settingsColumn">
 						<label for="'. self::$siteList .'">Show:</label>
 						<select name="'. self::$siteList .'">
-							<option value="2" '. $this -> checkSiteValue(2) .'>2 sites</option>
-							<option value="4" '. $this -> checkSiteValue(4) .'>4 sites</option>
-							<option value="6" '. $this -> checkSiteValue(6) .'>6 sites</option>
+							'. $this -> getSiteLimitOptions() .'
 						</select>
 					</div>
 					
 					<div class="settingsColumn">
 						<label for="'. self::$newsList .'">News per site:</label>
 						<select name="'. self::$newsList .'">
-							<option value="5" '. $this -> checkNewsValue(5) .'>5</option>
-							<option value="10" '. $this -> checkNewsValue(10) .'>10</option>
-							<option value="15" '. $this -> checkNewsValue(15) .'>15</option>
+							'. $this -> getNewsLimitOptions() .'
 						</select>
 					</div>
 					
@@ -201,6 +135,36 @@ class NewsfeedView {
 				</form>
 			</div>
 		';
+	}
+	
+	private function getSiteLimitOptions() {
+		
+		$maxLimit = sizeof($this -> siteArray);
+		$options = '';
+	
+		for ($i = 2; $i <= $maxLimit; $i += 2) {
+			
+			$options .= '
+				<option value="'. $i .'" '. $this -> checkSiteValue($i) .'>'. $i .' sites</option>
+			';
+		}
+		
+		return $options;
+	}
+	
+	private function getNewsLimitOptions() {
+	
+		$maxLimit = 20;
+		$options = '';
+		
+		for ($i = 5; $i <= $maxLimit; $i += 5) {
+			
+			$options .= '
+				<option value="'. $i .'" '. $this -> checkNewsValue($i) .'>'. $i .'</option>
+			';
+		}
+		
+		return $options;
 	}
 	
 	private function renderLinkWithTitle($title, $link) {
