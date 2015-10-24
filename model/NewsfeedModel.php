@@ -1,44 +1,70 @@
 <?php
 
 class NewsfeedModel {
+	
+	private $userDAL;
+	private $retrievedRssArray = array();
+	private $siteArray = array();
     
-	// RSSFeeds.
-	private static $gamereactorRSS = "https://www.gamereactor.se/rss/rss.php?texttype=4";
-	private static $fzRSS = "http://www.fz.se/core/rss/fznews_rss20.xml";
-    
-    private $rssFeedArray = array();
-    
+	
+	public function __construct($userDAL) {
+	
+		$this -> userDAL = $userDAL;
+	}
+	
+	public function retrieveRssFromDAL() {
+	
+		$this -> retrievedRssArray = $this -> userDAL -> getRss();
+	}
     
     public function loadRSSFeed() {
-        
-        $rss = new DOMDocument();
-        $rss -> load(self::$fzRSS);
-        
-        $feed = array();
 		
-        foreach ($rss -> getElementsByTagName('item') as $node) {
-	    
-    	    $item = array (
-    	        
-				// The first 4 tags are pretty common xml-tags in rss-feeds.
-    		    'title' => $node -> getElementsByTagName('title') -> item(0) -> nodeValue,
-    		    'desc' => $node -> getElementsByTagName('description') -> item(0) -> nodeValue,
-    		    'link' => $node -> getElementsByTagName('link') -> item(0) -> nodeValue,
-    		    'date' => $node -> getElementsByTagName('pubDate') -> item(0) -> nodeValue,
+		foreach ($this -> retrievedRssArray as $retrievedRss) {
+			
+			$itemArray = array();
+			
+			$rss = new DOMDocument();
+			$rss -> load($retrievedRss -> getRssLink());
+			
+			foreach ($rss -> getElementsByTagName('item') as $node) {
+			
+				$item = new ItemModel(
 				
-				// Not all rss-feeds got these tags. Therefore check if they exist - if not, return empty string.
-				'image' => $node -> getElementsByTagName('imgUrl') -> item(0) -> nodeValue ? $node -> getElementsByTagName('imgUrl') -> item(0) -> nodeValue : '',
-		    );
-    		
-    	    array_push($feed, $item);
-        }
-        
-        $this -> rssFeedArray = $feed;
+					// Common tags.
+					$node -> getElementsByTagName('title') -> item(0) -> nodeValue,
+					$node -> getElementsByTagName('description') -> item(0) -> nodeValue,
+					$node -> getElementsByTagName('link') -> item(0) -> nodeValue,
+					$node -> getElementsByTagName('pubDate') -> item(0) -> nodeValue
+					
+					// Uncommon tags. Return empty string if they don't exist.
+					//$node -> getElementsByTagName('imgUrl') -> item(0) -> nodeValue ? $node -> getElementsByTagName('imgUrl') -> item(0) -> nodeValue : ''
+				);
+			
+						/*
+						$item = array (
+							
+							// Common xml-tags in rssfeeds.
+							'title' => $node -> getElementsByTagName('title') -> item(0) -> nodeValue,
+							'desc' => $node -> getElementsByTagName('description') -> item(0) -> nodeValue,
+							'link' => $node -> getElementsByTagName('link') -> item(0) -> nodeValue,
+							'date' => $node -> getElementsByTagName('pubDate') -> item(0) -> nodeValue,
+							
+							// Uncommon xml-tags in rssfeeds. Check if they exist. If not - return empty string.
+							'image' => $node -> getElementsByTagName('imgUrl') -> item(0) -> nodeValue ? $node -> getElementsByTagName('imgUrl') -> item(0) -> nodeValue : '',
+						);
+						*/
+				
+				$itemArray[] = $item;
+			}
+			
+			$site = new SiteModel($retrievedRss -> getSiteName(), $itemArray);
+			$this -> siteArray[] = $site;
+		}  
     }
     
-    public function getRSSFeedArray() {
+    public function getSiteArray() {
         
-        return $this -> rssFeedArray;
+        return $this -> siteArray;
     }
     
 }

@@ -5,7 +5,6 @@ class NewsfeedController {
     private $newsfeedView;
     private $newsfeedModel;
 	private $sessionModel;
-    private $rssFeedString;
     
     
     public function __construct($newsfeedView, $newsfeedModel, $sessionModel) {
@@ -17,9 +16,13 @@ class NewsfeedController {
     
     public function handleRSSFeed() {
         
+		$this -> newsfeedModel -> retrieveRssFromDAL();
         $this -> newsfeedModel -> loadRSSFeed();
-        $rssFeedArray = $this -> newsfeedModel -> getRSSFeedArray();
-		$this -> newsfeedView -> renderRSSFeed($rssFeedArray);
+        $siteArray = $this -> newsfeedModel -> getSiteArray();
+		
+		$this -> newsfeedView -> setSiteArray($siteArray);
+		//$this -> newsfeedView -> renderRSSFeed($feedArrays);
+		//$this -> newsfeedView -> renderContainers();
     }
 	
 	public function verifyNewsfeedSettings() {

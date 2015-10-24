@@ -9,9 +9,11 @@ class NewsfeedView {
 	private static $updateSettingsList = "NewsfeedView::UpdateSettingsList";
 	private static $rssList = "NewsfeedView::RssList";
 	private static $updateGamesite = "NewsfeedView::UpdateGamesite";
-    private $newsfeed = "";
 	private $defaultNewsLimit = 5;
 	private $defaultSiteLimit = 2;
+	
+	private $siteArray;
+	private $newsfeed = '';	
 	
 	
 	public function __construct($sessionModel) {
@@ -24,7 +26,60 @@ class NewsfeedView {
 		return '
 			<h1>Newsfeed</h1> ' .
 			$this -> renderSettings() .
-			$this -> renderFeedContainers();
+			$this -> renderContainers();
+	}
+	
+	public function setSiteArray($siteArray) {
+		
+		$this -> siteArray = $siteArray;
+	}
+	
+	public function renderContainers() {
+		
+		$containers = '';
+	
+		foreach ($this -> siteArray as $site) {
+			
+			$news = $site -> getNews();
+			
+			$containers .= '
+				<div class="feedContainer" id="'. $site -> getSiteName() .'">
+					<form method="post">
+						<label for="'. self::$rssList .'">Gamesite:</label>
+						<select name="'. self::$rssList .'">
+							<option value="1">Gamereactor</option>
+							<option value="2">FZ</option>
+							<option value="3">Something</option>
+						</select>
+						<input type="submit" value="Update" name="'. self::$updateGamesite .'">
+					</form>
+					'. $this -> getContent($news) .'
+				</div>';
+		}
+		
+		return $containers;
+	}
+	
+	private function getContent($news) {
+		
+		$content = '';
+		
+		foreach ($news as $article) {
+				
+			$title = str_replace(' & ', ' &amp; ', $article -> getTitle());
+			$link = $article -> getLink();
+			$description = $article -> getDescription();
+			$date = date('l F d, Y', strtotime($article -> getPubDate()));
+					
+			$content .= 		
+				'<div class="feedContent">' .
+					$this -> renderLinkWithTitle($title, $link) .
+					$this -> renderDate($date) .
+					$this -> renderDescription($description) .
+				'</div>';
+		}
+		
+		return $content;
 	}
 	
 	private function renderFeedContainers() {
@@ -43,12 +98,64 @@ class NewsfeedView {
 							<option value="3">Something</option>
 						</select>
 						<input type="submit" value="Update" name="'. self::$updateGamesite .'">
-						'. $this -> getNewsFeed() .'
 					</form>
+					
+					'. $this -> newsfeed .'
 				</div>';
 		}
 		
 		return $feedContainers;
+	}
+	
+	public function renderRSSFeed($feedArrays) {
+	
+		foreach ($feedArrays as $feedArray) {
+			
+			$feedContainerClass = '';
+			
+			foreach ($feedArray as $article) {
+				
+				$feedContentClass = '';
+				
+				$title = str_replace(' & ', ' &amp; ', $feedArray[$i] -> getTitle());
+				$link = $feedArray[$i] -> getLink();
+				$description = $feedArray[$i] -> getDescription();
+				$date = date('l F d, Y', strtotime($feedArray[$i] -> getPubDate()));
+				//$image = $feedArray[$i][$item -> getImgUrl()];
+					
+				$feedContentClass .= 		
+					'<div class="feedContent">' .
+						$this -> renderLinkWithTitle($title, $link) .
+						$this -> renderDate($date) .	
+						/*$this -> renderImage($image) .*/	
+						$this -> renderDescription($description) .
+					'</div>';
+			}
+		}
+		
+		
+			//$feed = '';	
+//				
+//			$limit = $this -> getLimitOfNews();	
+//		
+//			for ($i = 0; $i < $limit; $i++) {
+//				
+//				$title = str_replace(' & ', ' &amp; ', $feedArray[$i] -> getTitle());
+//				$link = $feedArray[$i] -> getLink();
+//				$description = $feedArray[$i] -> getDescription();
+//				$date = date('l F d, Y', strtotime($feedArray[$i] -> getPubDate()));
+//				//$image = $feedArray[$i][$item -> getImgUrl()];
+//					
+//				$feed .= 		
+//					'<div class="feedContent">' .
+//						$this -> renderLinkWithTitle($title, $link) .
+//						$this -> renderDate($date) .	
+//						/*$this -> renderImage($image) .*/	
+//						$this -> renderDescription($description) .
+//					'</div>';
+//					
+//				$this -> newsfeed = $feed;
+//			}
 	}
 	
 	private function renderSettings() {
@@ -82,42 +189,6 @@ class NewsfeedView {
 				</form>
 			</div>
 		';
-	}
-    
-    public function getNewsFeed() {
-			
-        return $this -> newsfeed;
-    }
-    
-    private function setNewsfeed($newsfeed) {
-        
-        $this -> newsfeed = $newsfeed;
-    }
-	
-	public function renderRSSFeed($feed) {
-        
-        $newsfeed = '';
-		$limit = $this -> getLimitOfNews();
-        
-        for ($i = 0; $i < $limit; $i++) {
-            
-        	$title = str_replace(' & ', ' &amp; ', $feed[$i]['title']);
-        	$link = $feed[$i]['link'];
-        	$description = $feed[$i]['desc'];
-        	$date = date('l F d, Y', strtotime($feed[$i]['date']));
-			$image = $feed[$i]['image'];
-        	
-        	$newsfeed .= 
-			
-				'<div class="feedContent">' .
-					$this -> renderLinkWithTitle($title, $link) .
-					$this -> renderDate($date) .	
-					$this -> renderImage($image) .	
-					$this -> renderDescription($description) .
-				'</div>';
-        }
-		
-        $this -> setNewsfeed($newsfeed);
 	}
 	
 	private function renderLinkWithTitle($title, $link) {

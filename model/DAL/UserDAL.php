@@ -19,11 +19,38 @@ class UserDAL {
 	private $dbname = 'acsm_9268280c21a7845';
 	
 	private $registeredUsersCache = array();
+	private $rssCache = array();
 	
 	
 	public function __construct() {
 	
-		$this -> connectToServerAndFetchUsers(); 	
+		$this -> connectToServerAndFetchUsers();
+		$this -> connectToServerAndFetchRSSFeeds();	
+	}
+	
+	public function connectToServerAndFetchRSSFeeds() {
+		
+		$con = new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
+			or die ('Could not connect to the database server' . mysqli_connect_error());
+			
+		
+		$query = 'SELECT SiteName, RssLink FROM rss';
+		
+		if ($stmt = $con -> prepare($query)) {
+			
+			$stmt -> execute();
+			$stmt -> bind_result($siteName, $rssLink);
+			
+			while ($stmt -> fetch()) {
+				
+				$rss = new RssModel($siteName, $rssLink);
+				$this -> rssCache[] = $rss;
+    		}
+				
+			$stmt -> close();
+		}
+		
+		$con -> close();
 	}
 
 	public function connectToServerAndFetchUsers() {
@@ -51,11 +78,6 @@ class UserDAL {
 		$con -> close();
 	}
 	
-	public function getRegisteredUsers() {
-	
-		return $this -> registeredUsersCache;	
-	}
-	
 	public function connectToServerAndAddUser($newUser) {
 	
 		$con = new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
@@ -71,5 +93,15 @@ class UserDAL {
 		}
 		
 		$con -> close();
+	}
+	
+	public function getRegisteredUsers() {
+	
+		return $this -> registeredUsersCache;	
+	}
+	
+	public function getRss() {
+	
+		return $this -> rssCache;	
 	}
 }

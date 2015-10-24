@@ -16,6 +16,10 @@ require_once('model/LoginModel.php');
 require_once('model/RegisterModel.php');
 require_once('model/UserModel.php');
 require_once('model/EmailModel.php');
+require_once('model/RssModel.php');
+require_once('model/ItemModel.php');
+require_once('model/SiteModel.php');
+
 //DAL.
 require_once('model/DAL/UserDAL.php');
 
@@ -57,7 +61,7 @@ $userDAL = new UserDAL();
 $sessionModel = new SessionModel();
 $loginModel = new LoginModel($sessionModel, $userDAL);
 $registerModel = new RegisterModel($sessionModel, $userDAL);
-$newsfeedModel = new NewsfeedModel();
+$newsfeedModel = new NewsfeedModel($userDAL);
 
 // CREATE OBJECTS OF THE VIEWS.
 $navigationView = new NavigationView();
