@@ -100,12 +100,16 @@
 
 /* This is a class which may be imported from one or more RSS-feeds.
  * "!important" overrides inline-styles */
-.youtube,
-.youtube iframe {
+.youtube, iframe, figure {
 	width: 400px !important;
 	height: 250px !important;
+	padding: 0 !important;
+	margin: 0 !important;
 }
 
-#gamereactor {
-	background-image: url("image/gamereactor.gif");	
+#Gamereactor {
+	background-image: url(../images/gamereactor.jpg);
+	background-position: right 25px top 5px;
+	background-repeat: no-repeat;
+	background-size: 25%;
 }

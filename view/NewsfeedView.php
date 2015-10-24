@@ -92,16 +92,18 @@ class NewsfeedView {
 				
 			$title = str_replace(' & ', ' &amp; ', $article -> getTitle());
 			$link = $article -> getLink();
+			$video = $article -> getVideoLink();
 			$image = $article -> getImgUrl();
 			$description = $article -> getDescription();
 			$date = date('l F d, Y', strtotime($article -> getPubDate()));
 					
 			$content .= 		
 				'<div class="feedContent">' .
-					$this -> renderLinkWithTitle($title, $link) .
-					$this -> renderDate($date) .
-					$this -> renderImage($image) .
-					$this -> renderDescription($description) .
+					$this -> renderArticleLinkWithTitle($title, $link) .
+					$this -> renderArticleDate($date) .
+					$this -> renderArticleVideo($video) .
+					$this -> renderArticleImage($image) .
+					$this -> renderArticleDescription($description) .
 				'</div>';
 		}
 		
@@ -112,7 +114,10 @@ class NewsfeedView {
 	
 		return '
 			<div id="newsfeedForm">
-			<p>Change these settings to show the news however you like them.<br />Press the orange topic to read the complete article.</p>
+			<p>
+				Change these settings to show the news however you like them.<br />
+				Press the orange topic to read the complete article.
+			</p>
 			
 				<form method="post">
 				
@@ -167,17 +172,27 @@ class NewsfeedView {
 		return $options;
 	}
 	
-	private function renderLinkWithTitle($title, $link) {
+	private function renderArticleLinkWithTitle($title, $link) {
 	
 		return '<p><strong><a href="'. $link .' title="'. $title .'">'. $title .'</a></strong></p>';
 	}
 	
-	private function renderDate($date) {
+	private function renderArticleDate($date) {
 		
 		return '<small>Posted on '. $date .'</small>';
 	}
 	
-	private function renderImage($image) {
+	private function renderArticleVideo($videoLink) {
+		
+		if ($videoLink != '') {
+			
+			return '<video><source src="'. $videoLink .'" type="video/mp4"></video>';
+		}
+	
+		return '';
+	}
+	
+	private function renderArticleImage($image) {
 		
 		if ($image != '') {
 			
@@ -187,7 +202,7 @@ class NewsfeedView {
 		return null;
 	}
 	
-	private function renderDescription($description) {
+	private function renderArticleDescription($description) {
 	
 		return '<p>'. $description .'</p>';	
 	}
