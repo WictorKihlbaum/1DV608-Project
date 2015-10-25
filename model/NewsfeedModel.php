@@ -37,8 +37,7 @@ class NewsfeedModel {
 					$node -> getElementsByTagName('pubDate') -> item(0) -> nodeValue,
 	
 					// Non standard tags. Return empty string if they don't exist.
-					$node -> getElementsByTagName('imgUrl') -> item(0) -> nodeValue ? $node -> getElementsByTagName('imgUrl') -> item(0) -> nodeValue : '',
-					$node -> getElementsByTagName('link') -> item(0) -> nodeValue ? $node -> getElementsByTagName('link') -> item(0) -> nodeValue : ''
+					$node -> getElementsByTagName('imgUrl') -> item(0) -> nodeValue ? $node -> getElementsByTagName('imgUrl') -> item(0) -> nodeValue : ''
 				);
 				
 				$itemArray[] = $item;

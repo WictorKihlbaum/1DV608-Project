@@ -7,17 +7,15 @@ class ItemModel {
 	private $link;
 	private $pubDate;
 	private $imgUrl;
-	private $videoLink;
 	
 	
-	public function __construct($title, $description, $link, $pubDate, $imgUrl, $videoLink) {
+	public function __construct($title, $description, $link, $pubDate, $imgUrl) {
 	
 		$this -> title = $title;
 		$this -> description = $description;
 		$this -> link = $link;
 		$this -> pubDate = $pubDate;
 		$this -> imgUrl = $imgUrl;
-		$this -> videoLink = $videoLink;
 	}
 	
 	public function getTitle() {
@@ -45,8 +43,4 @@ class ItemModel {
 		return $this -> imgUrl;	
 	}
 	
-	public function getVideoLink() {
-	
-		return $this -> videoLink;	
-	}
 }

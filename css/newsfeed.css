@@ -96,6 +96,7 @@
 .feedContent img {
 	width: 400px;
 	height: 250px;
+	display: block;
 }
 
 /* This is a class which may be imported from one or more RSS-feeds.
@@ -104,7 +105,7 @@
 	width: 400px !important;
 	height: 250px !important;
 	padding: 0 !important;
-	margin: 0 !important;
+	margin: 5px 0 !important;
 }
 
 #Gamereactor {
@@ -112,4 +113,52 @@
 	background-position: right 25px top 5px;
 	background-repeat: no-repeat;
 	background-size: 25%;
+}
+
+#FZ {
+	background-image: url(../images/fz.png);
+	background-position: top -32px right -70px;
+	background-repeat: no-repeat;
+	background-size: 50%;	
+}
+
+#Feber {
+	background-image: url(../images/feber.png);
+	background-position: right 25px top 5px;
+	background-repeat: no-repeat;
+	background-size: 25%;
+}
+
+#IGN {
+	background-image: url(../images/ign.png);
+	background-position: right 25px top 5px;
+	background-repeat: no-repeat;
+	background-size: 25%;
+}
+
+#Gamespot {
+	background-image: url(../images/gamespot.png);
+	background-position: right 25px top 5px;
+	background-repeat: no-repeat;
+	background-size: 30%;
+}
+
+#Giantbomb {
+	background-image: url(../images/giantbomb.png);
+	background-position: right 25px top 5px;
+	background-repeat: no-repeat;
+	background-size: 23%;
+}
+
+#Giantbomb figure {
+	display: none;
+}
+
+#Giantbomb ul {
+	list-style-type: none;
+	padding: 0;	
+}
+
+#Giantbomb ul li {
+	margin: 15px 0;
 }

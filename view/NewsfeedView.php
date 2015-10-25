@@ -47,8 +47,6 @@ class NewsfeedView {
 						<label for="'. self::$rssList .'">Gamesite:</label>
 						<select name="'. self::$rssList .'">
 							'. $this -> getSiteNameOptions($siteName) .'
-							
-							
 						</select>
 						<input type="submit" value="Update" name="'. self::$updateGamesite .'">
 					</form>
@@ -92,7 +90,6 @@ class NewsfeedView {
 				
 			$title = str_replace(' & ', ' &amp; ', $article -> getTitle());
 			$link = $article -> getLink();
-			$video = $article -> getVideoLink();
 			$image = $article -> getImgUrl();
 			$description = $article -> getDescription();
 			$date = date('l F d, Y', strtotime($article -> getPubDate()));
@@ -101,7 +98,6 @@ class NewsfeedView {
 				'<div class="feedContent">' .
 					$this -> renderArticleLinkWithTitle($title, $link) .
 					$this -> renderArticleDate($date) .
-					$this -> renderArticleVideo($video) .
 					$this -> renderArticleImage($image) .
 					$this -> renderArticleDescription($description) .
 				'</div>';
@@ -180,16 +176,6 @@ class NewsfeedView {
 	private function renderArticleDate($date) {
 		
 		return '<small>Posted on '. $date .'</small>';
-	}
-	
-	private function renderArticleVideo($videoLink) {
-		
-		if ($videoLink != '') {
-			
-			return '<video><source src="'. $videoLink .'" type="video/mp4"></video>';
-		}
-	
-		return '';
 	}
 	
 	private function renderArticleImage($image) {
