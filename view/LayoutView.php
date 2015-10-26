@@ -8,16 +8,16 @@ class LayoutView {
 	private $newsfeedView;
 	private $contactView;
 	
-	private static $homeLink = "LayoutView::HomeLink";
-	private static $loginLink = "LayoutView::LoginLink";
-	private static $newsfeedLink = "LayoutView::NewsfeedLink";
-	private static $contactLink = "LayoutView::ContactLink";
+	private static $homeLink = 'LayoutView::HomeLink';
+	private static $loginLink = 'LayoutView::LoginLink';
+	private static $newsfeedLink = 'LayoutView::NewsfeedLink';
+	private static $contactLink = 'LayoutView::ContactLink';
 	
-	private static $homeURL = "home";
-	private static $loginURL = "login";
-	private static $registerURL = "register";
-	private static $newsfeedURL = "newsfeed";
-	private static $contactURL = "contact";
+	private static $homeURL = 'home';
+	private static $loginURL = 'login';
+	private static $registerURL = 'register';
+	private static $newsfeedURL = 'newsfeed';
+	private static $contactURL = 'contact';
 	
 	// FONTS FROM GOOGLE-FONTS.
 	private static $mainFont = "<link href='https://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>";
@@ -52,7 +52,6 @@ class LayoutView {
 				</head>
 				<body>
 					<header>
-						<a name="top"></a>
 						<nav>
 							<ul>
 								<li><a href="?'. self::$homeURL .'" name="'. self::$homeLink .'">Home</a></li>
@@ -62,6 +61,10 @@ class LayoutView {
 							</ul>
             			</nav>
 					</header>
+					<!-- Span is set to block in CSS to push content down from fixed menu.
+						 A-tag is just an anchor. -->
+					<a name="top"></a>
+					<span id="blockElement"></span>
 					<main>
 						'. $this -> renderContent() .'
 					</main>

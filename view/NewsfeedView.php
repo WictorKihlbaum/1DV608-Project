@@ -4,11 +4,11 @@ class NewsfeedView {
 	
 	private $sessionModel;
     
-	private static $newsList = "NewsfeedView::NewsList";
-	private static $siteList = "NewsfeedView::SiteList";
-	private static $updateSettingsList = "NewsfeedView::UpdateSettingsList";
-	private static $rssList = "NewsfeedView::RssList";
-	private static $updateGamesite = "NewsfeedView::UpdateGamesite";
+	private static $newsList = 'NewsfeedView::NewsList';
+	private static $siteList = 'NewsfeedView::SiteList';
+	private static $updateSettingsList = 'NewsfeedView::UpdateSettingsList';
+	private static $rssList = 'NewsfeedView::RssList';
+	private static $updateGamesite = 'NewsfeedView::UpdateGamesite';
 	private $defaultNewsLimit = 5;
 	private $defaultSiteLimit = 2;
 	private $siteArray;
@@ -48,7 +48,7 @@ class NewsfeedView {
 						<select name="'. self::$rssList .'">
 							'. $this -> getSiteNameOptions($siteName) .'
 						</select>
-						<input type="submit" value="Update" name="'. self::$updateGamesite .'">
+						<input type="submit" value="Change" name="'. self::$updateGamesite .'">
 					</form>
 					'. $this -> renderContent($news) .'
 				</div>';

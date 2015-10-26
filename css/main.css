@@ -5,10 +5,15 @@ body {
 }
 
 header {
-	margin-bottom: 25px;
 	width: 100%;
 	padding: 0;
 	background-color: #4183D7;
+	position: fixed;
+}
+
+#blockElement {
+	display: block;
+	height: 75px;
 }
 
 main {
