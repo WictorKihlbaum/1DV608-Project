@@ -3,15 +3,15 @@
 class NewsfeedView {
 	
 	private $sessionModel;
+	private $siteArray;
+	private $defaultNewsLimit = 5;
+	private $defaultSiteLimit = 2;
     
 	private static $newsList = 'NewsfeedView::NewsList';
 	private static $siteList = 'NewsfeedView::SiteList';
 	private static $updateSettingsList = 'NewsfeedView::UpdateSettingsList';
 	private static $rssList = 'NewsfeedView::RssList';
 	private static $updateGamesite = 'NewsfeedView::UpdateGamesite';
-	private $defaultNewsLimit = 5;
-	private $defaultSiteLimit = 2;
-	private $siteArray;
 	
 	
 	public function __construct($sessionModel) {
@@ -237,6 +237,10 @@ class NewsfeedView {
 		if (isset($_POST[self::$newsList])) {
 			
 			return $_POST[self::$newsList];     
+		
+		} else if ($this -> sessionModel -> isNumberOfNewsSessionSet()) {
+			
+			return $this -> sessionModel -> getNumberOfNewsSession();
 		}
 		
 		return $this -> defaultNewsLimit;
@@ -247,6 +251,10 @@ class NewsfeedView {
 		if (isset($_POST[self::$siteList])) {
 			
 			return $_POST[self::$siteList];     
+		
+		} else if ($this -> sessionModel -> isNumberOfSitesSessionSet()) {
+			
+			return $this -> sessionModel -> getNumberOfSitesSession();
 		}
 		
 		return $this -> defaultSiteLimit;
