@@ -11,7 +11,7 @@ class NewsfeedView {
 	private static $siteList = 'NewsfeedView::SiteList';
 	private static $updateSettingsList = 'NewsfeedView::UpdateSettingsList';
 	private static $rssList = 'NewsfeedView::RssList';
-	private static $updateGamesite = 'NewsfeedView::UpdateGamesite';
+	private static $changeGamesite = 'NewsfeedView::ChangeGamesite';
 	
 	
 	public function __construct($sessionModel) {
@@ -35,11 +35,13 @@ class NewsfeedView {
 	public function renderContainers() {
 		
 		$amountOfContainers = 0; // Number of sites the user wants to see.
+		$limit = $this -> sessionModel -> getNumberOfSitesSession();
+		
 		$containers = '';
 	
 		foreach ($this -> siteArray as $site) {
 			
-			if ($amountOfContainers == $this -> sessionModel -> getNumberOfSitesSession()) break;
+			if ($amountOfContainers == $limit) break;
 			$amountOfContainers += 1;
 			
 			$siteName = $site -> getSiteName();
@@ -52,7 +54,7 @@ class NewsfeedView {
 						<select name="'. self::$rssList .'">
 							'. $this -> getSiteNameOptions($siteName) .'
 						</select>
-						<input type="submit" value="Change" name="'. self::$updateGamesite .'">
+						<input type="submit" value="Change" name="'. self::$changeGamesite .'">
 					</form>
 					'. $this -> renderContent($news) .'
 				</div>';
@@ -79,7 +81,7 @@ class NewsfeedView {
 	private function selectSite($siteName, $name) {
 		
 		if ($siteName == $name) {
-		
+			
 			return 'selected';
 		}
 		
@@ -89,11 +91,13 @@ class NewsfeedView {
 	private function renderContent($news) {
 		
 		$amountOfContent = 0; // Number of news per site the user wants to see.
+		$limit = $this -> sessionModel -> getNumberOfNewsSession();
+		
 		$content = '';
 		
 		foreach ($news as $article) {
 			
-			if ($amountOfContent == $this -> sessionModel -> getNumberOfNewsSession()) break;
+			if ($amountOfContent == $limit) break;
 			$amountOfContent += 1;
 				
 			$title = str_replace(' & ', ' &amp; ', $article -> getTitle());
@@ -102,7 +106,7 @@ class NewsfeedView {
 			$description = $article -> getDescription();
 			$date = date('l F d, Y', strtotime($article -> getPubDate()));
 					
-			$content .= 		
+			$content .=	
 				'<div class="feedContent">' .
 					$this -> renderArticleLinkWithTitle($title, $link) .
 					$this -> renderArticleDate($date) .
@@ -188,11 +192,11 @@ class NewsfeedView {
 	
 	private function renderArticleImage($image) {
 		
-		if ($image != '') {
-			
-			return '<p><img src="'. $image .'"></p>';
+		if ($image != '') { 
+		
+			return '<p><img src="'. $image .'"></p>'; 
 		}
-	
+		
 		return null;
 	}
 	
@@ -204,6 +208,11 @@ class NewsfeedView {
 	public function didUserPressUpdate() {
 	
 		return isset($_POST[self::$updateSettingsList]);
+	}
+	
+	public function didUserPressChange() {
+	
+		return isset($_POST[self::$changeGameSite]);	
 	}
 	
 	private function checkNewsValue($value) {
