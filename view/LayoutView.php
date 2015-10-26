@@ -44,6 +44,7 @@ class LayoutView {
 					'. self::$mainFont .'
 					'. self::$navigationFont .'
 					<link rel="stylesheet" type="text/css" href="css/main.css">
+					<link rel="stylesheet" type="text/css" href="css/home.css">
 					<link rel="stylesheet" type="text/css" href="css/navigation.css">
 					<link rel="stylesheet" type="text/css" href="css/login.css">
 					<link rel="stylesheet" type="text/css" href="css/register.css">
@@ -54,10 +55,10 @@ class LayoutView {
 					<header>
 						<nav>
 							<ul>
-								<li><a href="?'. self::$homeURL .'" name="'. self::$homeLink .'">Home</a></li>
-								<li><a href="?'. self::$loginURL .'" name="'. self::$loginLink .'">Login</a></li>
-								<li><a href="?'. self::$newsfeedURL .'" name="'. self::$newsfeedLink .'">Newsfeed</a></li>
-								<li><a href="?'. self::$contactURL .'" name="'. self::$contactLink .'">Contact</a></li>
+								<li '. $this -> isActive(self::$homeURL) .'><a href="?'. self::$homeURL .'" name="'. self::$homeLink .'">Home</a></li>
+								<li '. $this -> isActive(self::$loginURL) .'><a href="?'. self::$loginURL .'" name="'. self::$loginLink .'">Login</a></li>
+								<li '. $this -> isActive(self::$newsfeedURL) .'><a href="?'. self::$newsfeedURL .'" name="'. self::$newsfeedLink .'">Newsfeed</a></li>
+								<li '. $this -> isActive(self::$contactURL) .'><a href="?'. self::$contactURL .'" name="'. self::$contactLink .'">Contact</a></li>
 							</ul>
             			</nav>
 					</header>
@@ -75,6 +76,16 @@ class LayoutView {
 				</body>
 			</html>
 		';	
+	}
+	
+	private function isActive($url) {
+	
+		if ($_SERVER['QUERY_STRING'] == $url) {
+			
+			return 'id="active"'; 
+		}
+		
+		return '';
 	}
 	
 	private function renderContent() {

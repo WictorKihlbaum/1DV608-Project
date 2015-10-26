@@ -33,3 +33,7 @@ nav ul li a {
 nav ul li a:hover {
 	color: #FDE3A7; /*F4B350*/
 }
+
+#active a {
+	color: #FDE3A7;	
+}
