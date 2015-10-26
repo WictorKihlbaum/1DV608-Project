@@ -34,9 +34,13 @@ class NewsfeedView {
 	
 	public function renderContainers() {
 		
+		$amountOfContainers = 0; // Number of sites the user wants to see.
 		$containers = '';
 	
 		foreach ($this -> siteArray as $site) {
+			
+			if ($amountOfContainers == $this -> sessionModel -> getNumberOfSitesSession()) break;
+			$amountOfContainers += 1;
 			
 			$siteName = $site -> getSiteName();
 			$news = $site -> getNews();
@@ -84,9 +88,13 @@ class NewsfeedView {
 	
 	private function renderContent($news) {
 		
+		$amountOfContent = 0; // Number of news per site the user wants to see.
 		$content = '';
 		
 		foreach ($news as $article) {
+			
+			if ($amountOfContent == $this -> sessionModel -> getNumberOfNewsSession()) break;
+			$amountOfContent += 1;
 				
 			$title = str_replace(' & ', ' &amp; ', $article -> getTitle());
 			$link = $article -> getLink();

@@ -78,9 +78,9 @@ class SessionModel {
     }
 	
 	
-	// NEWSFEED
+	// NEWSFEED-RELATED.
 	
-	// NUMBER OF NEWS
+	// NUMBER OF NEWS.
 	public function setNumberOfNewsSession($number) {
 	
 		$_SESSION[self::$numberOfNewsSession] = $number;	
@@ -96,7 +96,7 @@ class SessionModel {
         return $_SESSION[self::$numberOfNewsSession];
     }
 	
-	// NUMBER OF SITES
+	// NUMBER OF SITES.
 	public function setNumberOfSitesSession($number) {
 	
 		$_SESSION[self::$numberOfSitesSession] = $number;	

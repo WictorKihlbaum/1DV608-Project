@@ -149,6 +149,10 @@
 	background-size: 30%;
 }
 
+#Gamespot figure {
+	display: none;
+}
+
 #Giantbomb {
 	background-image: url(../images/giantbomb.png);
 	background-position: right 30px top 10px;
