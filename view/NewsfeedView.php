@@ -90,7 +90,7 @@ class NewsfeedView {
 	
 	private function renderContent($news) {
 		
-		$amountOfContent = 0; // Number of news per site the user wants to see.
+		$amountOfContent = 0;
 		$limit = $this -> sessionModel -> getNumberOfNewsSession();
 		
 		$content = '';

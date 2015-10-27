@@ -5,3 +5,14 @@
 	background-color: #FDE3A7;
 	margin: 15px;	
 }
+
+#subTopicAndImage {
+	margin: 0 auto;
+	width: 930px;
+	height: 200px;
+	border: 1px solid #87D37C;
+	background-image: url(../images/homeimage.png);	
+	background-size: 65%;
+	background-repeat: no-repeat;
+	background-position: top right;
+}

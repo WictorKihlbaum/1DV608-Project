@@ -1,8 +1,8 @@
 <?php
 
 // MAKE SURE ERRORS ARE SHOWN.
-error_reporting(E_ALL);
-ini_set('display_errors', 'On');
+//error_reporting(E_ALL);
+//ini_set('display_errors', 'On');
 
 // SET DEFAULT TIME ZONE.
 date_default_timezone_set('Europe/Stockholm');
@@ -12,6 +12,7 @@ date_default_timezone_set('Europe/Stockholm');
 // MODELS.
 require_once('model/SessionModel.php');
 require_once('model/NewsfeedModel.php');
+require_once('model/HomeModel.php');
 require_once('model/LoginModel.php');
 require_once('model/RegisterModel.php');
 require_once('model/UserModel.php');
@@ -36,12 +37,14 @@ require_once('view/NavigationView.php');
 
 // CONTROLLERS.
 require_once('controller/MasterController.php');
+require_once('controller/HomeController.php');
 require_once('controller/LoginController.php');
 require_once('controller/RegisterController.php');
 require_once('controller/NewsfeedController.php');
 require_once('controller/ContactController.php');
 
 // EXTENDED CUSTOM EXCEPTIONS.
+
 // LOGIN/REGISTER EXCEPTIONS.
 require_once('Exceptions/InvalidCharactersException.php');
 require_once('Exceptions/NoCredentialsException.php');
@@ -63,13 +66,14 @@ $userDAL = new UserDAL();
 $rssDAL = new RssDAL();
 $serviceModel = new ServiceModel($userDAL, $rssDAL);
 $sessionModel = new SessionModel();
+$homeModel = new HomeModel($serviceModel);
 $loginModel = new LoginModel($sessionModel, $serviceModel);
 $registerModel = new RegisterModel($sessionModel, $serviceModel);
 $newsfeedModel = new NewsfeedModel($serviceModel);
 
 // CREATE OBJECTS OF THE VIEWS.
 $navigationView = new NavigationView();
-$homeView = new HomeView();
+$homeView = new HomeView($sessionModel);
 $loginView = new LoginView($loginModel, $sessionModel);
 $registerView = new RegisterView($registerModel);
 $newsfeedView = new NewsfeedView($sessionModel);
@@ -77,6 +81,7 @@ $contactView = new ContactView();
 $layoutView = new LayoutView($homeView, $loginView, $registerView, $newsfeedView, $contactView);
 
 // CREATE OBJECTS OF CONTROLLERS.
+$homeController = new HomeController($homeView, $sessionModel);
 $loginController = new LoginController($loginView, $loginModel, $sessionModel);
 $registerController = new RegisterController($registerView, $registerModel, $navigationView);
 $newsfeedController = new NewsfeedController($newsfeedView, $newsfeedModel, $sessionModel);

@@ -18,6 +18,8 @@ class MasterController {
 	
 	public function handleUserRequest() {
 		
+		$this -> homeController -> handleRSSFeed();
+		
 		// USER PRESS LOGIN.
 		if ($this -> loginController -> reforwardDidUserPressLogin()) {
 			

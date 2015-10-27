@@ -1,11 +1,21 @@
 <?php
 
 class HomeView {
+	
+	private $sessionModel;
+	private $siteArray;
+	
+	
+	public function __construct($sessionModel) {
+		
+		$this -> sessionModel = $sessionModel;
+	}
 
 	public function response() {
 		
 		return 
 			$this -> renderTopic() .
+			$this -> renderSubTopicAndImage() .
 			$this -> renderTopNews();
 	}
 	
@@ -18,7 +28,7 @@ class HomeView {
 	
 		$divs = '';
 	
-		for ($i = 0; $i <= 4; $i++) {
+		for ($i = 1; $i <= 3; $i++) {
 			
 			$divs .= '
 				<div class="topNews">
@@ -28,4 +38,17 @@ class HomeView {
 		
 		return $divs;
 	}
+	
+	private function renderSubTopicAndImage() {
+	
+		return '
+			<div id="subTopicAndImage"></div>
+		';		
+	}
+	
+	public function setSiteArray($siteArray) {
+		
+		$this -> siteArray = $siteArray;
+	}
+	
 }

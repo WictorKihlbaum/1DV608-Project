@@ -13,8 +13,6 @@ class RssDAL {
 	private $rssCache = array();
 	
 	
-	public function __construct() {}
-	
 	private function connectToServerAndFetchRSS() {
 		
 		$con = new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
@@ -41,9 +39,9 @@ class RssDAL {
 	
 	public function getRss() {
 		
-		//if ($this -> rssCache == null) {
+		if ($this -> rssCache == null) {
 			$this -> connectToServerAndFetchRSS();
-		//}
+		}
 	
 		return $this -> rssCache;	
 	}

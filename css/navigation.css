@@ -31,9 +31,9 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-	color: #FDE3A7; /*F4B350*/
+	color: #A2DED0;
 }
 
 #active a {
-	color: #FDE3A7;	
+	color: #87D37C;	
 }

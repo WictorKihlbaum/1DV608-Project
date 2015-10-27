@@ -37,7 +37,7 @@ class RegisterModel {
 			
 		} else {
 			
-			throw new \UserAlreadyExistsException("User exists, pick another username");
+			throw new \UserAlreadyExistsException();
 		}
     }
      
