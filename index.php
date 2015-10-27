@@ -81,12 +81,12 @@ $contactView = new ContactView();
 $layoutView = new LayoutView($homeView, $loginView, $registerView, $newsfeedView, $contactView);
 
 // CREATE OBJECTS OF CONTROLLERS.
-$homeController = new HomeController($homeView, $sessionModel);
+$homeController = new HomeController($homeView, $homeModel, $sessionModel);
 $loginController = new LoginController($loginView, $loginModel, $sessionModel);
 $registerController = new RegisterController($registerView, $registerModel, $navigationView);
 $newsfeedController = new NewsfeedController($newsfeedView, $newsfeedModel, $sessionModel);
 $contactController = new ContactController($contactView);
-$masterController = new MasterController($loginController, $registerController, $newsfeedController, $contactController);
+$masterController = new MasterController($homeController, $loginController, $registerController, $newsfeedController, $contactController);
 
 // CALL FUNCTIONS.
 $masterController -> handleUserRequest();

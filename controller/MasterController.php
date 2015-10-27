@@ -2,14 +2,16 @@
 
 class MasterController {
 
+	private $homeController;
 	private $loginController;
 	private $registerController;
 	private $newsfeedController;
 	private $contactController;
 	
 	
-	public function __construct($loginController, $registerController, $newsfeedController, $contactController) {
-	
+	public function __construct($homeController, $loginController, $registerController, $newsfeedController, $contactController) {
+		
+		$this -> homeController = $homeController;
 		$this -> loginController = $loginController;	
 		$this -> registerController = $registerController;
 		$this -> newsfeedController = $newsfeedController;
@@ -17,8 +19,6 @@ class MasterController {
 	}
 	
 	public function handleUserRequest() {
-		
-		$this -> homeController -> handleRSSFeed();
 		
 		// USER PRESS LOGIN.
 		if ($this -> loginController -> reforwardDidUserPressLogin()) {
@@ -50,5 +50,8 @@ class MasterController {
 			$this -> newsfeedController -> handleRSSFeed();
 			$this -> newsfeedController -> verifyNewsfeedSettings();
 		}
+		
+		$this -> homeController -> handleRSSFeed();
 	}
+	
 }

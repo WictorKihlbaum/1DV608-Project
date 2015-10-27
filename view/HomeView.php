@@ -14,7 +14,6 @@ class HomeView {
 	public function response() {
 		
 		return 
-			$this -> renderTopic() .
 			$this -> renderSubTopicAndImage() .
 			$this -> renderTopNews();
 	}
@@ -26,17 +25,66 @@ class HomeView {
 	
 	private function renderTopNews() {
 	
-		$divs = '';
-	
-		for ($i = 1; $i <= 3; $i++) {
+		$amountOfSites = 0;
+		$containers = '';
+		
+		foreach ($this -> siteArray as $site) {
 			
-			$divs .= '
-				<div class="topNews">
-				</div>
-			';
+			if ($amountOfSites == 3) break;
+			$amountOfSites += 1;
+			
+			$news = $site -> getNews();
+			$latestArticle = $news[0];
+			
+			$containers .= '
+				<div class="topNewsContainer">
+					'. $this -> renderTopArticle($latestArticle) .'
+				</div>';
 		}
 		
-		return $divs;
+		return $containers;
+	}
+	
+	private function renderTopArticle($latestArticle) {
+	
+			$title = str_replace(' & ', ' &amp; ', $latestArticle -> getTitle());
+			$link = $latestArticle -> getLink();
+			$image = $latestArticle -> getImgUrl();
+			$description = $latestArticle -> getDescription();
+			$date = date('l F d, Y', strtotime($latestArticle -> getPubDate()));
+					
+			return
+				'<div class="textWrap">' .
+					$this -> renderArticleLinkWithTitle($title, $link) .
+					$this -> renderArticleDate($date) .
+					$this -> renderArticleDescription($description) .
+				'</div>' .
+					$this -> renderArticleImage($image);	
+	}
+	
+	private function renderArticleLinkWithTitle($title, $link) {
+	
+		return '<p><strong><a href="'. $link .' title="'. $title .'">'. $title .'</a></strong></p>';
+	}
+	
+	private function renderArticleDate($date) {
+		
+		return '<small>Posted on '. $date .'</small>';
+	}
+	
+	private function renderArticleImage($image) {
+		
+		if ($image != '') { 
+		
+			return '<p><img src="'. $image .'"></p>'; 
+		}
+		
+		return null;
+	}
+	
+	private function renderArticleDescription($description) {
+	
+		return '<p>'. $description .'</p>';	
 	}
 	
 	private function renderSubTopicAndImage() {

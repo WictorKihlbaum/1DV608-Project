@@ -1,18 +1,54 @@
 /* Home */
 
-.topNews {
-	height: 250px;
-	background-color: #FDE3A7;
-	margin: 15px;	
-}
-
 #subTopicAndImage {
 	margin: 0 auto;
-	width: 930px;
-	height: 200px;
-	border: 1px solid #87D37C;
+	padding-top: 5px;
+	width: 910px;
+	height: 180px;
 	background-image: url(../images/homeimage.png);	
 	background-size: 65%;
 	background-repeat: no-repeat;
 	background-position: top right;
+}
+
+.topNewsContainer {
+	height: 250px;
+	margin: 15px;	
+	position: relative;
+	overflow: hidden;
+	border-bottom: 3px solid #4183D7;
+	padding-bottom: 15px;
+}
+
+/* "!important" overrides inline-styles 
+	which may be included in the fetched RSS */
+.topNewsContainer img,
+.topNewsContainer figure,
+.topNewsContainer iframe,
+.topNewsContainer youtube {
+	margin: 0 !important;
+	padding: 0 !important;
+	width: 400px !important;
+	height: 250px !important;
+	position: absolute !important;
+	top: 0 !important;
+	right: 0 !important;
+}
+
+.textWrap {
+	width: 400px;
+	color: #6C7A89;
+	font-size: 18px;
+	padding-bottom: 15px;
+}
+
+.topNewsContainer a:link {
+	color: #87D37C;
+	text-decoration: none;
+	word-wrap: break-word;
+}
+
+.topNewsContainer a:visited {
+	color: #26A65B;
+	text-decoration: none;
 }

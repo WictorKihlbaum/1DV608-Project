@@ -9,6 +9,7 @@ header {
 	padding: 0;
 	background-color: #4183D7;
 	position: fixed;
+	z-index: 100;
 }
 
 #blockElement {
@@ -47,11 +48,11 @@ footer {
 }
 
 #toTopAnchor a:visited {
-	color: #F4B350;
+	color: #87D37C;
 }
 
 #toTopAnchor a:hover {
-	color: #F4B350;
+	color: #87D37C;
 }
 
 main h1 {
