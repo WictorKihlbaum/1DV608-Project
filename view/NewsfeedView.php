@@ -34,7 +34,7 @@ class NewsfeedView {
 	
 	public function renderContainers() {
 		
-		$amountOfContainers = 0; // Number of sites the user wants to see.
+		$amountOfContainers = 0;
 		$limit = $this -> sessionModel -> getNumberOfSitesSession();
 		
 		$containers = '';
@@ -54,7 +54,7 @@ class NewsfeedView {
 						<select name="'. self::$rssList .'">
 							'. $this -> getSiteNameOptions($siteName) .'
 						</select>
-						<input type="submit" value="Change" name="'. self::$changeGamesite .'">
+						<input type="submit" value="Change" name="'. self::$changeGamesite .'::'. $siteName .'">
 					</form>
 					'. $this -> renderContent($news) .'
 				</div>';
@@ -208,11 +208,6 @@ class NewsfeedView {
 	public function didUserPressUpdate() {
 	
 		return isset($_POST[self::$updateSettingsList]);
-	}
-	
-	public function didUserPressChange() {
-	
-		return isset($_POST[self::$changeGameSite]);	
 	}
 	
 	private function checkNewsValue($value) {

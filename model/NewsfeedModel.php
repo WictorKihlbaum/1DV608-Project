@@ -2,22 +2,19 @@
 
 class NewsfeedModel {
 	
-	private $userDAL;
+	private $serviceModel;
 	private $retrievedRssArray = array();
 	private $siteArray = array();
     
 	
-	public function __construct($userDAL) {
+	public function __construct($serviceModel) {
 	
-		$this -> userDAL = $userDAL;
-	}
-	
-	public function retrieveRssFromDAL() {
-	
-		$this -> retrievedRssArray = $this -> userDAL -> getRss();
+		$this -> serviceModel = $serviceModel;
 	}
     
     public function loadRSSFeed() {
+		
+		$this -> retrievedRssArray = $this -> serviceModel -> getRssCache();
 		
 		foreach ($this -> retrievedRssArray as $retrievedRss) {
 			

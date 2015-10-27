@@ -3,20 +3,19 @@
 class LoginModel {
 
     private $sessionModel;
-	private $userDAL;
+	private $serviceModel;
 	private $registeredUsersCache;
     
     
-    public function __construct($sessionModel, $userDAL) {
+    public function __construct($sessionModel, $serviceModel) {
         
         $this -> sessionModel = $sessionModel;
-		$this -> userDAL = $userDAL;
+		$this -> serviceModel = $serviceModel;
     }
 
     public function validateUserInput($input) {
 		
-		$this -> userDAL -> connectToServerAndFetchUsers();
-		$this -> registeredUsersCache = $this -> userDAL -> getRegisteredUsers();
+		$this -> registeredUsersCache = $this -> serviceModel -> getRegisteredUsers();
 		
 		$userFound = false;
 		
@@ -35,7 +34,7 @@ class LoginModel {
 			
 		} else {
 			
-			throw new \WrongInputException("Wrong name or password");
+			throw new \WrongInputException();
 		}
     }
     

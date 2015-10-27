@@ -16,7 +16,6 @@ class NewsfeedController {
     
     public function handleRSSFeed() {
         
-		$this -> newsfeedModel -> retrieveRssFromDAL();
         $this -> newsfeedModel -> loadRSSFeed();
         $siteArray = $this -> newsfeedModel -> getSiteArray();
 		$this -> newsfeedView -> setSiteArray($siteArray);

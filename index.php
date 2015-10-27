@@ -1,8 +1,8 @@
 <?php
 
 // MAKE SURE ERRORS ARE SHOWN.
-//error_reporting(E_ALL);
-//ini_set('display_errors', 'On');
+error_reporting(E_ALL);
+ini_set('display_errors', 'On');
 
 // SET DEFAULT TIME ZONE.
 date_default_timezone_set('Europe/Stockholm');
@@ -19,9 +19,11 @@ require_once('model/EmailModel.php');
 require_once('model/RssModel.php');
 require_once('model/ItemModel.php');
 require_once('model/SiteModel.php');
+require_once('model/ServiceModel.php');
 
 //DAL.
 require_once('model/DAL/UserDAL.php');
+require_once('model/DAL/RssDAL.php');
 
 // VIEWS.
 require_once('view/HomeView.php');
@@ -58,10 +60,12 @@ require_once('Exceptions/WrongAntiSpamAnswerException.php');
 
 // CREATE OBJECTS OF THE MODELS.
 $userDAL = new UserDAL();
+$rssDAL = new RssDAL();
+$serviceModel = new ServiceModel($userDAL, $rssDAL);
 $sessionModel = new SessionModel();
-$loginModel = new LoginModel($sessionModel, $userDAL);
-$registerModel = new RegisterModel($sessionModel, $userDAL);
-$newsfeedModel = new NewsfeedModel($userDAL);
+$loginModel = new LoginModel($sessionModel, $serviceModel);
+$registerModel = new RegisterModel($sessionModel, $serviceModel);
+$newsfeedModel = new NewsfeedModel($serviceModel);
 
 // CREATE OBJECTS OF THE VIEWS.
 $navigationView = new NavigationView();

@@ -3,19 +3,19 @@
 class RegisterModel {
     
     private $sessionModel;
-	private $userDAL;
+	private $serviceModel;
 	private $registeredUsersCache;
     
     
-    public function __construct($sessionModel, $userDAL) {
+    public function __construct($sessionModel, $serviceModel) {
         
         $this -> sessionModel = $sessionModel;
-		$this -> userDAL = $userDAL;
+		$this -> serviceModel = $serviceModel;
     }
     
     public function validateUserInput($newUser) {
 		
-		$this -> registeredUsersCache = $this -> userDAL -> getRegisteredUsers();
+		$this -> registeredUsersCache = $this -> serviceModel -> getRegisteredUsers();
 		
 		$userFound = false;
 		
@@ -31,7 +31,7 @@ class RegisterModel {
 		if (!$userFound) {
 			
 			$this -> sessionModel -> setNewRegisteredUserSession();
-			$this -> userDAL -> connectToServerAndAddUser($newUser);
+			$this -> serviceModel -> connectToServerAndAddUser($newUser);
 			// Session for the new users username in particular.
             $this -> sessionModel -> setNewUserNameSession($newUser -> getUserName()); 
 			
