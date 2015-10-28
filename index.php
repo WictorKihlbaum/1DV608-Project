@@ -1,8 +1,9 @@
 <?php
 
 // MAKE SURE ERRORS ARE SHOWN.
-/*error_reporting(E_ALL);
-ini_set('display_errors', 'On');*/
+// (TURNED OFF FOR PUBLIC SERVER)
+// error_reporting(E_ALL);
+// ini_set('display_errors', 'On');
 
 // SET DEFAULT TIME ZONE.
 date_default_timezone_set('Europe/Stockholm');
@@ -21,6 +22,7 @@ require_once('model/RssModel.php');
 require_once('model/ItemModel.php');
 require_once('model/SiteModel.php');
 require_once('model/ServiceModel.php');
+require_once('model/ContactModel.php');
 
 //DAL.
 require_once('model/DAL/UserDAL.php');
@@ -59,6 +61,7 @@ require_once('Exceptions/NameFieldIsEmptyException.php');
 require_once('Exceptions/EmailFieldIsEmptyException.php');
 require_once('Exceptions/MessageFieldIsEmptyException.php');
 require_once('Exceptions/WrongAntiSpamAnswerException.php');
+require_once('Exceptions/EmailNotSentException.php');
 
 
 // CREATE OBJECTS OF THE MODELS.
@@ -70,6 +73,7 @@ $homeModel = new HomeModel($serviceModel);
 $loginModel = new LoginModel($sessionModel, $serviceModel);
 $registerModel = new RegisterModel($sessionModel, $serviceModel);
 $newsfeedModel = new NewsfeedModel($serviceModel);
+$contactModel = new ContactModel();
 
 // CREATE OBJECTS OF THE VIEWS.
 $navigationView = new NavigationView();
@@ -85,7 +89,7 @@ $homeController = new HomeController($homeView, $homeModel, $sessionModel);
 $loginController = new LoginController($loginView, $loginModel, $sessionModel);
 $registerController = new RegisterController($registerView, $registerModel, $navigationView);
 $newsfeedController = new NewsfeedController($newsfeedView, $newsfeedModel, $sessionModel);
-$contactController = new ContactController($contactView);
+$contactController = new ContactController($contactView, $contactModel);
 $masterController = new MasterController($homeController, $loginController, $registerController, $newsfeedController, $contactController);
 
 // CALL FUNCTIONS.

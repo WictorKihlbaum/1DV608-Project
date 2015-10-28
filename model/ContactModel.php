@@ -2,9 +2,6 @@
 
 class ContactModel {
 
-	private $email;
-	
-	
 	public function	 sendEmail($email) {
 		
 		// The use of libraries is not allowed.

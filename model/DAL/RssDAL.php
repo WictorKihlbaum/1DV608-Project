@@ -2,7 +2,7 @@
 
 class RssDAL {
 	
-	// Public DB.
+	// Public Database.
 	private $host = 'eu-cdbr-azure-north-d.cloudapp.net';
 	private $port = 3306;
 	private $socket = '';
@@ -26,7 +26,7 @@ class RssDAL {
 			$stmt -> bind_result($siteName, $rssLink);
 			
 			while ($stmt -> fetch()) {
-				
+				// Save all DB-content to a "cache-array".
 				$rss = new RssModel($siteName, $rssLink);
 				$this -> rssCache[] = $rss;
     		}

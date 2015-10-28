@@ -20,6 +20,8 @@ class MasterController {
 	
 	public function handleUserRequest() {
 		
+		$this -> homeController -> handleRSSFeed();
+		
 		// USER PRESS LOGIN.
 		if ($this -> loginController -> reforwardDidUserPressLogin()) {
 			
@@ -50,8 +52,6 @@ class MasterController {
 			$this -> newsfeedController -> handleRSSFeed();
 			$this -> newsfeedController -> verifyNewsfeedSettings();
 		}
-		
-		$this -> homeController -> handleRSSFeed();
 	}
 	
 }

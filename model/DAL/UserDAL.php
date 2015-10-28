@@ -26,7 +26,7 @@ class UserDAL {
 			$stmt -> bind_result($userName, $password);
 			
 			while ($stmt -> fetch()) {
-				
+				// Save all DB-content to a "cache-array".
 				$registeredUser = new UserModel($userName, $password);
 				$this -> registeredUsersCache[] = $registeredUser;
     		}
@@ -42,8 +42,10 @@ class UserDAL {
 		$con = new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
 			or die ('Could not connect to the database server' . mysqli_connect_error());
 		
+		// Encode the password so we don't store it as plain text in the Database.
 		$encodedPassword = $this -> encodeNewUserPassword($newUser -> getPassword());
 		
+		// Query to add the user in the Database.
 		$query = 'INSERT INTO users (UserName, Password) VALUES ("'. $newUser -> getUserName() .'", "'. $encodedPassword .'")';	
 		
 		if ($stmt = $con -> prepare($query)) {
