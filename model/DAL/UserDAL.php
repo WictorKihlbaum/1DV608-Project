@@ -41,8 +41,10 @@ class UserDAL {
 	
 		$con = new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
 			or die ('Could not connect to the database server' . mysqli_connect_error());
-			
-		$query = 'INSERT INTO users (UserName, Password) VALUES ("'. $newUser -> getUserName() .'", "'. $newUser -> getPassword() .'")';	
+		
+		$encodedPassword = $this -> encodeNewUserPassword($newUser -> getPassword());
+		
+		$query = 'INSERT INTO users (UserName, Password) VALUES ("'. $newUser -> getUserName() .'", "'. $encodedPassword .'")';	
 		
 		if ($stmt = $con -> prepare($query)) {
 			
@@ -53,7 +55,17 @@ class UserDAL {
 		$con -> close();
 		
 		// Add new user to the local cache aswell.
-		$this -> registeredUsersCache[] = new UserModel($newUser -> getUserName(), $newUser -> getPassword());
+		$this -> registeredUsersCache[] = $newUser;
+	}
+	
+	private function encodeNewUserPassword($password) {
+		
+		$cost = 10;
+		$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
+		$salt = sprintf('$2a$%02d$', $cost) . $salt;
+		$hash = crypt($password, $salt);
+		
+		return $hash;
 	}
 	
 	public function getRegisteredUsers() {

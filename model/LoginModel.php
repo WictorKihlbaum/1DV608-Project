@@ -16,13 +16,20 @@ class LoginModel {
     public function validateUserInput($input) {
 		
 		$this -> registeredUsersCache = $this -> serviceModel -> getRegisteredUsers();
+		$salt = $this -> getSalt();
 		
 		$userFound = false;
 		
 		foreach ($this -> registeredUsersCache as $user) {
 		
-			if ($user -> getUserName() === $input -> getUserName() &&
+			/*if ($user -> getUserName() === $input -> getUserName() &&
 				$user -> getPassword() === $input -> getPassword()) {
+				
+				$userFound = true;
+			}*/
+			
+			if ($user -> getUserName() === $input -> getUserName() &&
+				$this -> getSalt() == true) {
 				
 				$userFound = true;
 			} 
@@ -37,6 +44,21 @@ class LoginModel {
 			throw new \WrongInputException();
 		}
     }
+	
+	private function getSalt($password, $input) {
+		
+		$cost = 10;
+		$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
+		$salt = sprintf('$2a$%02d$', $cost) . $salt;
+		$hash = crypt($input, $salt);
+		
+		if ($password === $hash) {
+			
+			return true;
+		}
+		
+		return false;
+	}
     
     public function logoutUser() {
         // Remove user-session when user is being logged out.

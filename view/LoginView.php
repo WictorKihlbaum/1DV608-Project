@@ -69,7 +69,7 @@ class LoginView {
 						<p id="'. self::$messageId .'">' . $this -> feedbackMessage . '</p>
 						
 						<label for="' . self::$name . '">Username:</label>
-						<input type="text" id="'. self::$name .'" name="'. self::$name .'" /><br />
+						<input type="text" id="'. self::$name .'" name="'. self::$name .'" value="'. $this -> fillInUserName() .'" /><br />
 	
 						<label for="' . self::$password . '">Password:</label>
 						<input type="password" id="'. self::$password .'" name="'. self::$password .'" /><br />
@@ -79,6 +79,16 @@ class LoginView {
 				</form>
 			</div>
 		';
+	}
+	
+	private function fillInUserName() {
+	
+		if ($this -> sessionModel -> isNewUserNameSessionSet()) {
+			
+			return $this -> sessionModel -> getNewUserNameSession();
+		}
+		
+		return $this -> getRequestUserName();
 	}
 	
 	private function renderRegisterLink() {

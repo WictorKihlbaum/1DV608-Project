@@ -32,4 +32,9 @@ class ServiceModel {
 		return $this -> rssDAL -> getRss();
 	}
 	
+	public function addUser($newUser) {
+		
+		$this -> userDAL -> connectToServerAndAddUser($newUser);
+	}
+	
 }

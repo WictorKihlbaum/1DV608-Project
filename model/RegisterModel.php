@@ -31,10 +31,11 @@ class RegisterModel {
 		if (!$userFound) {
 			
 			$this -> sessionModel -> setNewRegisteredUserSession();
-			$this -> serviceModel -> connectToServerAndAddUser($newUser);
 			// Session for the new users username in particular.
-            $this -> sessionModel -> setNewUserNameSession($newUser -> getUserName()); 
-			
+            $this -> sessionModel -> setNewUserNameSession($newUser -> getUserName());
+			$this -> registeredUsersCache[] = $newUser;
+			$this -> serviceModel -> addUser($newUser);
+			 
 		} else {
 			
 			throw new \UserAlreadyExistsException();

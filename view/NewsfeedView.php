@@ -124,7 +124,7 @@ class NewsfeedView {
 			<div id="newsfeedForm">
 			<p>
 				Change these settings to show the news however you like them.<br />
-				Press the orange topic to read the complete article.
+				Press the green topic to read the complete article.
 			</p>
 			
 				<form method="post">
