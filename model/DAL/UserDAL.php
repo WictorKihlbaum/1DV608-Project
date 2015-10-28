@@ -70,10 +70,10 @@ class UserDAL {
 	
 	public function getRegisteredUsers() {
 		
-		if ($this -> registeredUsersCache == null) {
+		//if ($this -> registeredUsersCache == null) {
 			
 			$this -> connectToServerAndFetchUsers();
-		}
+		//}
 	
 		return $this -> registeredUsersCache;	
 	}
