@@ -3,11 +3,13 @@
 class ContactController {
 	
 	private $contactView;
+	private $contactModel;
 	
 	
-	public function __construct($contactView) {
+	public function __construct($contactView, $contactModel) {
 	
 		$this -> contactView = $contactView;	
+		$this -> contactModel = $contactModel;
 	}
 	
 	public function reforwardDidUserPressSend() {
@@ -17,34 +19,19 @@ class ContactController {
 	
 	public function handleContactForm() {
 		
-		if ($this -> contactView -> didUserPressSend()) {
-			
-			$email = $this -> contactView -> getEmailContent();
-			
-			if ($email != null) { 
-			
-				ini_set("SMTP", "ssl://smtp.gmail.com");
-				ini_set("smtp_port", "465");
+		try {
+		
+			if ($this -> contactView -> didUserPressSend()) {
 				
-				$message = $email -> getMessage();
-				$to = 'wictor.kihlbaum@gmail.com';
-				$subject = $email -> getSubject();
-				$headers = 'From: '. $email -> getName() . '\r\n' .
-						   'Reply-To: '. $email -> getEmail() . '\r\n' .
-						   'X-Mailer: PHP/' . phpversion();
-				
-				
-				if (mail($to, $subject, $message, $headers)) { 
-				
-					echo '<p>Your message has been sent!</p>';
-					//mail($to, $subject, $message, $headers);
-					$this -> contactView -> setMessageSentSuccessfullyFeedbackMessage();
-					
-				} else { 
-					
-					echo '<p>Something went wrong, go back and try again!</p>'; 
-				}	   
+				$email = $this -> contactView -> getEmailContent();
+				$this -> contactModel -> sendEmail($email);
+				// Set feedbackmessage if email was sent.
+				$this -> contactView -> setMessageSentSuccessfullyFeedbackMessage();
 			}
+			
+		} catch (EmailNotSentException $e) {
+		
+			$this -> contactView -> setMessageNotSentFeedbackMessage();
 		}
 	}
 	

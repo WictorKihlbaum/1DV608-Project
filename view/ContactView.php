@@ -10,6 +10,7 @@ class ContactView {
 	private static $messageFieldIsEmptyMessage = 'No message has been typed in.';
 	private static $wrongAntiSpamAnswerMessage = 'The anti-spam answer was wrong.';
 	private static $messageSentSuccessfullyMessage = 'Message has been sent successfully!';
+	private static $messageNotSentMessage = "Something went wrong. Message wasn't sent!";
 	
 	private static $contactForm = "ContactView::ContactForm";
 	private static $name = "ContactView::Name";
@@ -152,6 +153,11 @@ class ContactView {
 	public function setMessageSentSuccessfullyFeedbackMessage() {
 		
 		$this -> setFeedbackMessage(self::$messageSentSuccessfullyMessage);
+	}
+	
+	public function setMessageNotSentFeedbackMessage() {
+		
+		$this -> setFeedbackMessage(self::$messageNotSentMessage);
 	}
 	
 	private function getRequestName() {

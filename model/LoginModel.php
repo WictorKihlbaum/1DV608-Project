@@ -16,20 +16,13 @@ class LoginModel {
     public function validateUserInput($input) {
 		
 		$this -> registeredUsersCache = $this -> serviceModel -> getRegisteredUsers();
-		$salt = $this -> getSalt();
 		
 		$userFound = false;
 		
 		foreach ($this -> registeredUsersCache as $user) {
-		
-			/*if ($user -> getUserName() === $input -> getUserName() &&
-				$user -> getPassword() === $input -> getPassword()) {
-				
-				$userFound = true;
-			}*/
 			
 			if ($user -> getUserName() === $input -> getUserName() &&
-				$this -> getSalt() == true) {
+				$this -> validatePassword($user -> getPassword(), $input -> getPassword())) {
 				
 				$userFound = true;
 			} 
@@ -45,14 +38,9 @@ class LoginModel {
 		}
     }
 	
-	private function getSalt($password, $input) {
+	private function validatePassword($storedPassword, $inputPassword) {
 		
-		$cost = 10;
-		$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
-		$salt = sprintf('$2a$%02d$', $cost) . $salt;
-		$hash = crypt($input, $salt);
-		
-		if ($password === $hash) {
+		if (hash_equals($storedPassword, crypt($inputPassword, $storedPassword))) {
 			
 			return true;
 		}
