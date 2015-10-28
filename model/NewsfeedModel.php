@@ -20,6 +20,7 @@ class NewsfeedModel {
 			
 			$itemArray = array();
 			
+			// Create DOM-doc for every RSS-feed and load it.
 			$rss = new DOMDocument();
 			$rss -> load($retrievedRss -> getRssLink());
 			

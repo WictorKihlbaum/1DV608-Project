@@ -34,7 +34,7 @@ class NewsfeedView {
 	
 	public function renderContainers() {
 		
-		$amountOfContainers = 0;
+		$amountOfContainers = 0; // Will keep track on how many sites have been rendered.
 		$limit = $this -> sessionModel -> getNumberOfSitesSession();
 		
 		$containers = '';
@@ -90,7 +90,7 @@ class NewsfeedView {
 	
 	private function renderContent($news) {
 		
-		$amountOfContent = 0;
+		$amountOfContent = 0; // Will keep track on how many news per site have been rendered.
 		$limit = $this -> sessionModel -> getNumberOfNewsSession();
 		
 		$content = '';
@@ -238,6 +238,8 @@ class NewsfeedView {
 	
 	public function getLimitOfNews() {
 		
+		/* Make the selection drop-down menu show the correct value. 
+		   Even if the user switch subpage and then goes back. */
 		if (isset($_POST[self::$newsList])) {
 			
 			return $_POST[self::$newsList];     
@@ -252,6 +254,8 @@ class NewsfeedView {
 	
 	public function getLimitOfSites() {
 		
+		/* Make the selection drop-down menu show the correct value. 
+		   Even if the user switch subpage and then goes back. */
 		if (isset($_POST[self::$siteList])) {
 			
 			return $_POST[self::$siteList];     

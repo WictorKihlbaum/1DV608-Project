@@ -79,7 +79,7 @@ class LayoutView {
 	}
 	
 	private function isActive($url) {
-	
+		// CSS purpose only.
 		if ($_SERVER['QUERY_STRING'] == $url) {
 			
 			return 'id="active"'; 

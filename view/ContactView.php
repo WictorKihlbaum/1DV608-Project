@@ -100,7 +100,7 @@ class ContactView {
 	
 	public function getEmailContent() {
 		
-		try {
+		try { // Validate every field.
 		
 			if ($this -> getRequestName() == '') {
 				

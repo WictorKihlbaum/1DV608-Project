@@ -2,8 +2,6 @@
 
 class NavigationView {
 	
-	//private static $registerUserLink = "NavigationView::RegisterUserLink";
-    //private static $registerURL = "register";
 	private static $loginURL = "login";
 
 
