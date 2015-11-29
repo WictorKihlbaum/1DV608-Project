@@ -20,7 +20,6 @@ class ContactView {
 	private static $antiSpam = "ContactView::AntiSpam";
 	private static $send = "ContactView::Send";
 	
-	//private $antiSpamQuestion = "*What is 5+2? (Anti-spam)";
 	private $antiSpamAnswer;
 	
 	private static $successID = "successMessageContainer";
@@ -103,6 +102,7 @@ class ContactView {
 		$firstNumber = rand(1, 25);
 		$secondNumber = rand(1, 25);
 		$this -> antiSpamAnswer = $firstNumber + $secondNumber;
+		var_dump($this -> antiSpamAnswer);
 		
 		return '*What is '. $firstNumber .' + ' . $secondNumber . '? (Anti-spam)';	
 	}
