@@ -42,7 +42,7 @@ class UserDAL {
 		$con = new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
 			or die ('Could not connect to the database server' . mysqli_connect_error());
 		
-		// Encode the password so we don't store it as plain text in the Database.
+		// Hash the password so we don't store it as plain text in the Database.
 		$hashedPassword = $this -> hashNewUserPassword($newUser -> getPassword());
 		
 		// Query to add the user in the Database.
