@@ -43,7 +43,7 @@ class UserDAL {
 			or die ('Could not connect to the database server' . mysqli_connect_error());
 		
 		// Encode the password so we don't store it as plain text in the Database.
-		$encodedPassword = $this -> encodeNewUserPassword($newUser -> getPassword());
+		$encodedPassword = $this -> hashNewUserPassword($newUser -> getPassword());
 		
 		// Query to add the user in the Database.
 		$query = 'INSERT INTO users (UserName, Password) VALUES ("'. $newUser -> getUserName() .'", "'. $encodedPassword .'")';	
@@ -60,22 +60,28 @@ class UserDAL {
 		$this -> registeredUsersCache[] = $newUser;
 	}
 	
-	private function encodeNewUserPassword($password) {
+	private function hashNewUserPassword($password) {
 		
-		$cost = 10;
-		/* Create a random salt. "Salt" is random data that is used as an additional 
-		   input to a function that hashes a password. */
-		$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
-		// Prefix information about the hash so PHP knows how to verify it later.
-		$salt = sprintf('$2a$%02d$', $cost) . $salt;
-		$hash = crypt($password, $salt);
+		//$cost = 10;
+//		/* Create a random salt. "Salt" is random data that is used as an additional 
+//		   input to a function that hashes a password. */
+//		$salt = strtr(base64_encode(mcrypt_create_iv(16, MCRYPT_DEV_URANDOM)), '+', '.');
+//		// Prefix information about the hash so PHP knows how to verify it later.
+//		$salt = sprintf('$2a$%02d$', $cost) . $salt;
+//		$hash = crypt($password, $salt);
+//		
+//		return $hash;
+		
+		$options = ['cost' => 12];
+		$hash = password_hash($password, PASSWORD_DEFAULT, $options);
 		
 		return $hash;
 	}
 	
 	public function getRegisteredUsers() {
 		
-		if ($this -> registeredUsersCache == null) {
+		if ($this -> registeredUsersCache == null ||
+			empty($this -> registeredUsersCache)) {
 			
 			$this -> connectToServerAndFetchUsers();
 		}
