@@ -39,13 +39,6 @@ class LoginModel {
     }
 	
 	private function validatePassword($storedPassword, $inputPassword) {
-		
-		//if (hash_equals($storedPassword, crypt($inputPassword, $storedPassword))) {
-//			
-//			return true;
-//		}
-//		
-//		return false;
 
 		if (password_verify($inputPassword, $storedPassword)) {
 			
