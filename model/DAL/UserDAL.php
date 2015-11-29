@@ -73,7 +73,7 @@ class UserDAL {
 //		return $hash;
 		
 		$options = ['cost' => 12];
-		$hash = password_hash($password, PASSWORD_DEFAULT, $options);
+		$hash = password_hash($password, PASSWORD_DEFAULT);
 		
 		return $hash;
 	}
