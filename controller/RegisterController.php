@@ -49,7 +49,7 @@ class RegisterController {
             if ($newUser != null) {
                 
                 $this -> registerModel -> validateUserInput($newUser);
-				$this -> navigationView -> navigateToRegisterURL();
+				//$this -> navigationView -> navigateToRegisterURL();
             }
   
         } catch (UserAlreadyExistsException $e) {
