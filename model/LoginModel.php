@@ -48,8 +48,11 @@ class LoginModel {
 //		return false;
 
 		if (password_verify($inputPassword, $storedPassword)) {
+			
 			return true;
+			
 		} else {
+			
 			return false;	
 		}
 	}

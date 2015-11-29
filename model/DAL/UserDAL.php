@@ -43,10 +43,10 @@ class UserDAL {
 			or die ('Could not connect to the database server' . mysqli_connect_error());
 		
 		// Encode the password so we don't store it as plain text in the Database.
-		$encodedPassword = $this -> hashNewUserPassword($newUser -> getPassword());
+		$hashedPassword = $this -> hashNewUserPassword($newUser -> getPassword());
 		
 		// Query to add the user in the Database.
-		$query = 'INSERT INTO users (UserName, Password) VALUES ("'. $newUser -> getUserName() .'", "'. $encodedPassword .'")';	
+		$query = 'INSERT INTO users (UserName, Password) VALUES ("'. $newUser -> getUserName() .'", "'. $hashedPassword .'")';	
 		
 		if ($stmt = $con -> prepare($query)) {
 			
@@ -72,7 +72,7 @@ class UserDAL {
 //		
 //		return $hash;
 		
-		$options = ['cost' => 12];
+		//$options = ['cost' => 12];
 		$hash = password_hash($password, PASSWORD_DEFAULT);
 		
 		return $hash;
