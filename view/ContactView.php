@@ -20,8 +20,8 @@ class ContactView {
 	private static $antiSpam = "ContactView::AntiSpam";
 	private static $send = "ContactView::Send";
 	
-	private $antiSpamQuestion = "*What is 5+2? (Anti-spam)";
-	private $antiSpamAnswer = "7";
+	//private $antiSpamQuestion = "*What is 5+2? (Anti-spam)";
+	private $antiSpamAnswer;
 	
 	private static $successID = "successMessageContainer";
 	private static $errorID = "errorMessageContainer";
@@ -88,7 +88,7 @@ class ContactView {
 					<label>Message</label>
 					<textarea name="'. self::$message .'" placeholder="Type your message here">'. $this -> getRequestMessage() .'</textarea>
 					
-					<label>'. $this -> antiSpamQuestion .'</label>
+					<label>'. $this -> generateAntiSpamQuestion .'</label>
 					<input name="'. self::$antiSpam .'" type="text" placeholder="Type correct answer here">
 							
 					<input id="submit" name="'. self::$send .'" type="submit" value="Send message">
@@ -96,6 +96,15 @@ class ContactView {
 				</form>
 			</div>
 		';	
+	}
+	
+	private function generateAntiSpamQuestion() {
+		
+		$firstNumber = rand(1, 25);
+		$secondNumber = rand(1, 25);
+		$this -> antiSpamAnswer = $firstNumber + $secondNumber;
+		
+		return '*What is '. $firstNumber .' + ' . $secondNumber . '? (Anti-spam)';	
 	}
 	
 	public function getEmailContent() {
