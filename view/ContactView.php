@@ -88,7 +88,7 @@ class ContactView {
 					<label>Message</label>
 					<textarea name="'. self::$message .'" placeholder="Type your message here">'. $this -> getRequestMessage() .'</textarea>
 					
-					<label>'. $this -> generateAntiSpamQuestion .'</label>
+					<label>'. $this -> generateAntiSpamQuestion() .'</label>
 					<input name="'. self::$antiSpam .'" type="text" placeholder="Type correct answer here">
 							
 					<input id="submit" name="'. self::$send .'" type="submit" value="Send message">
