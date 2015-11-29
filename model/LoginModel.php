@@ -40,12 +40,18 @@ class LoginModel {
 	
 	private function validatePassword($storedPassword, $inputPassword) {
 		
-		if (hash_equals($storedPassword, crypt($inputPassword, $storedPassword))) {
-			
+		//if (hash_equals($storedPassword, crypt($inputPassword, $storedPassword))) {
+//			
+//			return true;
+//		}
+//		
+//		return false;
+
+		if (password_verify($inputPassword, $storedPassword)) {
 			return true;
+		} else {
+			return false;	
 		}
-		
-		return false;
 	}
     
     public function logoutUser() {
