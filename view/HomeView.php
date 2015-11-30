@@ -33,7 +33,7 @@ class HomeView {
 			
 			$containers .= '
 				<div class="topNewsContainer">
-					<h4>'. $site -> getSiteName() .'</h4>
+					<p class="article-site-name">Latest '. $site -> getSiteName() .' Article</p>
 					'. $this -> renderTopArticle($latestArticle) .'
 				</div>';
 		}
