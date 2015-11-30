@@ -128,7 +128,7 @@ class LoginView {
 			<h2>Welcome '. $this -> sessionModel -> getLoggedInUserNameSession() .'!</h2>
 			<h3>Your favorite gamesite: '. $this -> showFavoriteGamesite() .'</h3>
 			<form method="post" >
-				<label for="' . self::$favoriteGamesite . '">Choose favorite gamesite:</label>
+				<label for="' . self::$favoriteGamesite . '">Choose/change favorite gamesite:</label>
 				
 				<select name="'. self::$favoriteGamesite .'">
 					'. $this -> getSiteNameOptions() .'
@@ -166,16 +166,6 @@ class LoginView {
 		
 		return $options;
 	}
-	
-	/*private function selectSite($siteName, $name) {
-		
-		if ($siteName == $name) {
-			
-			return 'selected';
-		}
-		
-		return '';
-	}*/
 	
 	public function getRequestFavoriteGamesite() {
 		

@@ -18,11 +18,6 @@ class HomeView {
 			$this -> renderTopNews();
 	}
 	
-	private function renderTopic() {
-		
-		return '<h1>Welcome to Gamefeed</h1>';
-	}
-	
 	private function renderTopNews() {
 	
 		$amountOfSites = 0;
@@ -30,8 +25,8 @@ class HomeView {
 		
 		foreach ($this -> siteArray as $site) {
 			
-			if ($amountOfSites == 3) break;
-			$amountOfSites += 1;
+			//if ($amountOfSites == 3) break;
+			//$amountOfSites += 1;
 			
 			$news = $site -> getNews();
 			$latestArticle = $news[0];
