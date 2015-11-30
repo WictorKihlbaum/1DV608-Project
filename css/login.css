@@ -4,11 +4,16 @@
 	background-color: #E4F1FE;
 	border-radius: 10px;
 	padding: 25px;	
+	margin-top: 15px;
 }
 
 form {
 	/*padding: 25px;*/
 	margin-top: 25px;
+}
+
+form select {
+	color: #E56668;	
 }
 
 form fieldset {
