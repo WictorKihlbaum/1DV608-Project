@@ -125,6 +125,7 @@ class LoginView {
 	private function generateFavoriteGamesiteHTML() {
 		
 		return '
+			<h2>Welcome '. $this -> sessionModel -> getLoggedInUserNameSession() .'!</h2>
 			<h3>Your favorite gamesite: '. $this -> favorite .'</h3>
 			<form method="post" >
 				<label for="' . self::$favoriteGamesite . '">Choose favorite gamesite:</label>
