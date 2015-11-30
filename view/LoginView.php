@@ -4,6 +4,7 @@ class LoginView {
 	
 	private $loginModel;
 	private $sessionModel;
+	private $newsfeedView;
 	
 	private static $registerLink = 'LoginView::RegisterLink';
 	private static $registerURL = 'register';
@@ -16,6 +17,9 @@ class LoginView {
 	private static $cookieName = 'LoginView::CookieName';
 	private static $cookiePassword = 'LoginView::CookiePassword';
 	private static $messageId = 'LoginView::Message';
+	
+	private static $favoriteGamesite = 'LoginView::FavoriteGamesite';
+	private static $choose = 'LoginView::Choose';
 
 	private $feedbackMessage = "";
 	
@@ -27,17 +31,20 @@ class LoginView {
 	private static $registeredNewUserMessage = 'Registered new user';
 	
 	
-	public function __construct($loginModel, $sessionModel) {
+	public function __construct($loginModel, $sessionModel, $newsfeedView) {
 		
 		$this -> loginModel = $loginModel;
 		$this -> sessionModel = $sessionModel;
+		$this -> newsfeedView = $newsfeedView;
 	}
 
 	public function response() {
 		
 		if ($this -> loginModel -> loggedInUser()) { 
 			
-			$response = $this -> generateLogoutButtonHTML();
+			$response = 
+				$this -> generateLogoutButtonHTML() . 
+				$this -> generateFavoriteGamesiteHTML();
 			
 		} else {
 			
@@ -94,9 +101,11 @@ class LoginView {
 	private function renderRegisterLink() {
 	
 		return '
-			<p><a href="?'. self::$registerURL .'" name="'. self::$registerLink .' id="'. self::$registerLink .'">
-				Not a registered user? Click here to create a new account!
-			</a></p>
+			<p>
+				<a href="?'. self::$registerURL .'" name="'. self::$registerLink .' id="'. self::$registerLink .'">
+					Not a registered user? Click here to create a new account!
+				</a>
+			</p>
 		';	
 	}
 	
@@ -104,13 +113,54 @@ class LoginView {
 		
 		return '
 			<div id="loginForm">
-				<form  method="post" >
+				<form method="post" >
 					<p id="' . self::$messageId . '">' . $this -> feedbackMessage .'</p>
-					<input type="submit" name="' . self::$logout . '" value="logout"/>
+					<input type="submit" name="' . self::$logout . '" value="logout" />
 				</form>
 			</div>
 		';
 	}
+	
+	private function generateFavoriteGamesiteHTML() {
+		
+		$siteNames = $this -> newsfeedView -> getSiteNames();
+		
+		return '
+			<form method="post" >
+				<label for="' . self::$favoriteGamesite . '">Your favorite gamesite:</label>
+				
+				<select name="'. self::$favoriteGamesite .'">
+					'. $this -> getSiteNameOptions($siteNames) .'
+				</select>
+				
+				<input type="submit" name="' . self::$choose . '" value="Choose" />
+			</form>
+		';
+	}
+	
+	private function getSiteNameOptions($siteNames) {
+		
+		$options = '';
+		
+		foreach ($siteNames as $siteName) {
+			
+			$options .= '
+				<option value="'. $siteName .'">'. $siteName .'</option>
+			';
+		}
+		
+		return $options;
+	}
+	
+	/*private function selectSite($siteName, $name) {
+		
+		if ($siteName == $name) {
+			
+			return 'selected';
+		}
+		
+		return '';
+	}*/
 	
 	public function didUserPressLogin() {
 
