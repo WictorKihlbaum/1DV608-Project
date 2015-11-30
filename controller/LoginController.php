@@ -81,7 +81,7 @@ class LoginController {
 			$favorite = $this -> loginView -> getRequestFavoriteGamesite();
 			echo $favorite;
 			
-			//$this -> loginModel -> setFavoriteGamesite($user, $favorite);
+			$this -> loginModel -> setFavoriteGamesite($user, $favorite);
 		}
 	}
     

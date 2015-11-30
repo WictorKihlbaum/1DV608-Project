@@ -37,9 +37,9 @@ class ServiceModel {
 		$this -> userDAL -> connectToServerAndAddUser($newUser);
 	}
 	
-	public function addFavoriteGamesiteToUser() {
+	public function addFavoriteGamesiteToUser($user, $favorite) {
 	
-		$this -> userDAL -> connectToServerAndAddFavoriteGamesite();	
+		$this -> userDAL -> connectToServerAndAddFavoriteGamesite($user, $favorite);	
 	}
 	
 }

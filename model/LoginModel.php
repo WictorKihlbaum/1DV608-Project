@@ -60,9 +60,9 @@ class LoginModel {
         return $this -> sessionModel -> getUserSession();
     }
 	
-	public function setFavoriteGamesite($favorite) {
+	public function setFavoriteGamesite($user, $favorite) {
 	
-		$this -> serviceModel -> setFavoriteGamesite($favorite);
+		$this -> serviceModel -> addFavoriteGamesiteToUser($user, $favorite);
 	}
     
 }

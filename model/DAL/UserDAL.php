@@ -13,10 +13,15 @@ class UserDAL {
 	private $registeredUsersCache = array();
 	
 	
+	private function connectToServer() {
+	
+		return new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
+			or die ('Could not connect to the database server' . mysqli_connect_error());
+	}
+	
 	private function connectToServerAndFetchUsers() {
 	
-		$con = new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
-			or die ('Could not connect to the database server' . mysqli_connect_error());
+		$con = $this -> connectToServer();
 			
 		$query = 'SELECT UserName, Password FROM users';
 		
@@ -39,8 +44,7 @@ class UserDAL {
 	
 	public function connectToServerAndAddUser($newUser) {
 	
-		$con = new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
-			or die ('Could not connect to the database server' . mysqli_connect_error());
+		$con = $this -> connectToServer();
 		
 		// Hash the password so we don't store it as plain text in the Database.
 		$hashedPassword = $this -> hashNewUserPassword($newUser -> getPassword());
@@ -60,9 +64,21 @@ class UserDAL {
 		$this -> registeredUsersCache[] = $newUser;
 	}
 	
-	public function connectToServerAndAddFavoriteGamesite() {
+	public function connectToServerAndAddFavoriteGamesite($user, $favorite) {
 	
+		$con = $this -> connectToServer();
 			
+		$query = 'UPDATE users SET FavoriteGamesite = '. $favorite .' WHERE UserName = '. $user .'';
+			
+		if ($stmt = $con -> prepare($query)) {
+			
+			$stmt -> execute();
+			$stmt -> close();
+		}
+		
+		$con -> close();
+		
+		// TODO: Add to cache.
 	}
 	
 	private function hashNewUserPassword($password) {
