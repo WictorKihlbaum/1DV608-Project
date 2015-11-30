@@ -128,9 +128,9 @@ class LoginView {
 		
 		return '
 			<h2>'. $this -> sessionModel -> getLoggedInUserNameSession() .'s Profile</h2>
-			<h3>Your favorite gamesite: '. $this -> showFavoriteGamesite() .'</h3>
+			<h3>My favorite gamesite: '. $this -> showFavoriteGamesite() .'</h3>
 			<form method="post" >
-				<label for="' . self::$favoriteGamesite . '">Choose/change favorite gamesite:</label>
+				<label for="' . self::$favoriteGamesite . '">Choose/change my favorite gamesite:</label>
 				
 				<select name="'. self::$favoriteGamesite .'">
 					'. $this -> getSiteNameOptions() .'

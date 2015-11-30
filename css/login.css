@@ -8,13 +8,14 @@
 }
 
 form {
-	/*padding: 25px;*/
 	margin-top: 25px;
 }
 
 form select {
 	height: 46px;
-	width: 85px;
+	width: 120px;
+	color: #6BB9F0;
+	font-size: 16px;
 }
 
 form fieldset {
