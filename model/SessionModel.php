@@ -7,6 +7,8 @@ class SessionModel {
     private static $newUserNameSession = "SessionModel::NewUserNameSession";
 	private static $numberOfNewsSession = "SessionModel::NumbersOfNewsSession";
 	private static $numberOfSitesSession = "SessionModel::NumberOfSitesSession";
+	
+	private static $userNameSession = "SessionModel::UserNameSession";
     
     
     public function __construct() {
@@ -36,6 +38,31 @@ class SessionModel {
         
         return false;
     }
+	
+	public function setLoggedInUserNameSession($userName) {
+		
+		$_SESSION[self::$userNameSession] = $userName;
+	}
+	
+	public function isLoggedInUserNameSessionSet() {
+		
+		return isset($_SESSION[self::$userNameSession]);
+    }
+	
+	public function getLoggedInUserNameSession() {
+	
+		if (isset($_SESSION[self::$userNameSession])) {
+        
+            return $_SESSION[self::$userNameSession];
+        }
+        
+        return false;	
+	}
+	
+	public function unsetLoggedInUserNameSession() {
+	
+		unset($_SESSION[self::$userNameSession]);
+	}
     
     // SESSION FOR NEW REGISTERED USER. 
     

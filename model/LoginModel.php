@@ -31,6 +31,7 @@ class LoginModel {
 		if ($userFound) {
 			
 			$this -> sessionModel -> setUserSession();
+			$this -> sessionModel -> setLoggedInUserNameSession($user -> getUserName());
 			
 		} else {
 			
@@ -51,6 +52,7 @@ class LoginModel {
     public function logoutUser() {
         // Remove user-session when user is being logged out.
         $this -> sessionModel -> unsetUserSession();
+		$this -> sessionModel -> unsetLoggedInUserNameSession();
     }
     
     public function loggedInUser() {

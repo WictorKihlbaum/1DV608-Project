@@ -73,8 +73,8 @@ class LoginController {
 	
 		if ($this -> loginView -> didUserPressChoose()) {
 			
-			if ($this -> sessionModel -> isNewUserNameSessionSet()) {
-				$user = $this -> sessionModel -> getNewUserNameSession();
+			if ($this -> sessionModel -> isLoggedInUserNameSessionSet()) {
+				$user = $this -> sessionModel -> getLoggedInUserNameSession();
 				echo $user;
 			}
 			
