@@ -14,10 +14,7 @@ class ServiceModel {
 	
 	public function getRegisteredUsers() {
 		
-		if ($this -> userDAL == null) {
-			$this -> userDAL = new UserDAL();
-		} 	
-		
+		$this -> makeSureUserDALIsNotNull();
 		return $this -> userDAL -> getRegisteredUsers();
 	}
 	
@@ -37,11 +34,21 @@ class ServiceModel {
 	
 	public function addFavoriteGamesiteToUser($user, $favorite) {
 	
+		$this -> makeSureUserDALIsNotNull();
+		$this -> userDAL -> connectToServerAndAddFavoriteGamesite($user, $favorite);	
+	}
+	
+	public function getFavoriteGamesiteForLoggedInUser($loggedInUser) {
+		
+		$this -> makeSureUserDALIsNotNull();
+		return $this -> userDAL -> getFavoriteGamesiteForLoggedInUser($loggedInUser);
+	}
+	
+	private function makeSureUserDALIsNotNull() {
+	
 		if ($this -> userDAL == null) {
 			$this -> userDAL = new UserDAL();
-		} 
-		
-		$this -> userDAL -> connectToServerAndAddFavoriteGamesite($user, $favorite);	
+		}	
 	}
 	
 }

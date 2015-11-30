@@ -81,6 +81,31 @@ class UserDAL {
 		$con -> close();
 	}
 	
+	public function getFavoriteGamesiteForLoggedInUser($loggedInUser) {
+		
+		$favoriteSite = '';
+		$con = $this -> connectToServer();
+		
+		$query = 'SELECT FavoriteGamesite FROM users WHERE UserName = "'. $loggedInUser .'"';
+		
+		if ($stmt = $con -> prepare($query)) {
+			
+			$stmt -> execute();
+			$stmt -> bind_result($favorite);
+			
+			while ($stmt -> fetch()) {
+				
+				$favoriteSite = $favorite;
+    		}
+			
+			$stmt -> close();
+		}
+		
+		$con -> close();
+		
+		return $favoriteSite;
+	}
+	
 	private function hashNewUserPassword($password) {
 		
 		$hash = password_hash($password, PASSWORD_DEFAULT);

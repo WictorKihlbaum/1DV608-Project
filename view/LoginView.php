@@ -126,7 +126,7 @@ class LoginView {
 		
 		return '
 			<h2>Welcome '. $this -> sessionModel -> getLoggedInUserNameSession() .'!</h2>
-			<h3>Your favorite gamesite: '. $this -> favorite .'</h3>
+			<h3>Your favorite gamesite: '. $this -> showFavoriteGamesite() .'</h3>
 			<form method="post" >
 				<label for="' . self::$favoriteGamesite . '">Choose favorite gamesite:</label>
 				
@@ -139,10 +139,21 @@ class LoginView {
 		';
 	}
 	
+	private function showFavoriteGamesite() {
+	
+		$favorite = $this -> serviceModel -> getFavoriteGamesiteForLoggedInUser($loggedInUser);
+		
+		if ($favorite == null || $favorite == '') {
+			$favorite = 'No site choosen';
+		}
+		
+		return $favorite;
+	}
+	
 	private function getSiteNameOptions() {
 		
 		$rss = $this -> serviceModel -> getRssCache();
-		$options = '<option value="Choose site" selected>Choose site</option>';
+		$options = '';
 		
 		foreach ($rss as $site) {
 			
