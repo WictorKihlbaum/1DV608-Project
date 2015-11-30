@@ -80,7 +80,7 @@ $navigationView = new NavigationView();
 $homeView = new HomeView($sessionModel);
 $registerView = new RegisterView($registerModel);
 $newsfeedView = new NewsfeedView($sessionModel);
-$loginView = new LoginView($loginModel, $sessionModel, $newsfeedView);
+$loginView = new LoginView($loginModel, $sessionModel, $serviceModel);
 $contactView = new ContactView();
 $layoutView = new LayoutView($homeView, $loginView, $registerView, $newsfeedView, $contactView);
 

@@ -4,7 +4,7 @@ class LoginView {
 	
 	private $loginModel;
 	private $sessionModel;
-	private $newsfeedView;
+	private $serviceModel;
 	
 	private static $registerLink = 'LoginView::RegisterLink';
 	private static $registerURL = 'register';
@@ -31,11 +31,11 @@ class LoginView {
 	private static $registeredNewUserMessage = 'Registered new user';
 	
 	
-	public function __construct($loginModel, $sessionModel, $newsfeedView) {
+	public function __construct($loginModel, $sessionModel, $serviceModel) {
 		
 		$this -> loginModel = $loginModel;
 		$this -> sessionModel = $sessionModel;
-		$this -> newsfeedView = $newsfeedView;
+		$this -> serviceModel = $serviceModel;
 	}
 
 	public function response() {
@@ -91,7 +91,6 @@ class LoginView {
 	private function fillInUserName() {
 	
 		if ($this -> sessionModel -> isNewUserNameSessionSet()) {
-			
 			return $this -> sessionModel -> getNewUserNameSession();
 		}
 		
@@ -122,6 +121,9 @@ class LoginView {
 	}
 	
 	private function generateFavoriteGamesiteHTML() {
+		
+		$users = $this -> serviceModel -> getRegisteredUsers();
+		var_dump($users);
 		
 		return '
 			<form method="post" >

@@ -15,7 +15,6 @@ class ServiceModel {
 	public function getRegisteredUsers() {
 		
 		if ($this -> userDAL == null) {
-			
 			$this -> userDAL = new UserDAL();
 		} 	
 		
@@ -25,7 +24,6 @@ class ServiceModel {
 	public function getRssCache() {
 		
 		if ($this -> rssDAL == null) {
-			
 			$this -> rssDAL = new RssDAL();
 		}
 		
