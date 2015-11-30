@@ -14,9 +14,11 @@ class UserDAL {
 	
 	
 	private function connectToServer() {
-	
-		return new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
+		
+		$con = new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
 			or die ('Could not connect to the database server' . mysqli_connect_error());
+	
+		return $con;	
 	}
 	
 	private function connectToServerAndFetchUsers() {
