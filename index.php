@@ -77,7 +77,7 @@ $contactModel = new ContactModel();
 
 // CREATE OBJECTS OF THE VIEWS.
 $navigationView = new NavigationView();
-$homeView = new HomeView($sessionModel);
+$homeView = new HomeView($sessionModel, $serviceModel);
 $registerView = new RegisterView($registerModel);
 $newsfeedView = new NewsfeedView($sessionModel);
 $loginView = new LoginView($loginModel, $sessionModel, $serviceModel);

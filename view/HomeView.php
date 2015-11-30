@@ -4,18 +4,40 @@ class HomeView {
 	
 	private $sessionModel;
 	private $siteArray;
+	private $serviceModel;
 	
 	
-	public function __construct($sessionModel) {
+	public function __construct($sessionModel, $serviceModel) {
 		
 		$this -> sessionModel = $sessionModel;
+		$this -> serviceModel = $serviceModel;
 	}
 
 	public function response() {
 		
 		return 
 			$this -> renderSubTopicAndImage() .
+			$this -> renderFavoriteGamesiteNews() .
 			$this -> renderTopNews();
+	}
+	
+	private function renderFavoriteGamesiteNews() {
+	
+		return '
+			<div id="favorite-gamesite-news">
+				'. $this -> renderContent() .'
+			</div>
+		';	
+	}
+	
+	private function renderContent() {
+	
+		if ($this -> sessionModel -> getUserSession()) {
+			
+			return 'User is logged in. Show favorite site news';
+		}
+		
+		return 'User is not logged in';
 	}
 	
 	private function renderTopNews() {
