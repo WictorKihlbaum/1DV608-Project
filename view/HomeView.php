@@ -62,8 +62,12 @@ class HomeView {
 	private function renderFavoriteNews($news) {
 	
 		$containers = '';
+		$amountOfNews = 5;
 		
 		foreach ($news as $article) {
+			
+			if ($amountOfNews == 5) break;
+			$amountOfNews += 1;
 			
 			$containers .= '
 				<div class="topNewsContainer">
