@@ -1,17 +1,17 @@
 /* Login/Register Form */
 
-#loginForm form {
+#loginDiv form {
 	background-color: #E4F1FE;
 	border-radius: 10px;
 	padding: 25px;
 	margin-top: 25px;
 }
 
-#loginForm form fieldset {
+#loginDiv form fieldset {
 	border: none;
 }
 
-#loginForm input[type=text] {
+#loginDiv input[type=text] {
 	width: 250px;
 	height: 25px;
 	border-radius: 5px;
@@ -21,7 +21,7 @@
 	padding-left: 5px;
 }
 
-#loginForm input[type=password] {
+#loginDiv input[type=password] {
 	width: 250px;
 	height: 25px;
 	margin-left: 6px;
@@ -33,7 +33,7 @@
 	padding-left: 5px;
 }
 
-#loginForm form input[type=submit] {
+#loginDiv form input[type=submit] {
 	padding: 15px 25px;
 	background-color: #22A7F0;
 	color: #FFFFFF;
@@ -43,7 +43,7 @@
 	font-size: 14px;
 }
 
-#loginForm form input[type=submit]:hover {
+#loginDiv form input[type=submit]:hover {
 	cursor: pointer;
 	background-color: #4183D7;
 }

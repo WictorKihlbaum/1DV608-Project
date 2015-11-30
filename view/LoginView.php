@@ -18,6 +18,7 @@ class LoginView {
 	private static $cookiePassword = 'LoginView::CookiePassword';
 	private static $messageId = 'LoginView::Message';
 	
+	private $favorite = "No site choosen";
 	private static $favoriteGamesite = 'LoginView::FavoriteGamesite';
 	private static $choose = 'LoginView::Choose';
 
@@ -42,9 +43,12 @@ class LoginView {
 		
 		if ($this -> loginModel -> loggedInUser()) { 
 			
-			$response = 
-				$this -> generateLogoutButtonHTML() . 
-				$this -> generateFavoriteGamesiteHTML();
+			$response = '
+				<div id="loginDiv"> '.
+					$this -> generateLogoutButtonHTML() . 
+					$this -> generateFavoriteGamesiteHTML() .'
+				</div>
+			';
 			
 		} else {
 			
@@ -111,25 +115,22 @@ class LoginView {
 	private function generateLogoutButtonHTML() {
 		
 		return '
-			<div id="loginForm">
-				<form method="post" >
-					<p id="' . self::$messageId . '">' . $this -> feedbackMessage .'</p>
-					<input type="submit" name="' . self::$logout . '" value="logout" />
-				</form>
-			</div>
+			<form method="post" >
+				<p id="' . self::$messageId . '">' . $this -> feedbackMessage .'</p>
+				<input type="submit" name="' . self::$logout . '" value="logout" />
+			</form>
 		';
 	}
 	
 	private function generateFavoriteGamesiteHTML() {
 		
-		$rss = $this -> serviceModel -> getRssCache();
-		
 		return '
+			<h3>Your favorite gamesite: '. $this -> favorite .'</h3>
 			<form method="post" >
-				<label for="' . self::$favoriteGamesite . '">Your favorite gamesite:</label>
+				<label for="' . self::$favoriteGamesite . '">Choose favorite gamesite:</label>
 				
 				<select name="'. self::$favoriteGamesite .'">
-					'. $this -> getSiteNameOptions($rss) .'
+					'. $this -> getSiteNameOptions() .'
 				</select>
 				
 				<input type="submit" name="' . self::$choose . '" value="Choose" />
@@ -137,9 +138,10 @@ class LoginView {
 		';
 	}
 	
-	private function getSiteNameOptions($rss) {
+	private function getSiteNameOptions() {
 		
-		$options = '<option value="No favorite" selected>No favorite</option>';
+		$rss = $this -> serviceModel -> getRssCache();
+		$options = '<option value="Choose site" selected>Choose site</option>';
 		
 		foreach ($rss as $site) {
 			
