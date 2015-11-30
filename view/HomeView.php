@@ -51,7 +51,7 @@ class HomeView {
 				}
 			}
 			
-			return $this -> renderFavoriteNews($news);
+			return $this -> renderFavoriteNews($news, $favorite);
 		}
 		
 		return 'If you are a registered user you will in this field 
@@ -59,7 +59,7 @@ class HomeView {
 				Please register an account and add your favorite site.';
 	}
 	
-	private function renderFavoriteNews($news) {
+	private function renderFavoriteNews($news, $favorite) {
 	
 		$containers = '';
 		$amountOfNews = 0;
@@ -71,7 +71,7 @@ class HomeView {
 			
 			$containers .= '
 				<div class="topNewsContainer">
-					<p class="article-site-name">'. $site -> getSiteName() .' Article #'. $amountOfNews .'</p>
+					<p class="article-site-name">'. $favorite .' Article #'. $amountOfNews .'</p>
 					'. $this -> renderArticle($article) .'
 				</div>
 			';
