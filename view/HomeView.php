@@ -50,7 +50,7 @@ class HomeView {
 				}
 			}
 			
-			return $this -> renderFavoriteGamesiteNews($news);
+			return $this -> renderFavoriteNews($news);
 		}
 		
 		return 'If you are a registered user you will in this field 
@@ -58,7 +58,7 @@ class HomeView {
 				Please register an account and add your favorite site.';
 	}
 	
-	private function renderFavoriteGamesiteNews($news) {
+	private function renderFavoriteNews($news) {
 	
 		$containers = '';
 		
