@@ -25,16 +25,16 @@ class UserDAL {
 	
 		$con = $this -> connectToServer();
 			
-		$query = 'SELECT UserName, Password, FavoriteGamesite FROM users';
+		$query = 'SELECT UserName, Password FROM users';
 		
 		if ($stmt = $con -> prepare($query)) {
 			
 			$stmt -> execute();
-			$stmt -> bind_result($userName, $password, $favoriteGamesite);
+			$stmt -> bind_result($userName, $password);
 			
 			while ($stmt -> fetch()) {
 				// Save all DB-content to a "cache-array".
-				$registeredUser = new UserModel($userName, $password, $favoriteGamesite);
+				$registeredUser = new UserModel($userName, $password);
 				$this -> registeredUsersCache[] = $registeredUser;
     		}
 				
@@ -79,23 +79,10 @@ class UserDAL {
 		}
 		
 		$con -> close();
-		
-		$this -> addFavoriteToCache($user, $favorite);
-	}
-	
-	private function addFavoriteToCache($user, $favorite) {
-		
-		foreach ($this -> registeredUsersCache as $registeredUser) {
-			
-			if ($registeredUser -> getUserName() === $user) {
-				$registeredUser -> setFavoriteGamesite($favorite);
-			}
-		}
 	}
 	
 	private function hashNewUserPassword($password) {
 		
-		//$options = ['cost' => 12];
 		$hash = password_hash($password, PASSWORD_DEFAULT);
 		
 		return $hash;

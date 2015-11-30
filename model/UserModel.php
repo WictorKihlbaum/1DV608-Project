@@ -4,14 +4,12 @@ class UserModel {
 
     private $username;
     private $password;
-	private $favoriteGamesite;
 
 
-    public function __construct($username, $password, $favoriteGamesite) {
+    public function __construct($username, $password) {
         
         $this -> username = $username;
         $this -> password = $password;
-		$this -> favoriteGamesite = $favoriteGamesite;
     }
 
     public function getUserName() {
@@ -23,15 +21,5 @@ class UserModel {
 
         return $this -> password;
     }
-	
-	public function getFavoriteGamesite() {
-	
-		return $this -> favoriteGamesite;	
-	}
-	
-	public function setFavoriteGamesite($favoriteGamesite) {
-	
-		$this -> favoriteGamesite = $favoriteGamesite;
-	}
 	
 }
