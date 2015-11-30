@@ -57,7 +57,7 @@ class HomeView {
 		return 'If you are a registered user you will in this field 
 				be able to read the latest news from your favorite gamesite. 
 				Please register an account and add your favorite site.
-				<a href="/login">Click here to login/register</a>';
+				<a href="/?login">Click here to login/register</a>';
 	}
 	
 	private function renderFavoriteNews($news, $favorite) {
