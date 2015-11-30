@@ -45,8 +45,8 @@ class LoginView {
 			
 			$response = '
 				<div id="loginDiv"> '.
-					$this -> generateLogoutButtonHTML() . 
-					$this -> generateFavoriteGamesiteHTML() .'
+					$this -> generateFavoriteGamesiteHTML() .
+					$this -> generateLogoutButtonHTML() .'
 				</div>
 			';
 			
