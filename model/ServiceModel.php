@@ -39,6 +39,11 @@ class ServiceModel {
 	
 	public function addFavoriteGamesiteToUser($user, $favorite) {
 	
+		if ($this -> userDAL == null) {
+			
+			$this -> userDAL = new UserDAL();
+		} 
+		
 		$this -> userDAL -> connectToServerAndAddFavoriteGamesite($user, $favorite);	
 	}
 	
