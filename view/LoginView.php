@@ -162,11 +162,23 @@ class LoginView {
 			
 			$name = $site -> getSiteName();
 			$options .= '
-				<option value="'. $name .'">'. $name .'</option>
+				<option value="'. $name .' '. $this -> selectName($name) .'">'. $name .'</option>
 			';
 		}
 		
 		return $options;
+	}
+	
+	private function selectName($name) {
+	
+		$user = $this -> sessionModel -> getLoggedInUserNameSession();
+		$favorite = $this -> serviceModel -> getFavoriteGamesiteForLoggedInUser($user);
+		
+		if ($name == $favorite) {
+			return 'selected';
+		}
+		
+		return '';
 	}
 	
 	public function getRequestFavoriteGamesite() {
