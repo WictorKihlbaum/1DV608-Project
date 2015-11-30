@@ -20,8 +20,8 @@ class LayoutView {
 	private static $contactURL = 'contact';
 	
 	// FONTS FROM GOOGLE-FONTS.
-	private static $mainFont = "<link href='https://fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>";
-	private static $navigationFont = "<link href='https://fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>";
+	private static $mainFont = "<link href='//fonts.googleapis.com/css?family=Maven+Pro' rel='stylesheet' type='text/css'>";
+	private static $navigationFont = "<link href='//fonts.googleapis.com/css?family=Nunito' rel='stylesheet' type='text/css'>";
 	
 	
 	public function __construct($homeView, $loginView, $registerView, $newsfeedView, $contactView) {

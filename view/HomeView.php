@@ -34,21 +34,51 @@ class HomeView {
 	
 		if ($this -> sessionModel -> getUserSession()) {
 			
-			return 'User is logged in. Show favorite site news';
+			$favorite = $this -> serviceModel -> getFavoriteGamesiteForLoggedInUser();
+			$news = array();
+			
+			if ($favorite == null || $favorite == '') {
+				
+				return 'To see the latest news from your favorite gamesite 
+						you need to add one. Visit "Login" to add one site as your favorite.';
+			}
+			
+			foreach ($this -> siteArray as $site) {
+				
+				if ($site -> getSiteName() == $favorite) {
+					$news[] = $site -> getNews();
+				}
+			}
+			
+			return $this -> renderFavoriteGamesiteNews($news);
 		}
 		
-		return 'User is not logged in';
+		return 'If you are a registered user you will in this field 
+				be able to read the latest news from your favorite gamesite. 
+				Please register an account and add your favorite site.';
+	}
+	
+	private function renderFavoriteGamesiteNews($news) {
+	
+		$containers = '';
+		
+		foreach ($news as $article) {
+			
+			$containers .= '
+				<div class="topNewsContainer">
+					'. $this -> renderArticle($article) .'
+				</div>
+			';
+		}
+		
+		return $containers;
 	}
 	
 	private function renderTopNews() {
 	
-		$amountOfSites = 0;
 		$containers = '';
 		
 		foreach ($this -> siteArray as $site) {
-			
-			//if ($amountOfSites == 3) break;
-			//$amountOfSites += 1;
 			
 			$news = $site -> getNews();
 			$latestArticle = $news[0];
@@ -56,20 +86,20 @@ class HomeView {
 			$containers .= '
 				<div class="topNewsContainer">
 					<p class="article-site-name">Latest '. $site -> getSiteName() .' Article</p>
-					'. $this -> renderTopArticle($latestArticle) .'
+					'. $this -> renderArticle($latestArticle) .'
 				</div>';
 		}
 		
 		return $containers;
 	}
 	
-	private function renderTopArticle($latestArticle) {
+	private function renderArticle($article) {
 	
-			$title = str_replace(' & ', ' &amp; ', $latestArticle -> getTitle());
-			$link = $latestArticle -> getLink();
-			$image = $latestArticle -> getImgUrl();
-			$description = $latestArticle -> getDescription();
-			$date = date('l F d, Y', strtotime($latestArticle -> getPubDate()));
+			$title = str_replace(' & ', ' &amp; ', $article -> getTitle());
+			$link = $article -> getLink();
+			$image = $article -> getImgUrl();
+			$description = $article -> getDescription();
+			$date = date('l F d, Y', strtotime($article -> getPubDate()));
 					
 			return
 				'<div class="textWrap">' .
