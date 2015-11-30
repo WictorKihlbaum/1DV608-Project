@@ -73,7 +73,7 @@ class LoginView {
 	private function generateLoginFormHTML() {
 	
 		return '
-			<div id="loginForm">
+			
 				<form method="post" id="'. self::$loginForm .'" name="'. self::$loginForm .'"> 
 					<fieldset>
 						<legend>Login - enter Username and password</legend>
@@ -88,7 +88,7 @@ class LoginView {
 						<input type="submit" id="'. self::$login .'" name="'. self::$login .'" value="Login" />
 					</fieldset>
 				</form>
-			</div>
+			
 		';
 	}
 	
