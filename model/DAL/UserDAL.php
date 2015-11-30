@@ -60,6 +60,11 @@ class UserDAL {
 		$this -> registeredUsersCache[] = $newUser;
 	}
 	
+	public function connectToServerAndAddFavoriteGamesite() {
+	
+			
+	}
+	
 	private function hashNewUserPassword($password) {
 		
 		//$options = ['cost' => 12];

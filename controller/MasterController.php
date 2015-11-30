@@ -28,6 +28,8 @@ class MasterController {
 			$this -> loginController -> verifyUserState();
 		}
 		
+		$this -> loginController -> setUserFavoriteGamesite();
+		
 		// USER PRESS LOGOUT.
 		if ($this -> loginController -> reforwardDidUserPressLogout()) {
 			

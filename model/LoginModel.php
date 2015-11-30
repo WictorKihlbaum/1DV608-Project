@@ -57,5 +57,10 @@ class LoginModel {
         // Return session for user.
         return $this -> sessionModel -> getUserSession();
     }
+	
+	public function setFavoriteGamesite($favorite) {
+	
+		$this -> serviceModel -> setFavoriteGamesite($favorite);
+	}
     
 }

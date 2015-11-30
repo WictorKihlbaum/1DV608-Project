@@ -68,6 +68,17 @@ class LoginController {
             $this -> loginView -> setWrongInputFeedbackMessage();
         }
     }
+	
+	public function setUserFavoriteGamesite() {
+	
+		if ($this -> loginView -> didUserPressChoose()) {
+			
+			$user = $this -> sessionModel -> getNewUserNameSession();
+			$favorite = $this -> loginView -> getRequestFavoriteGamesite();
+			
+			//$this -> loginModel -> setFavoriteGamesite($user, $favorite);
+		}
+	}
     
     public function logOutUser() {
         // Logout user and set/present feedback message.

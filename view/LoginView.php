@@ -128,7 +128,7 @@ class LoginView {
 				<label for="' . self::$favoriteGamesite . '">Your favorite gamesite:</label>
 				
 				<select name="'. self::$favoriteGamesite .'">
-					<option value="No favorite" selected>Hej</option>
+					<option value="No favorite" selected>No favorite</option>
 					<option value="Gamereactor">Gamereactor</option>
 					<option value="FZ">FZ</option>
 					<option value="Feber">Feber</option>
@@ -140,6 +140,21 @@ class LoginView {
 				<input type="submit" name="' . self::$choose . '" value="Choose" />
 			</form>
 		';
+	}
+	
+	private function getRequestFavoriteGamesite() {
+		
+		if (isset($_POST[self::$favoriteGamesite])) {
+			
+			return $_POST[self::$favoriteGamesite];
+		}
+			
+		return '';
+	}
+	
+	public function didUserPressChoose() {
+	
+		return isset($_POST[self::$choose]);
 	}
 	
 	public function didUserPressLogin() {
