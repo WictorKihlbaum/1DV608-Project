@@ -123,8 +123,6 @@ class LoginView {
 	
 	private function generateFavoriteGamesiteHTML() {
 		
-		$siteNames = $this -> newsfeedView -> getSiteNames();
-		
 		return '
 			<form method="post" >
 				<label for="' . self::$favoriteGamesite . '">Your favorite gamesite:</label>
