@@ -71,6 +71,7 @@ class HomeView {
 			
 			$containers .= '
 				<div class="topNewsContainer">
+					<p class="article-site-name">'. $site -> getSiteName() .' Article #'. $amountOfNews .'</p>
 					'. $this -> renderArticle($article) .'
 				</div>
 			';
