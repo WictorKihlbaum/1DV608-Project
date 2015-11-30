@@ -102,7 +102,6 @@ class ContactView {
 		$firstNumber = rand(1, 25);
 		$secondNumber = rand(1, 25);
 		$this -> antiSpamAnswer = $firstNumber + $secondNumber;
-		var_dump($this -> antiSpamAnswer);
 		
 		return '*What is '. $firstNumber .' + ' . $secondNumber . '? (Anti-spam)';	
 	}

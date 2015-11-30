@@ -56,13 +56,13 @@ require_once('Exceptions/PasswordsDoNotMatchException.php');
 require_once('Exceptions/RegisterWhileLoggedInException.php');
 require_once('Exceptions/UserAlreadyExistsException.php');
 require_once('Exceptions/WrongInputException.php');
+
 // CONTACT EXCEPTIONS.
 require_once('Exceptions/NameFieldIsEmptyException.php');
 require_once('Exceptions/EmailFieldIsEmptyException.php');
 require_once('Exceptions/MessageFieldIsEmptyException.php');
 require_once('Exceptions/WrongAntiSpamAnswerException.php');
 require_once('Exceptions/EmailNotSentException.php');
-
 
 // CREATE OBJECTS OF THE MODELS.
 $userDAL = new UserDAL();

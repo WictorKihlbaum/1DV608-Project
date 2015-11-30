@@ -122,10 +122,10 @@ class NewsfeedView {
 	
 		return '
 			<div id="newsfeedForm">
-			<p>
-				Change these settings to show the news however you like them.<br />
-				Press the green topic to read the complete article.
-			</p>
+				<p>
+					Change these settings to show the news however you like them.<br />
+					Press the green topic to read the complete article.
+				</p>
 			
 				<form method="post">
 				
