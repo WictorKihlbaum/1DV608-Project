@@ -73,9 +73,12 @@ class LoginController {
 	
 		if ($this -> loginView -> didUserPressChoose()) {
 			
-			$user = $this -> sessionModel -> getNewUserNameSession();
+			if ($this -> sessionModel -> isNewUserNameSessionSet()) {
+				$user = $this -> sessionModel -> getNewUserNameSession();
+				echo $user;
+			}
+			
 			$favorite = $this -> loginView -> getRequestFavoriteGamesite();
-			echo $user;
 			echo $favorite;
 			
 			//$this -> loginModel -> setFavoriteGamesite($user, $favorite);

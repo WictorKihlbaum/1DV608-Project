@@ -142,7 +142,7 @@ class LoginView {
 		';
 	}
 	
-	private function getRequestFavoriteGamesite() {
+	public function getRequestFavoriteGamesite() {
 		
 		if (isset($_POST[self::$favoriteGamesite])) {
 			
