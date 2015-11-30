@@ -125,7 +125,7 @@ class LoginView {
 	private function generateFavoriteGamesiteHTML() {
 		
 		return '
-			<h2>Welcome '. $this -> sessionModel -> getLoggedInUserNameSession() .'!</h2>
+			<h2>'. $this -> sessionModel -> getLoggedInUserNameSession() .'s Profile</h2>
 			<h3>Your favorite gamesite: '. $this -> showFavoriteGamesite() .'</h3>
 			<form method="post" >
 				<label for="' . self::$favoriteGamesite . '">Choose/change favorite gamesite:</label>
@@ -244,7 +244,7 @@ class LoginView {
 	
 	public function setLoginFeedbackMessage() {
 		
-		$this -> setFeedbackMessage(self::$loginMessage);
+		$this -> setFeedbackMessage(self::$loginMessage . $this -> sessionModel -> getLoggedInUserNameSession());
 	}
 	
 	public function setLogoutFeedbackMessage() {
