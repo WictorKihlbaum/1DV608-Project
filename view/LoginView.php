@@ -122,27 +122,45 @@ class LoginView {
 	
 	private function generateFavoriteGamesiteHTML() {
 		
-		$users = $this -> serviceModel -> getRegisteredUsers();
-		var_dump($users);
+		$rss = $this -> serviceModel -> getRssCache();
 		
 		return '
 			<form method="post" >
 				<label for="' . self::$favoriteGamesite . '">Your favorite gamesite:</label>
 				
 				<select name="'. self::$favoriteGamesite .'">
-					<option value="No favorite" selected>No favorite</option>
-					<option value="Gamereactor">Gamereactor</option>
-					<option value="FZ">FZ</option>
-					<option value="Feber">Feber</option>
-					<option value="IGN">IGN</option>
-					<option value="Gamespot">Gamespot</option>
-					<option value="Giantbomb">Giantbomb</option>
+					'. $this -> getSiteNameOptions($rss) .'
 				</select>
 				
 				<input type="submit" name="' . self::$choose . '" value="Choose" />
 			</form>
 		';
 	}
+	
+	private function getSiteNameOptions($rss) {
+		
+		$options = '';
+		
+		foreach ($rss as $site) {
+			
+			$name = $site -> getSiteName();
+			$options .= '
+				<option value="'. $name .'">'. $name .'</option>
+			';
+		}
+		
+		return $options;
+	}
+	
+	/*private function selectSite($siteName, $name) {
+		
+		if ($siteName == $name) {
+			
+			return 'selected';
+		}
+		
+		return '';
+	}*/
 	
 	public function getRequestFavoriteGamesite() {
 		
