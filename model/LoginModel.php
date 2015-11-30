@@ -31,7 +31,7 @@ class LoginModel {
 		if ($userFound) {
 			
 			$this -> sessionModel -> setUserSession();
-			$this -> sessionModel -> setLoggedInUserNameSession($user -> getUserName());
+			$this -> sessionModel -> setLoggedInUserNameSession($input -> getUserName());
 			
 		} else {
 			
