@@ -81,12 +81,12 @@ class UserDAL {
 		$con -> close();
 	}
 	
-	public function getFavoriteGamesiteForLoggedInUser($loggedInUser) {
+	public function getFavoriteGamesiteForLoggedInUser($user) {
 		
 		$favoriteSite = '';
 		$con = $this -> connectToServer();
 		
-		$query = 'SELECT FavoriteGamesite FROM users WHERE UserName = "'. $loggedInUser .'"';
+		$query = 'SELECT FavoriteGamesite FROM users WHERE UserName = "'. $user .'"';
 		
 		if ($stmt = $con -> prepare($query)) {
 			

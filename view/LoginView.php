@@ -141,7 +141,8 @@ class LoginView {
 	
 	private function showFavoriteGamesite() {
 	
-		$favorite = $this -> serviceModel -> getFavoriteGamesiteForLoggedInUser($loggedInUser);
+		$user = $this -> sessionModel -> getLoggedInUserNameSession();
+		$favorite = $this -> serviceModel -> getFavoriteGamesiteForLoggedInUser($user);
 		
 		if ($favorite == null || $favorite == '') {
 			$favorite = 'No site choosen';

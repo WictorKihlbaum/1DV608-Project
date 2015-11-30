@@ -38,10 +38,10 @@ class ServiceModel {
 		$this -> userDAL -> connectToServerAndAddFavoriteGamesite($user, $favorite);	
 	}
 	
-	public function getFavoriteGamesiteForLoggedInUser($loggedInUser) {
+	public function getFavoriteGamesiteForLoggedInUser($user) {
 		
 		$this -> makeSureUserDALIsNotNull();
-		return $this -> userDAL -> getFavoriteGamesiteForLoggedInUser($loggedInUser);
+		return $this -> userDAL -> getFavoriteGamesiteForLoggedInUser($user);
 	}
 	
 	private function makeSureUserDALIsNotNull() {
