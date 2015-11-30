@@ -47,7 +47,7 @@ class HomeView {
 			foreach ($this -> siteArray as $site) {
 				
 				if ($site -> getSiteName() == $favorite) {
-					$news[] = $site -> getNews();
+					$news = $site -> getNews();
 				}
 			}
 			
