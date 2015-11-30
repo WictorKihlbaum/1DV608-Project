@@ -1,8 +1,11 @@
 /* Login/Register Form */
-/* #loginDiv  */
-form {
+
+#loginDiv {
 	background-color: #E4F1FE;
-	border-radius: 10px;
+	border-radius: 10px;	
+}
+
+form {
 	padding: 25px;
 	margin-top: 25px;
 }

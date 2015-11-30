@@ -73,22 +73,20 @@ class LoginView {
 	private function generateLoginFormHTML() {
 	
 		return '
-			
-				<form method="post" id="'. self::$loginForm .'" name="'. self::$loginForm .'"> 
-					<fieldset>
-						<legend>Login - enter Username and password</legend>
-						<p id="'. self::$messageId .'">' . $this -> feedbackMessage . '</p>
-						
-						<label for="' . self::$name . '">Username:</label>
-						<input type="text" id="'. self::$name .'" name="'. self::$name .'" value="'. $this -> fillInUserName() .'" /><br />
-	
-						<label for="' . self::$password . '">Password:</label>
-						<input type="password" id="'. self::$password .'" name="'. self::$password .'" /><br />
-						
-						<input type="submit" id="'. self::$login .'" name="'. self::$login .'" value="Login" />
-					</fieldset>
-				</form>
-			
+			<form method="post" id="'. self::$loginForm .'" name="'. self::$loginForm .'"> 
+				<fieldset>
+					<legend>Login - enter Username and password</legend>
+					<p id="'. self::$messageId .'">' . $this -> feedbackMessage . '</p>
+					
+					<label for="' . self::$name . '">Username:</label>
+					<input type="text" id="'. self::$name .'" name="'. self::$name .'" value="'. $this -> fillInUserName() .'" /><br />
+
+					<label for="' . self::$password . '">Password:</label>
+					<input type="password" id="'. self::$password .'" name="'. self::$password .'" /><br />
+					
+					<input type="submit" id="'. self::$login .'" name="'. self::$login .'" value="Login" />
+				</fieldset>
+			</form>
 		';
 	}
 	
@@ -244,7 +242,7 @@ class LoginView {
 	
 	public function setLoginFeedbackMessage() {
 		
-		$this -> setFeedbackMessage(self::$loginMessage . $this -> sessionModel -> getLoggedInUserNameSession());
+		$this -> setFeedbackMessage(self::$loginMessage . $this -> sessionModel -> getLoggedInUserNameSession() . '!');
 	}
 	
 	public function setLogoutFeedbackMessage() {
