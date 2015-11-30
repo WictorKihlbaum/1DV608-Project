@@ -62,7 +62,7 @@ class HomeView {
 	private function renderFavoriteNews($news) {
 	
 		$containers = '';
-		$amountOfNews = 5;
+		$amountOfNews = 0;
 		
 		foreach ($news as $article) {
 			
