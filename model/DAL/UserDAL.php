@@ -70,7 +70,7 @@ class UserDAL {
 	
 		$con = $this -> connectToServer();
 			
-		$query = 'UPDATE users SET FavoriteGamesite = '. $favorite .' WHERE UserName = '. $user .'';
+		$query = 'UPDATE users SET FavoriteGamesite = "'. $favorite .'" WHERE UserName = "'. $user .'"';
 			
 		if ($stmt = $con -> prepare($query)) {
 			
