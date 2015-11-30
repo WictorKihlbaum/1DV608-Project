@@ -24,7 +24,7 @@ class LoginView {
 
 	private $feedbackMessage = "";
 	
-	private static $loginMessage = 'Welcome';
+	private static $loginMessage = 'Welcome ';
 	private static $logoutMessage = 'Bye bye!';
 	private static $missingUserNameMessage = 'Username is missing';
 	private static $missingPasswordMessage = 'Password is missing';
