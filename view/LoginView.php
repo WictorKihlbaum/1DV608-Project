@@ -139,7 +139,7 @@ class LoginView {
 	
 	private function getSiteNameOptions($rss) {
 		
-		$options = '';
+		$options = '<option value="No favorite" selected>No favorite</option>';
 		
 		foreach ($rss as $site) {
 			
