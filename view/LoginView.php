@@ -44,7 +44,8 @@ class LoginView {
 		if ($this -> loginModel -> loggedInUser()) { 
 			
 			$response = '
-				<div id="loginDiv"> '.
+				<div id="loginDiv"> 
+					<p id="'. self::$messageId .'">' . $this -> feedbackMessage . '</p>' .
 					$this -> generateFavoriteGamesiteHTML() .
 					$this -> generateLogoutButtonHTML() .'
 				</div>
