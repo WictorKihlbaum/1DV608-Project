@@ -32,7 +32,7 @@ class NewsfeedView {
 		$this -> siteArray = $siteArray;
 	}
 	
-	public function getSiteNames() {
+	/*public function getSiteNames() {
 		
 		$siteNames = array();
 		
@@ -42,7 +42,7 @@ class NewsfeedView {
 		}
 	
 		return $siteNames;	
-	}
+	}*/
 	
 	public function renderContainers() {
 		

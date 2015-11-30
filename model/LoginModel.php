@@ -43,11 +43,9 @@ class LoginModel {
 		if (password_verify($inputPassword, $storedPassword)) {
 			
 			return true;
-			
-		} else {
-			
-			return false;	
 		}
+			
+		return false;
 	}
     
     public function logoutUser() {
