@@ -58,3 +58,9 @@
 	font-weight: bold;
 	color: #22A7F0;
 }
+
+#favorite-gamesite-news {
+	background-color: #E4F1FE;
+	border-radius: 15px;
+	padding: 25px;	
+}
