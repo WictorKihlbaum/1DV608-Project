@@ -13,7 +13,8 @@ form {
 }
 
 form select {
-	color: #E56668;	
+	height: 46px;
+	width: 85px;
 }
 
 form fieldset {

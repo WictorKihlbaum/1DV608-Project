@@ -52,7 +52,11 @@ class LoginView {
 			
 		} else {
 			
-			$response = $this -> generateLoginFormHTML();			
+			$response = '
+				<div id="loginDiv"> '.
+					$this -> generateLoginFormHTML() .'
+				</div>
+			';			
 		}
 
 		return $this -> renderTopic() . $response . $this -> renderRegisterLink();	
