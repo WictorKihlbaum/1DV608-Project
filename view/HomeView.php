@@ -41,7 +41,7 @@ class HomeView {
 			if ($favorite == null || $favorite == '') {
 				
 				return 'To see the latest news from your favorite gamesite 
-						you need to add one. Visit "Login" to add one site as your favorite.';
+						you need to add one. Visit <a href="/?login">Login</a> to add one site as your favorite.';
 			}
 			
 			foreach ($this -> siteArray as $site) {
