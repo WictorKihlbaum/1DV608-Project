@@ -13,17 +13,18 @@ class UserDAL {
 	private $registeredUsersCache = array();
 	
 	
-	private function connectToServer() {
+	/*private function connectToServer() {
 		
 		$con = new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
 			or die ('Could not connect to the database server' . mysqli_connect_error());
 	
 		return $con;	
-	}
+	}*/
 	
 	private function connectToServerAndFetchUsers() {
 	
-		$con = $this -> connectToServer();
+		$con = new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
+			or die ('Could not connect to the database server' . mysqli_connect_error());
 			
 		$query = 'SELECT UserName, Password FROM users';
 		
@@ -46,7 +47,8 @@ class UserDAL {
 	
 	public function connectToServerAndAddUser($newUser) {
 	
-		$con = $this -> connectToServer();
+		$con = new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
+			or die ('Could not connect to the database server' . mysqli_connect_error());
 		
 		// Hash the password so we don't store it as plain text in the Database.
 		$hashedPassword = $this -> hashNewUserPassword($newUser -> getPassword());
@@ -68,7 +70,8 @@ class UserDAL {
 	
 	public function connectToServerAndAddFavoriteGamesite($user, $favorite) {
 	
-		$con = $this -> connectToServer();
+		$con = new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
+			or die ('Could not connect to the database server' . mysqli_connect_error());
 			
 		$query = 'UPDATE users SET FavoriteGamesite = "'. $favorite .'" WHERE UserName = "'. $user .'"';
 			
@@ -84,7 +87,8 @@ class UserDAL {
 	public function getFavoriteGamesiteForLoggedInUser($user) {
 		
 		$favoriteSite = '';
-		$con = $this -> connectToServer();
+		$con = new mysqli($this -> host, $this -> user, $this -> password, $this -> dbname, $this -> port, $this -> socket)
+			or die ('Could not connect to the database server' . mysqli_connect_error());
 		
 		$query = 'SELECT FavoriteGamesite FROM users WHERE UserName = "'. $user .'"';
 		

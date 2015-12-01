@@ -7,22 +7,22 @@
 	margin-top: 15px;
 }
 
-form {
+#loginDiv form {
 	margin-top: 25px;
 }
 
-form select {
+#loginDiv form select {
 	height: 46px;
 	width: 120px;
 	color: #6BB9F0;
 	font-size: 14px;
 }
 
-form fieldset {
+#loginDiv form fieldset {
 	border: none;
 }
 
-input[type=text] {
+#loginDiv input[type=text] {
 	width: 250px;
 	height: 25px;
 	border-radius: 5px;
@@ -32,7 +32,7 @@ input[type=text] {
 	padding-left: 5px;
 }
 
-input[type=password] {
+#loginDiv input[type=password] {
 	width: 250px;
 	height: 25px;
 	margin-left: 6px;
@@ -44,7 +44,7 @@ input[type=password] {
 	padding-left: 5px;
 }
 
-form input[type=submit] {
+#loginDiv form input[type=submit] {
 	padding: 15px 25px;
 	background-color: #22A7F0;
 	color: #FFFFFF;
@@ -54,7 +54,7 @@ form input[type=submit] {
 	font-size: 14px;
 }
 
-form input[type=submit]:hover {
+#loginDiv form input[type=submit]:hover {
 	cursor: pointer;
 	background-color: #4183D7;
 }
