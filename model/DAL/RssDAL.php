@@ -9,7 +9,7 @@ class RssDAL {
 		
 		$databaseInfo = new DatabaseInfoModel();
 	
-		return $con = new mysqli(
+		return new mysqli(
 			$databaseInfo -> getHost(), 
 			$databaseInfo -> getUser(), 
 			$databaseInfo -> getPassword(), 
@@ -22,7 +22,18 @@ class RssDAL {
 	
 	private function connectToServerAndFetchRSS() {
 		
-		$con = $this -> connectToDatabase();
+		$databaseInfo = new DatabaseInfoModel();
+	
+		$con = new mysqli(
+			$databaseInfo -> getHost(), 
+			$databaseInfo -> getUser(), 
+			$databaseInfo -> getPassword(), 
+			$databaseInfo -> getDatabaseName(), 
+			$databaseInfo -> getPort(), 
+			$databaseInfo -> getSocket()
+		) 
+		or die ('Could not connect to the database server' . mysqli_connect_error());
+		
 		$query = 'SELECT SiteName, RssLink FROM rss';
 		
 		if ($stmt = $con -> prepare($query)) {

@@ -9,7 +9,7 @@ class UserDAL {
 		
 		$databaseInfo = new DatabaseInfoModel();
 	
-		return $con = new mysqli(
+		return new mysqli(
 			$databaseInfo -> getHost(), 
 			$databaseInfo -> getUser(), 
 			$databaseInfo -> getPassword(), 
@@ -22,7 +22,18 @@ class UserDAL {
 	
 	private function connectToServerAndFetchUsers() {
 		
-		$con = $this -> connectToDatabase();
+		$databaseInfo = new DatabaseInfoModel();
+	
+		$con = new mysqli(
+			$databaseInfo -> getHost(), 
+			$databaseInfo -> getUser(), 
+			$databaseInfo -> getPassword(), 
+			$databaseInfo -> getDatabaseName(), 
+			$databaseInfo -> getPort(), 
+			$databaseInfo -> getSocket()
+		) 
+		or die ('Could not connect to the database server' . mysqli_connect_error());
+		
 		$query = 'SELECT UserName, Password FROM users';
 		
 		if ($stmt = $con -> prepare($query)) {
@@ -44,7 +55,17 @@ class UserDAL {
 	
 	public function connectToServerAndAddUser($newUser) {
 	
-		$con = $this -> connectToDatabase();
+		$databaseInfo = new DatabaseInfoModel();
+	
+		$con = new mysqli(
+			$databaseInfo -> getHost(), 
+			$databaseInfo -> getUser(), 
+			$databaseInfo -> getPassword(), 
+			$databaseInfo -> getDatabaseName(), 
+			$databaseInfo -> getPort(), 
+			$databaseInfo -> getSocket()
+		) 
+		or die ('Could not connect to the database server' . mysqli_connect_error());
 		
 		// Hash the password so we don't store it as plain text in the Database.
 		$hashedPassword = $this -> hashNewUserPassword($newUser -> getPassword());
@@ -66,7 +87,18 @@ class UserDAL {
 	
 	public function connectToServerAndAddFavoriteGamesite($user, $favorite) {
 	
-		$con = $this -> connectToDatabase();
+		$databaseInfo = new DatabaseInfoModel();
+	
+		$con = new mysqli(
+			$databaseInfo -> getHost(), 
+			$databaseInfo -> getUser(), 
+			$databaseInfo -> getPassword(), 
+			$databaseInfo -> getDatabaseName(), 
+			$databaseInfo -> getPort(), 
+			$databaseInfo -> getSocket()
+		) 
+		or die ('Could not connect to the database server' . mysqli_connect_error());
+		
 		$query = 'UPDATE users SET FavoriteGamesite = "'. $favorite .'" WHERE UserName = "'. $user .'"';
 			
 		if ($stmt = $con -> prepare($query)) {
@@ -81,7 +113,18 @@ class UserDAL {
 	public function getFavoriteGamesiteForLoggedInUser($user) {
 		
 		$favoriteSite = '';
-		$con = $this -> connectToDatabase();
+		$databaseInfo = new DatabaseInfoModel();
+	
+		$con = new mysqli(
+			$databaseInfo -> getHost(), 
+			$databaseInfo -> getUser(), 
+			$databaseInfo -> getPassword(), 
+			$databaseInfo -> getDatabaseName(), 
+			$databaseInfo -> getPort(), 
+			$databaseInfo -> getSocket()
+		) 
+		or die ('Could not connect to the database server' . mysqli_connect_error());
+		
 		$query = 'SELECT FavoriteGamesite FROM users WHERE UserName = "'. $user .'"';
 		
 		if ($stmt = $con -> prepare($query)) {
