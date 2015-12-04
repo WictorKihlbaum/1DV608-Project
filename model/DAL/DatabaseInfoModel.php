@@ -2,7 +2,7 @@
 
 class DatabaseInfoModel {
 	
-	// Public DB Connection Info.
+	// Public Database Connection Info.
 	private $host = 'eu-cdbr-azure-north-d.cloudapp.net';
 	private $port = 3306;
 	private $socket = '';

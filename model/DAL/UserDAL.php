@@ -51,10 +51,7 @@ class UserDAL {
 		or die ('Could not connect to the database server' . mysqli_connect_error());
 		
 		// Hash the password so we don't store it as plain text in the Database.
-		$hashedPassword = $this -> hashNewUserPassword($newUser -> getPassword());
-		
-		// Query to add the user in the Database.
-		//$query = 'INSERT INTO users (UserName, Password) VALUES ("'. $newUser -> getUserName() .'", "'. $hashedPassword .'")';	
+		$hashedPassword = $this -> hashNewUserPassword($newUser -> getPassword());	
 		
 		if ($stmt = $con -> prepare(
 				$databaseInfo -> getAddNewUserStoredProcedure() . 
@@ -83,8 +80,6 @@ class UserDAL {
 			$databaseInfo -> getSocket()
 		) 
 		or die ('Could not connect to the database server' . mysqli_connect_error());
-		
-		//$query = 'UPDATE users SET FavoriteGamesite = "'. $favorite .'" WHERE UserName = "'. $user .'"';
 			
 		if ($stmt = $con -> prepare(
 				$databaseInfo -> getUpdateFavoriteGamesiteStoredProcedure() .
@@ -113,7 +108,8 @@ class UserDAL {
 		or die ('Could not connect to the database server' . mysqli_connect_error());
 		
 		if ($stmt = $con -> prepare(
-				$databaseInfo -> getFavoriteGamesiteStoredProcedure() . '("'. $user .'")')) {
+				$databaseInfo -> getFavoriteGamesiteStoredProcedure() . 
+				'("'. $user .'")')) {
 			
 			$stmt -> execute();
 			$stmt -> bind_result($favorite);
