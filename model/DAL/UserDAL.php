@@ -57,8 +57,8 @@ class UserDAL {
 		//$query = 'INSERT INTO users (UserName, Password) VALUES ("'. $newUser -> getUserName() .'", "'. $hashedPassword .'")';	
 		
 		if ($stmt = $con -> prepare(
-			$databaseInfo -> getAddNewUserStoredProcedure() . 
-			'("' . $newUser -> getUserName() . '","' . $hashedPassword .'")')) {
+				$databaseInfo -> getAddNewUserStoredProcedure() . 
+				'("' . $newUser -> getUserName() . '","' . $hashedPassword .'")')) {
 			
 			$stmt -> execute();
 			$stmt -> close();
@@ -84,9 +84,11 @@ class UserDAL {
 		) 
 		or die ('Could not connect to the database server' . mysqli_connect_error());
 		
-		$query = 'UPDATE users SET FavoriteGamesite = "'. $favorite .'" WHERE UserName = "'. $user .'"';
+		//$query = 'UPDATE users SET FavoriteGamesite = "'. $favorite .'" WHERE UserName = "'. $user .'"';
 			
-		if ($stmt = $con -> prepare($query)) {
+		if ($stmt = $con -> prepare(
+				$databaseInfo -> getUpdateFavoriteGamesiteStoredProcedure() .
+				'("'. $favorite .'", "'. $user .'")')) {
 			
 			$stmt -> execute();
 			$stmt -> close();
@@ -110,9 +112,8 @@ class UserDAL {
 		) 
 		or die ('Could not connect to the database server' . mysqli_connect_error());
 		
-		$query = 'SELECT FavoriteGamesite FROM users WHERE UserName = "'. $user .'"';
-		
-		if ($stmt = $con -> prepare($query)) {
+		if ($stmt = $con -> prepare(
+				$databaseInfo -> getFavoriteGamesiteStoredProcedure() . $user)) {
 			
 			$stmt -> execute();
 			$stmt -> bind_result($favorite);

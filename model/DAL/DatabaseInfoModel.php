@@ -11,9 +11,11 @@ class DatabaseInfoModel {
 	private $dbname = 'acsm_9268280c21a7845';
 	
 	// Stored Procedures.
-	private $getUserCredentials = 'CALL getUserCredentials';
-	private $getRSSFeeds = 'CALL getRSSFeeds';
-	private $addNewUser = 'CALL addNewUser';
+	private $userCredentials = 'CALL getUserCredentials';
+	private $rssFeeds = 'CALL getRSSFeeds';
+	private $newUser = 'CALL addNewUser';
+	private $favoriteGamesite = 'CALL getFavoriteGamesiteForUser'; 
+	private $favoriteGamesiteUpdate = 'CALL updateFavoriteGamesiteForUser';
 	
 	
 	public function getHost() {
@@ -41,15 +43,23 @@ class DatabaseInfoModel {
 	}	
 	
 	public function getUserCredentialsStoredProcedure() {
-		return $this -> getUserCredentials;
+		return $this -> userCredentials;
 	}
 	
 	public function getRSSFeedsStoredProcedure() {
-		return $this -> getRSSFeeds;
+		return $this -> rssFeeds;
 	}
 	
 	public function getAddNewUserStoredProcedure() {
-		return $this -> addNewUser;
+		return $this -> newUser;
+	}
+	
+	public function getFavoriteGamesiteStoredProcedure() {
+		return $this -> favoriteGamesite;	
+	}
+	
+	public function getUpdateFavoriteGamesiteStoredProcedure() {
+		return $this -> favoriteGamesiteUpdate;
 	}
 	
 }
