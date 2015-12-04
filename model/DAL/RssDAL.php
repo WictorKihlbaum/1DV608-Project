@@ -19,9 +19,7 @@ class RssDAL {
 		) 
 		or die ('Could not connect to the database server' . mysqli_connect_error());
 		
-		$query = 'SELECT SiteName, RssLink FROM rss';
-		
-		if ($stmt = $con -> prepare($query)) {
+		if ($stmt = $con -> prepare($databaseInfo -> getRSSFeedsStoredProcedure())) {
 			
 			$stmt -> execute();
 			$stmt -> bind_result($siteName, $rssLink);

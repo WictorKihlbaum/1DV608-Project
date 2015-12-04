@@ -81,7 +81,6 @@ class LoginView {
 			<form method="post" id="'. self::$loginForm .'" name="'. self::$loginForm .'"> 
 				<fieldset>
 					<legend>Login - enter Username and password</legend>
-					<p id="'. self::$messageId .'">' . $this -> feedbackMessage . '</p>
 					
 					<label for="' . self::$name . '">Username:</label>
 					<input type="text" id="'. self::$name .'" name="'. self::$name .'" value="'. $this -> fillInUserName() .'" /><br />

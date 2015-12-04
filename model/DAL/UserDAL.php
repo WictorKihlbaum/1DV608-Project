@@ -19,15 +19,7 @@ class UserDAL {
 		) 
 		or die ('Could not connect to the database server' . mysqli_connect_error());
 		
-		//$query = 'SELECT UserName, Password FROM users';
-		
-		//$result = mysqli_query($con, "CALL getUserCredentials") 
-			//or die("Query fail: " . mysqli_error());
-			
-		
-		
-		
-		if ($stmt = $con -> prepare('CALL getUserCredentials')) {
+		if ($stmt = $con -> prepare($databaseInfo -> getUserCredentialsStoredProcedure())) {
 			
 			$stmt -> execute();
 			$stmt -> bind_result($userName, $password);
@@ -62,9 +54,11 @@ class UserDAL {
 		$hashedPassword = $this -> hashNewUserPassword($newUser -> getPassword());
 		
 		// Query to add the user in the Database.
-		$query = 'INSERT INTO users (UserName, Password) VALUES ("'. $newUser -> getUserName() .'", "'. $hashedPassword .'")';	
+		//$query = 'INSERT INTO users (UserName, Password) VALUES ("'. $newUser -> getUserName() .'", "'. $hashedPassword .'")';	
 		
-		if ($stmt = $con -> prepare($query)) {
+		if ($stmt = $con -> prepare(
+			$databaseInfo -> getAddNewUserStoredProcedure() . 
+			'("' . $newUser -> getUserName() . '","' . $hashedPassword .'")')) {
 			
 			$stmt -> execute();
 			$stmt -> close();
