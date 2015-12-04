@@ -19,12 +19,14 @@ class UserDAL {
 		) 
 		or die ('Could not connect to the database server' . mysqli_connect_error());
 		
-		//$query = 'SELECT UserName, Password FROM users';
+		$query = 'SELECT UserName, Password FROM users';
 		
 		$result = mysqli_query($con, "CALL getUserCredentials") 
 			or die("Query fail: " . mysqli_error());
+			
+		var_dump($result);
 		
-		if ($stmt = $con -> prepare($result)) {
+		if ($stmt = $con -> prepare($query)) {
 			
 			$stmt -> execute();
 			$stmt -> bind_result($userName, $password);
