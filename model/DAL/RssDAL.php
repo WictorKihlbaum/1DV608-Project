@@ -9,7 +9,7 @@ class RssDAL {
 		
 		$databaseInfo = new DatabaseInfoModel();
 	
-		return new mysqli(
+		return $con = new mysqli(
 			$databaseInfo -> getHost(), 
 			$databaseInfo -> getUser(), 
 			$databaseInfo -> getPassword(), 
