@@ -21,31 +21,25 @@ class UserDAL {
 		
 		//$query = 'SELECT UserName, Password FROM users';
 		
-		$result = mysqli_query($con, "CALL getUserCredentials") 
-			or die("Query fail: " . mysqli_error());
+		//$result = mysqli_query($con, "CALL getUserCredentials") 
+			//or die("Query fail: " . mysqli_error());
 			
-		while ($row = mysqli_fetch_assoc($result))
-		{
-			$registeredUser = new UserModel($row['UserName'], ['Password']);
-		    $this -> registeredUsersCache[] = $registeredUser;
+		
+		
+		
+		if ($stmt = $con -> prepare('CALL getUserCredentials')) {
 			
-			//$movies[] = array('movie_name' => $row['movie_name']);
+			$stmt -> execute();
+			$stmt -> bind_result($userName, $password);
+			
+			while ($stmt -> fetch()) {
+				// Save all DB-content to a "cache-array".
+				$registeredUser = new UserModel($userName, $password);
+				$this -> registeredUsersCache[] = $registeredUser;
+    		}
+				
+			$stmt -> close();
 		}
-		
-		
-		//if ($stmt = $con -> prepare($query)) {
-//			
-//			$stmt -> execute();
-//			$stmt -> bind_result($userName, $password);
-//			
-//			while ($stmt -> fetch()) {
-//				// Save all DB-content to a "cache-array".
-//				$registeredUser = new UserModel($userName, $password);
-//				$this -> registeredUsersCache[] = $registeredUser;
-//    		}
-//				
-//			$stmt -> close();
-//		}
 		
 		$con -> close();
 	}
