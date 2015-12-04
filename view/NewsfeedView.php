@@ -32,18 +32,6 @@ class NewsfeedView {
 		$this -> siteArray = $siteArray;
 	}
 	
-	/*public function getSiteNames() {
-		
-		$siteNames = array();
-		
-		foreach ($this -> siteArray as $site) {
-			
-			$siteNames[] = $site -> getSiteName();
-		}
-	
-		return $siteNames;	
-	}*/
-	
 	public function renderContainers() {
 		
 		$amountOfContainers = 0; // Will keep track on how many sites have been rendered.

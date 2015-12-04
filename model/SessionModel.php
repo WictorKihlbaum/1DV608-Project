@@ -7,7 +7,6 @@ class SessionModel {
     private static $newUserNameSession = "SessionModel::NewUserNameSession";
 	private static $numberOfNewsSession = "SessionModel::NumbersOfNewsSession";
 	private static $numberOfSitesSession = "SessionModel::NumberOfSitesSession";
-	
 	private static $userNameSession = "SessionModel::UserNameSession";
     
     
@@ -38,6 +37,8 @@ class SessionModel {
         
         return false;
     }
+	
+	// SESSION FOR LOGGED IN USER'S USERNAME.
 	
 	public function setLoggedInUserNameSession($userName) {
 		

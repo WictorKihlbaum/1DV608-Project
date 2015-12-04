@@ -23,7 +23,6 @@ class LoginView {
 	private static $choose = 'LoginView::Choose';
 
 	private $feedbackMessage = "";
-	
 	private static $loginMessage = 'Welcome ';
 	private static $logoutMessage = 'Bye bye!';
 	private static $missingUserNameMessage = 'Username is missing';
