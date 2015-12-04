@@ -20,31 +20,31 @@ class MasterController {
 	
 	public function handleUserRequest() {
 		
-		$this -> homeController -> handleRSSFeed();
+		if ($_SERVER['QUERY_STRING'] == 'newsfeed') {
+			$this -> homeController -> handleRSSFeed();
+		}
+		
+		if ($_SERVER['QUERY_STRING'] == 'login') {
+			$this -> loginController -> setUserFavoriteGamesite();
+		}
 		
 		// USER PRESS LOGIN.
 		if ($this -> loginController -> reforwardDidUserPressLogin()) {
-			
 			$this -> loginController -> verifyUserState();
 		}
 		
-		$this -> loginController -> setUserFavoriteGamesite();
-		
 		// USER PRESS LOGOUT.
 		if ($this -> loginController -> reforwardDidUserPressLogout()) {
-			
 			$this -> loginController -> verifyUserState();
 		}
 		
 		// USER PRESS REGISTER.
 		if ($this -> registerController -> reforwardDidUserPressRegister()) {
-			
 			$this -> registerController -> verifyUserState();
 		}
 		
 		// USER PRESS SEND (CONTACTFORM-MESSAGE).
 		if ($this -> contactController -> reforwardDidUserPressSend()) {
-			
 			$this -> contactController -> handleContactForm();
 		}
 		

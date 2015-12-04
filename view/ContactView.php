@@ -197,7 +197,7 @@ class ContactView {
 		
 		if (isset($_POST[self::$message])) {
 			
-			return $_POST[self::$message];
+			return strip_tags($_POST[self::$message]);
 		}
 			
 		return '';
