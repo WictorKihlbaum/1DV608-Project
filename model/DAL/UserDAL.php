@@ -19,26 +19,36 @@ class UserDAL {
 		) 
 		or die ('Could not connect to the database server' . mysqli_connect_error());
 		
-		$query = 'SELECT UserName, Password FROM users';
+		//$query = 'SELECT UserName, Password FROM users';
 		
 		$result = mysqli_query($con, "CALL getUserCredentials") 
 			or die("Query fail: " . mysqli_error());
 			
-		var_dump($result);
+		//var_dump($result);
+		$result -> bind_result($userName, $password);
 		
-		if ($stmt = $con -> prepare($query)) {
-			
-			$stmt -> execute();
-			$stmt -> bind_result($userName, $password);
-			
-			while ($stmt -> fetch()) {
-				// Save all DB-content to a "cache-array".
-				$registeredUser = new UserModel($userName, $password);
-				$this -> registeredUsersCache[] = $registeredUser;
-    		}
+		while ($result -> fetch()) {
+			// Save all DB-content to a "cache-array".
+			$registeredUser = new UserModel($userName, $password);
+			$this -> registeredUsersCache[] = $registeredUser;
+    	}
 				
-			$stmt -> close();
-		}
+		$result -> close();
+		
+		
+		//if ($stmt = $con -> prepare($query)) {
+//			
+//			$stmt -> execute();
+//			$stmt -> bind_result($userName, $password);
+//			
+//			while ($stmt -> fetch()) {
+//				// Save all DB-content to a "cache-array".
+//				$registeredUser = new UserModel($userName, $password);
+//				$this -> registeredUsersCache[] = $registeredUser;
+//    		}
+//				
+//			$stmt -> close();
+//		}
 		
 		$con -> close();
 	}
