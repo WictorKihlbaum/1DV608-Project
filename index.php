@@ -25,6 +25,7 @@ require_once('model/ServiceModel.php');
 require_once('model/ContactModel.php');
 
 //DAL.
+require_once('model/DAL/DatabaseInfoModel.php');
 require_once('model/DAL/UserDAL.php');
 require_once('model/DAL/RssDAL.php');
 
