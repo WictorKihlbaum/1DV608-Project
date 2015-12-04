@@ -5,21 +5,6 @@ class RssDAL {
 	private $rssCache = array();
 	
 	
-	private function connectToDatabase() {
-		
-		$databaseInfo = new DatabaseInfoModel();
-	
-		return new mysqli(
-			$databaseInfo -> getHost(), 
-			$databaseInfo -> getUser(), 
-			$databaseInfo -> getPassword(), 
-			$databaseInfo -> getDatabaseName(), 
-			$databaseInfo -> getPort(), 
-			$databaseInfo -> getSocket()
-		) 
-		or die ('Could not connect to the database server' . mysqli_connect_error());
-	}
-	
 	private function connectToServerAndFetchRSS() {
 		
 		$databaseInfo = new DatabaseInfoModel();
