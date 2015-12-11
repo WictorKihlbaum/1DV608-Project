@@ -52,7 +52,7 @@ class HomeView {
 					$news = $site -> getNews();
 				}*/
 				
-				if (preg_match('/FZ/', $site -> getSiteName())) {
+				if (strpos($favorite, $site -> getSiteName())) {
 					var_dump('test');
 					$news = $site -> getNews();
 				}
