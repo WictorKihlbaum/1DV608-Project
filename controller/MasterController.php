@@ -20,9 +20,9 @@ class MasterController {
 	
 	public function handleUserRequest() {
 		
-		if ($_SERVER['QUERY_STRING'] == 'newsfeed') {
-			$this -> homeController -> handleRSSFeed();
-		}
+		
+		$this -> homeController -> handleRSSFeed();
+		
 		
 		if ($_SERVER['QUERY_STRING'] == 'login') {
 			$this -> loginController -> setUserFavoriteGamesite();
