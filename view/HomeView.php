@@ -35,6 +35,7 @@ class HomeView {
 		if ($this -> sessionModel -> getUserSession()) {
 			
 			$user = $this -> sessionModel -> getLoggedInUserNameSession();
+			echo($user);
 			$favorite = $this -> serviceModel -> getFavoriteGamesiteForLoggedInUser($user);
 			$news = array();
 			
