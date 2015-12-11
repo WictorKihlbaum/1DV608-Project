@@ -83,7 +83,7 @@ class UserDAL {
 			
 		if ($stmt = $con -> prepare(
 				$databaseInfo -> getUpdateFavoriteGamesiteStoredProcedure() . 
-				'("'.$user.'","'.$favorite.'")')) {
+				'("'. $user .'","'. $favorite .'")')) {
 			
 			$stmt -> execute();
 			$stmt -> close();
