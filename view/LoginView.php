@@ -18,7 +18,7 @@ class LoginView {
 	private static $cookiePassword = 'LoginView::CookiePassword';
 	private static $messageId = 'LoginView::Message';
 	
-	private $favorite = "No site choosen";
+	private $favorite = 'No site choosen';
 	private static $favoriteGamesite = 'LoginView::FavoriteGamesite';
 	private static $choose = 'LoginView::Choose';
 
@@ -161,9 +161,7 @@ class LoginView {
 		foreach ($rss as $site) {
 			
 			$name = $site -> getSiteName();
-			$options .= '
-				<option value="'. $name .' '. $this -> selectName($name) .'">'. $name .'</option>
-			';
+			$options .= '<option value="'.$name.''.$this -> selectName($name).'">'.$name.'</option>';
 		}
 		
 		return $options;
