@@ -35,7 +35,6 @@ class HomeView {
 		if ($this -> sessionModel -> getUserSession()) {
 			
 			$user = $this -> sessionModel -> getLoggedInUserNameSession();
-			echo($user);
 			$favorite = $this -> serviceModel -> getFavoriteGamesiteForLoggedInUser($user);
 			$news = array();
 			
@@ -44,6 +43,9 @@ class HomeView {
 				return 'To see the latest news from your favorite gamesite 
 						you need to add one. Visit <a href="/?login">Login</a> to add one site as your favorite.';
 			}
+			
+			var_dump($user);
+			var_dump($favorite);
 			
 			foreach ($this -> siteArray as $site) {
 				
