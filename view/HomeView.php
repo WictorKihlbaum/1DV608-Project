@@ -48,7 +48,11 @@ class HomeView {
 			
 			foreach ($this -> siteArray as $site) {
 				
-				if ($site -> getSiteName() == $favorite) {
+				/*if ($site -> getSiteName() == $favorite) {
+					$news = $site -> getNews();
+				}*/
+				
+				if (preg_match('/'. $favorite .'/', $site -> getSiteName())) {
 					$news = $site -> getNews();
 				}
 			}
