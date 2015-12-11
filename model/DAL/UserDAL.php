@@ -81,9 +81,7 @@ class UserDAL {
 		) 
 		or die ('Could not connect to the database server' . mysqli_connect_error());
 			
-			echo($user);
-			
-		if ($stmt = $con -> prepare($databaseInfo -> getUpdateFavoriteGamesiteStoredProcedure() . '("'. $favorite .'","'. $user .'")')) {
+		if ($stmt = $con -> prepare($databaseInfo -> getUpdateFavoriteGamesiteStoredProcedure() . '("'. $user .'","'. $favorite .'")')) {
 			
 			$stmt -> execute();
 			$stmt -> close();
