@@ -129,7 +129,7 @@ class LoginView {
 			<h2>'. $this -> sessionModel -> getLoggedInUserNameSession() .'s Profile</h2>
 			<h3>My favorite gamesite: '. $this -> showFavoriteGamesite() .'</h3>
 			<form method="post" >
-				<label for="' . self::$favoriteGamesite . '">Choose/change my favorite gamesite:</label>
+				<label for="'. self::$favoriteGamesite .'">Choose/change my favorite gamesite:</label>
 				
 				<select name="'. self::$favoriteGamesite .'">
 					'. $this -> getSiteNameOptions() .'
@@ -143,6 +143,7 @@ class LoginView {
 	private function showFavoriteGamesite() {
 	
 		$user = $this -> sessionModel -> getLoggedInUserNameSession();
+		
 		$favorite = $this -> serviceModel -> getFavoriteGamesiteForLoggedInUser($user);
 		
 		if ($favorite == null || $favorite == '') {
