@@ -135,7 +135,7 @@ class LoginView {
 					'. $this -> getSiteNameOptions() .'
 				</select>
 				
-				<input type="submit" name="' . self::$choose . '" value="Choose" />
+				<input type="submit" name="'. self::$choose .'" value="Choose" />
 			</form>
 		';
 	}
@@ -183,7 +183,7 @@ class LoginView {
 	public function getRequestFavoriteGamesite() {
 		
 		if (isset($_POST[self::$favoriteGamesite])) {
-			echo(self::$favoriteGamesite);
+			
 			return $_POST[self::$favoriteGamesite];
 		}
 			
