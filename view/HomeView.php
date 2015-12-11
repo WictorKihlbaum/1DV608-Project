@@ -52,7 +52,7 @@ class HomeView {
 					$news = $site -> getNews();
 				}*/
 				
-				if (strpos($favorite, $site -> getSiteName())) {
+				if (strpos((string)$favorite, (string)$site -> getSiteName())) {
 					var_dump('test');
 					$news = $site -> getNews();
 				}
