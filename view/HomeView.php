@@ -44,6 +44,8 @@ class HomeView {
 						you need to add one. Visit <a href="/?login">Login</a> to add one site as your favorite.';
 			}
 			
+			var_dump($favorite);
+			
 			foreach ($this -> siteArray as $site) {
 				
 				if ($site -> getSiteName() == $favorite) {
