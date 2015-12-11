@@ -52,7 +52,7 @@ class HomeView {
 					$news = $site -> getNews();
 				}*/
 				
-				if (preg_match((string)$favorite, (string)$site -> getSiteName())) {
+				if (preg_match('/'.(string)$favorite.'/i', (string)$site -> getSiteName())) {
 					var_dump('test');
 					$news = $site -> getNews();
 				}
