@@ -44,14 +44,15 @@ class HomeView {
 						you need to add one. Visit <a href="/?login">Login</a> to add one site as your favorite.';
 			}
 			
-			var_dump($user);
-			var_dump($favorite);
-			
 			foreach ($this -> siteArray as $site) {
 				
-				if ($site -> getSiteName() == $favorite) {
+				if (preg_match($site -> getSiteName(), $favorite)) {
 					$news = $site -> getNews();
 				}
+				
+				/*if ($site -> getSiteName() == $favorite) {
+					$news = $site -> getNews();
+				}*/
 			}
 			
 			return $this -> renderFavoriteNews($news, $favorite);
