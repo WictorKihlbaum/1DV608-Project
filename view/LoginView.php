@@ -183,7 +183,7 @@ class LoginView {
 	public function getRequestFavoriteGamesite() {
 		
 		if (isset($_POST[self::$favoriteGamesite])) {
-			
+			echo(self::$favoriteGamesite);
 			return $_POST[self::$favoriteGamesite];
 		}
 			
